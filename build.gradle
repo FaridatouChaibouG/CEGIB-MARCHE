@@ -1,0 +1,134 @@
+buildscript {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+
+
+	dependencies {
+		classpath 'org.postgresql:postgresql:42.6.0'
+	}
+}
+
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.0.5'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'nu.studer.jooq' version '8.0'
+	id 'gg.jte.gradle' version '3.2.3'
+	//id 'org.jetbrains.kotlin.jvm'
+}
+
+
+
+group = 'com.advinteck'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	implementation'org.apache.commons:commons-lang3:3.20.0'
+	implementation 'org.springframework.boot:spring-boot-starter-jooq'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'gg.jte:jte-spring-boot-starter-4:3.2.3'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-jooq-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-validation-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+jte {
+	generate()
+	binaryStaticContent = true
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+
+
+
+import org.jooq.codegen.GenerationTool
+import org.jooq.meta.jaxb.*
+
+def outputDirectory = projectDir.toString().concat('/src/main/java')
+def generatedPackageName = 'com.advinteck.cegib.generated'
+def outputDirectoryFullPath = outputDirectory.concat('/').concat(generatedPackageName.replace('.', '/'))
+clean.doFirst {
+	project.logger.lifecycle("deleting directory: ${outputDirectoryFullPath}")
+	if (outputDirectoryFullPath.length() < 25 || !outputDirectoryFullPath.contains('/src/main/')) {
+		def msg = "'delete' statement should be run with caution. We expect no short path."
+		project.logger.error(msg)
+		throw new GradleException(msg)
+	} else {
+		delete outputDirectoryFullPath
+	}
+}
+
+tasks.register('generate') {
+	//def outputDirectory = projectDir.toString().concat('/src/main/java')
+	//def generatedPackageName = 'com.advinteck.cegib.digit.generated'
+	def configuration = new Configuration()
+			.withJdbc(new Jdbc()
+					.withDriver('org.postgresql.Driver')
+
+					.withUrl('jdbc:postgresql://localhost:5432/CEGIB')
+					.withUser('admin')
+					.withPassword('admin'))
+			.withGenerator(new Generator()
+					.withDatabase(new Database()
+							.withName('org.jooq.meta.postgres.PostgresDatabase')
+							.withIncludes('.*')
+							.withExcludes('')
+							.withIncludeSystemSequences(true)
+							.withSchemata(
+									new SchemaMappingType()
+											.withInputSchema("referentiel"),
+									new SchemaMappingType()
+											.withInputSchema("marche")
+							))
+					.withGenerate(new Generate()
+							.withPojos(true)
+							.withDaos(true)
+							.withSequences(true)
+							.withSpringAnnotations(true)
+							.withJooqVersionReference(false)
+							.withTables(true)
+							.withGlobalRoutineReferences(true)
+					)
+					.withTarget(new Target()
+							.withPackageName(generatedPackageName)
+							.withDirectory(outputDirectory)
+							.withClean(false)));
+
+	doLast {
+		GenerationTool.generate(configuration)
+	}
+}

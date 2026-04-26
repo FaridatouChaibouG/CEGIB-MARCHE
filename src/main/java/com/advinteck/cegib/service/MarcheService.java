@@ -217,13 +217,15 @@ private final ReferentielService referentielService;
 
 
     public void editActivite(ActiviteDTO activiteDTO){
-        activiteDTO.setId(activiteDTO.getId());
-        activiteDTO.setMarcheId(activiteDTO.getMarcheId());
-        activiteDTO.setCodeActivite(activiteDTO.getCodeActivite());
-        activiteDTO.setIntituleActivite(activiteDTO.getIntituleActivite());
-        activiteDTO.setMontant(activiteDTO.getMontant());
-        activiteDTO.setTaux(activiteDTO.getTaux());
-       marcheActiviteDao.update();
+        MarcheActivite marcheActivite = new MarcheActivite() ;
+         marcheActivite.setId(activiteDTO.getId());
+         marcheActivite.setMarcheId(activiteDTO.getMarcheId());
+         marcheActivite.setCodeActivite(activiteDTO.getCodeActivite());
+         marcheActivite.setIntituleActivite(activiteDTO.getIntituleActivite());
+         marcheActivite.setMontant(activiteDTO.getMontant());
+         marcheActivite.setTaux(activiteDTO.getTaux());
+
+        marcheActiviteDao.update(marcheActivite);
     }
 
 

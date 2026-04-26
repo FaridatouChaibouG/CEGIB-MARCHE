@@ -86,7 +86,7 @@ content = @`
                         @for(var el : marcheActiviteDTOs)
 
                             <li class="list-group-item">
-                                <b>CodeActivite : </b> ${el.getCodeActivite()}  |  ${el.getIntituleActivite()}  |  ${el.getTaux()}  |  ${el.getMontant()}  |
+                                <b>CodeActivite : </b> ${el.getCodeActivite()}  |  ${el.getIntituleActivite()}  |  ${el.getTaux()}  |  ${el.getMontant()}  | ${el.getMontant() * (100 + el.getTaux() / 100)} |
                                 <i data-bs-toggle="modal" onclick="supprimer_activite( '${el.getId()}','${el.getCodeActivite()}')"
                                    data-bs-target="#activiteDeleteModal" class="bi bi-trash text-danger"></i> |
 

@@ -224,10 +224,10 @@ content = @`
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white"> Modification de l'activité </div>
                 <div class="card-body">
-                    <!-- L'ACTION DOIT ÊTRE L'URL DE TON @PostMapping -->
+
                     <form action="/marche/updatemarcheActivite" method="post">
                         <div class="row mb-3">
-                            <!-- Les names doivent être EXACTEMENT ceux de ton ActiviteDTO -->
+
                             <input type="hidden" name="id" id="edit_id">
                             <input type="hidden" name="marcheId" id="edit_marcheId">
 

@@ -88,8 +88,25 @@ content = @`
                             <li class="list-group-item">
                                 <b>CodeActivite : </b> ${el.getCodeActivite()}  |  ${el.getIntituleActivite()}  |  ${el.getTaux()}  |  ${el.getMontant()}  |
                                 <i data-bs-toggle="modal" onclick="supprimer_activite( '${el.getId()}','${el.getCodeActivite()}')"
-                                   data-bs-target="#activiteDeleteModal" class="bi bi-trash text-danger"></i>
+                                   data-bs-target="#activiteDeleteModal" class="bi bi-trash text-danger"></i> |
+
+                                <i data-bs-toggle="modal"
+                                   data-bs-target="#activiteEditModal"
+                                   onclick="edit_activite('${el.getId()}', '${el.getMarcheId()}', '${el.getCodeActivite()}', '${el.getMontant()}', '${el.getTaux()}')"
+                                   class="bi bi-pencil-square text-primary me-2"
+                                   style="cursor: pointer;">
+                                </i>
+
+
+
                             </li>
+
+
+
+
+
+
+
                         @endfor
 
                         <li class="list-group-item text-center">
@@ -202,6 +219,44 @@ content = @`
         </div>
     </div>
 
+    <div class="modal fade" id="activiteEditModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white"> Modification de l'activité </div>
+                <div class="card-body">
+                    <!-- L'ACTION DOIT ÊTRE L'URL DE TON @PostMapping -->
+                    <form action="/marche/updatemarcheActivite" method="post">
+                        <div class="row mb-3">
+                            <!-- Les names doivent être EXACTEMENT ceux de ton ActiviteDTO -->
+                            <input type="hidden" name="id" id="edit_id">
+                            <input type="hidden" name="marcheId" id="edit_marcheId">
+
+                            <div class="form-floating mb-3 col-md-12">
+                                <input type="text" class="form-control" id="edit_codeActivite" name="codeActivite" readonly>
+                                <label for="edit_codeActivite"> Code de l'activité </label>
+                            </div>
+
+                            <div class="form-floating mb-3 col-md-6">
+                                <input type="number" class="form-control" id="edit_montant" name="montant" required>
+                                <label for="edit_montant">Montant</label>
+                            </div>
+
+                            <div class="form-floating mb-3 col-md-6">
+                                <input type="number" class="form-control" id="edit_taux" name="taux" required>
+                                <label for="edit_taux">Taux</label>
+                            </div>
+
+                            <div class="mt-3">
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -288,6 +343,24 @@ content = @`
 
 
         }
+
+
+
+        function edit_activite(id, marcheId, codeActivite, montant, taux) {
+            document.getElementById('edit_id').value = id;
+            document.getElementById('edit_marcheId').value = marcheId;
+            document.getElementById('edit_codeActivite').value = codeActivite;
+            document.getElementById('edit_montant').value = montant;
+            document.getElementById('edit_taux').value = taux;
+        }
+
+
+
+
+
+
+
+
     </script>
 `)
 

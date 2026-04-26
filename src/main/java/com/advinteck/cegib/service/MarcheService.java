@@ -209,15 +209,23 @@ private final ReferentielService referentielService;
 
 
 
-
-
-
-
-
-
     public void deleteActivite(Long id) {
         marcheActiviteDao.deleteById(id);
     }
+
+
+
+
+    public void editActivite(ActiviteDTO activiteDTO){
+        activiteDTO.setId(activiteDTO.getId());
+        activiteDTO.setMarcheId(activiteDTO.getMarcheId());
+        activiteDTO.setCodeActivite(activiteDTO.getCodeActivite());
+        activiteDTO.setIntituleActivite(activiteDTO.getIntituleActivite());
+        activiteDTO.setMontant(activiteDTO.getMontant());
+        activiteDTO.setTaux(activiteDTO.getTaux());
+       marcheActiviteDao.update();
+    }
+
 
 
 }

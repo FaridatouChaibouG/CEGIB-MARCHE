@@ -187,6 +187,23 @@ public class MarcheController {
     }
 
 
+    @PostMapping("/updatemarcheActivite")
+    public String editActivite(@ModelAttribute  ActiviteDTO activiteDTO,Model model, RedirectAttributes redirectAttributes){
+
+
+        Map<String, String> messages = new HashMap<>();
+        try {
+            marcheService.editActivite(activiteDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        messages.put("success", " Activité modifié avec succes.");
+        redirectAttributes.addFlashAttribute("messages", messages);
+        return "redirect:/marche/details/" + activiteDTO.getMarcheId();
+    }
+
+
     @GetMapping("/activite/delete/{id}")
     public String deleteActivite(
             RedirectAttributes redirectAttributes,
@@ -206,6 +223,12 @@ public class MarcheController {
         redirectAttributes.addFlashAttribute("messages", messages);
         return "redirect:/marche/details/" + activiteDTO.getMarcheId();
     }
+
+
+
+
+
+
 
 
 

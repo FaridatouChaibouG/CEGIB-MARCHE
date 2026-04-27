@@ -18,8 +18,8 @@ public class MarcheDTO {
 
     private Long id;
     @NotEmpty(message = "Le numéro de marché est obligatoire.")
-    private String numMarche;
-    @NotEmpty(message = "L'imputation est obligatoire.")
+//    private String numMarche;
+//    @NotEmpty(message = "L'imputation est obligatoire.")
     private String imputation;
     @NotEmpty(message = "L'objet du marché est obligatoire.")
     private String objetMarche;

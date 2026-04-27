@@ -1,319 +1,379 @@
 @import com.advinteck.cegib.dto.ActiviteDTO
 @import com.advinteck.cegib.dto.MarcheDTO
-@import com.advinteck.cegib.generated.marche.tables.MarcheActivite
 @import com.advinteck.cegib.generated.referentiel.tables.pojos.*
 @import com.advinteck.cegib.dto.NifDTO
-@import com.advinteck.cegib.generated.marche.tables.pojos.*
 @import java.util.Map
 @import java.util.List
-@import org.springframework.validation.BindingResult
 
-@param List<Nifs>  nifList
-@param List<DppdActivite>  dppActiviteList
-@param BindingResult  bindingResult
+@param List<Nifs> nifList
+@param List<DppdActivite> dppActiviteList
 @param MarcheDTO marcheDTO
-@param NifDTO nifDTO
 @param Map<String, String> messages
 @param List<NifDTO> marcheNifDTOs
 @param List<ActiviteDTO> marcheActiviteDTOs
+
 @template.layout(
-title = "Détail du marché",
+title = "Détail du Marché",
 messages = messages,
 content = @`
-    <div class="card">
-        <div class="mt-2 mb-3 text-end">
-            <a href="/marche/list" class="btn btn-warning">Retour</a>
+    <!-- Actions Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="text-success fw-bold"><i ></i>   </h4>
+<%--        <h4 class="text-success fw-bold"><i class="bi bi-file-earmark-text me-2"></i>  ${marcheDTO.getNumMarche()} </h4>--%>
+        <a href="/marche/list" class="btn btn-outline-secondary shadow-sm">
+            <i class="bi bi-arrow-left me-1"></i> Retour à la liste
+        </a>
+    </div>
+
+    <!-- Infos Générales -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white py-3">
+            <h5 class="mb-0 text-dark fw-bold">Informations Générales</h5>
         </div>
-        <div class="card mb-5">
-            <div class="card-header">Information générale</div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <b>ID : </b> ${marcheDTO.getId()}
-                </li>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-3 col-6">
+                    <small class="text-muted d-block">ID Interne</small>
+                    <span class="fw-bold text-dark">${marcheDTO.getId()}</span>
+                </div>
+<%--                <div class="col-md-3 col-6">--%>
+<%--                    <small class="text-muted d-block">Numéro Marché</small>--%>
+<%--                    <span class="badge bg-success-subtle text-success border border-success-subtle">${marcheDTO.getNumMarche()}</span>--%>
+<%--                </div>--%>
+                <div class="col-md-3 col-6">
+                    <small class="text-muted d-block">Date Approbation</small>
+                    <span class="fw-bold">${marcheDTO.getDateApprobation().toString()}</span>
+                </div>
+                <div class="col-md-3 col-6">
+                    <small class="text-muted d-block">Approuvé par</small>
+                    <span class="badge bg-light text-dark border">${marcheDTO.getApprouvePar()}</span>
+                </div>
+                <div class="col-md-3 col-6">
+                    <small class="text-muted d-block">Imputation</small>
+                    <span class="fw-bold">${marcheDTO.getImputation()}</span>
+                </div>
 
-                <li class="list-group-item">
-                    <b>Num de marché : </b> ${marcheDTO.getNumMarche()}
-                </li>
+                <div class="col-md-5">
+                    <small class="text-muted d-block">Objet du Marché</small>
+                    <p class="mb-0 fw-medium">${marcheDTO.getObjetMarche()}</p>
+                </div>
+                <div class="col-md-4">
+                    <small class="text-muted d-block">Titulaire</small>
+                    <span class="fw-bold text-primary">${marcheDTO.getTitulaireMarche()}</span>
+                </div>
 
-                <li class="list-group-item">
-                    <b>Imputation : </b> ${marcheDTO.getImputation()}
-                </li>
-
-                <li class="list-group-item">
-                    <b>Objet du marché : </b> ${marcheDTO.getObjetMarche()}
-                </li>
-
-                <li class="list-group-item">
-                    <b>Date d'approbation : </b> ${marcheDTO.getDateApprobation().toString()}
-                </li>
-
-                <li class="list-group-item">
-                    <b>Autorite contractante : </b> ${marcheDTO.getAutoriteContractanteIntitule()}
-                </li>
-
-                <li class="list-group-item">
-                    <b>Structure de l'autorite contractante
-                        : </b> ${marcheDTO.getStructureAutoriteContractanteIntutule()}
-                </li>
-
-                <li class="list-group-item">
-                    <b>Approuvé ar : </b> ${marcheDTO.getApprouvePar()}
-                </li>
-
-                <li class="list-group-item">
-                    <b>Titulaire du marché : </b> ${marcheDTO.getTitulaireMarche()}
-                </li>
-
-                <li class="list-group-item">
-                    <b>Type de marché : </b> ${marcheDTO.getTypeMarcheIntitule()}
-                </li>
-
-                <li class="list-group-item">
-                    <b>Mode de passation : </b> ${ marcheDTO.getModePassationIntitule()}
-                </li>
-
-            </ul>
+                <div class="col-md-4">
+                    <small class="text-muted d-block">Autorité Contractante</small>
+                    <span class="small">${marcheDTO.getAutoriteContractanteIntitule()}</span>
+                </div>
+                <div class="col-md-4">
+                    <small class="text-muted d-block">Type</small>
+                    <span class="small">${marcheDTO.getTypeMarcheIntitule()}</span>
+                </div>
+                <div class="col-md-4">
+                    <small class="text-muted d-block">Mode</small>
+                    <span class="small">${marcheDTO.getModePassationIntitule()}</span>
+                </div>
+            </div>
         </div>
     </div>
 
-
-    <div class="row">
-        <div class="col-md-6 ">
-            <div class="card">
-                <div class="card-header">Activités</div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
+    <div class="row g-4">
+        <!-- Section Activités -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                    <h5 class="mb-0 fw-bold">Activités</h5>
+                    <button class="btn btn-sm btn-success rounded-pill" data-bs-toggle="modal"
+                            data-bs-target="#activiteAddModal">
+                        <i class="bi bi-plus-lg me-1"></i> Ajouter
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                        <tr class="small text-uppercase">
+                            <th class="ps-4">Code / Intitulé</th>
+                            <th class="text-center">Taux (%)</th>
+                            <th class="text-end">Montant HT</th>
+                            <th class="text-end">Montant TTC</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         @for(var el : marcheActiviteDTOs)
-
-                            <li class="list-group-item">
-                                <b>CodeActivite : </b> ${el.getCodeActivite()}  |  ${el.getIntituleActivite()}  |  ${el.getTaux()}  |  ${el.getMontant()}  | ${el.getMontant() * (100 + el.getTaux() / 100)} |
-                                <i data-bs-toggle="modal" onclick="supprimer_activite( '${el.getId()}','${el.getCodeActivite()}')"
-                                   data-bs-target="#activiteDeleteModal" class="bi bi-trash text-danger"></i> |
-
-                                <i data-bs-toggle="modal"
-                                   data-bs-target="#activiteEditModal"
-                                   onclick="edit_activite('${el.getId()}', '${el.getMarcheId()}', '${el.getCodeActivite()}', '${el.getMontant()}', '${el.getTaux()}')"
-                                   class="bi bi-pencil-square text-primary me-2"
-                                   style="cursor: pointer;">
-                                </i>
-
-
-
-                            </li>
-
-
-
-
-
-
-
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="fw-bold text-dark">${el.getCodeActivite()}</div>
+                                    <div class="small text-muted">${el.getIntituleActivite()}</div>
+                                </td>
+                                <td class="text-center"><span class="badge bg-light text-dark">${el.getTaux()}%</span>
+                                </td>
+                                <td class="text-end fw-medium">${el.getMontant()}</td>
+                                <td class="text-end fw-bold text-success">${el.getMontant() * (100 + el.getTaux()) / 100}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-primary border-0"
+                                            onclick="edit_activite('${el.getId()}', '${el.getMarcheId()}', '${el.getCodeActivite()}', '${el.getMontant()}', '${el.getTaux()}')"
+                                            data-bs-toggle="modal" data-bs-target="#activiteEditModal">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger border-0"
+                                            onclick="supprimer_activite('${el.getId()}','${el.getCodeActivite()}')"
+                                            data-bs-toggle="modal" data-bs-target="#activiteDeleteModal">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
                         @endfor
-
-                        <li class="list-group-item text-center">
-                            <span class="btn btn-success">
-                               <span href="#" class="btn" data-bs-toggle="modal"
-                                     data-bs-target="#activiteAddModal">Ajouter</span>
-                            </span>
-                        </li>
-                    </ul>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">NIF</div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
 
+        <!-- Section NIF -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                    <h5 class="mb-0 fw-bold">NIF Associés</h5>
+                    <button class="btn btn-sm btn-success rounded-pill" data-bs-toggle="modal"
+                            data-bs-target="#nifAddModal">
+                        <i class="bi bi-plus-lg me-1"></i> Ajouter
+                    </button>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush">
                         @for(var el : marcheNifDTOs)
-
-                            <li class="list-group-item">
-                                <b>Identifiant : </b> ${el.getIdentifiant()} | ${el.getRaisonSociale()} |
-                                <i data-bs-toggle="modal" onclick="supprimer_nif( '${el.getId()}','${el.getIdentifiant()}', '${el.getRaisonSociale()}')"
-                                   data-bs-target="#nifDeleteModal" class="bi bi-trash text-danger"></i>
-                            </li>
+                            <div class="list-group-item py-3 d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="fw-bold text-dark">${el.getIdentifiant()}</div>
+                                    <div class="small text-muted">${el.getRaisonSociale()}</div>
+                                </div>
+                                <button class="btn btn-link text-danger p-0"
+                                        onclick="supprimer_nif('${el.getId()}','${el.getIdentifiant()}', '${el.getRaisonSociale()}')"
+                                        data-bs-toggle="modal" data-bs-target="#nifDeleteModal">
+                                    <i class="bi bi-trash text-danger"></i>
+                                </button>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary border-0"
+                                            onclick="edit_nif('${el.getId()}', '${el.getIdentifiant()}')"
+                                            data-bs-toggle="modal" data-bs-target="#nifEditModal">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                            </div>
+                            </div>
                         @endfor
-
-                        <li class="list-group-item text-center">
-                            <span class="btn btn-success">
-                               <span href="#" class="btn" data-bs-toggle="modal"
-                                     data-bs-target="#nifAddModal">Ajouter</span>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="activiteAddModal" tabindex="-1"
-         aria-labelledby="activiteAddModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-success"> Ajout d'une activité au marché</div>
-                <div class="card-body">
-                    <form action="/marche/savemarcheActivite" method="post">
-                        <div class="row mb-3">
-
-                            <input type="hidden" name="marcheId" value="${marcheDTO.getId()}">
-
-                            <div class="form-floating mb-3 col-md-6">
-                                <select class="form-select" name="codeActivite" id="codeActivite">
-                                    <option value="">Veuillez selectionner
-                                    </option>
-                                    @for(var el: dppActiviteList)
-                                        <option value="${el.getCodeActivite()}">
-                                            ${el.getCodeActivite()}
-                                        </option>
-                                    @endfor
-                                </select>
-                                <label for="codeActivite"> Activité  </label>
-                            </div>
-
-                            <div class="form-floating mb-3 col-md-6">
-                                <input type="number" class="form-control" id="montant" name="montant" placeholder="Montant" >
-                                <label for="montant">Montant </label>
-
-
-                            </div>
-
-
-                            <div class="form-floating mb-3 col-md-6">
-                                <input type="number" class="form-control" id="taux" name="taux" placeholder="Taux" >
-                                <label for="taux"> Taux </label>
-
-
-                            </div>
-
-
-
-                            <div>
-                                <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                    Annuler
-                                </button>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="activiteDeleteModal" tabindex="-1"
-         aria-labelledby="activiteDeleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger"> suppression d'une activité du marché</div>
-                <div class="card-body">
-                    Voulez-vous supprimer l'activité : <span id="activiteToDelete" class="fw-bold">Code_activité à supprimer</span>
-                </div>
-                <div>
-                    <a href="#" id="activiteId" class="btn btn-danger">Supprimer</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Annuler
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="activiteEditModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-white"> Modification de l'activité </div>
-                <div class="card-body">
-
-                    <form action="/marche/updatemarcheActivite" method="post">
-                        <div class="row mb-3">
-
-                            <input type="hidden" name="id" id="edit_id">
-                            <input type="hidden" name="marcheId" id="edit_marcheId">
-
-                            <div class="form-floating mb-3 col-md-12">
-                                <input type="text" class="form-control" id="edit_codeActivite" name="codeActivite" readonly>
-                                <label for="edit_codeActivite"> Code de l'activité </label>
-                            </div>
-
-                            <div class="form-floating mb-3 col-md-6">
-                                <input type="number" class="form-control" id="edit_montant" name="montant" required>
-                                <label for="edit_montant">Montant</label>
-                            </div>
-
-                            <div class="form-floating mb-3 col-md-6">
-                                <input type="number" class="form-control" id="edit_taux" name="taux" required>
-                                <label for="edit_taux">Taux</label>
-                            </div>
-
-                            <div class="mt-3">
-                                <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-    <div class="modal fade" id="nifAddModal" tabindex="-1"
-         aria-labelledby="nifAddModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-success"> Ajout d'un nif au marché</div>
-                <div class="card-body">
-                    <form action="/marche/savemarcheNif" method="post">
-                        <div class="row mb-3">
-
-                            <input type="hidden" name="marcheId" value="${marcheDTO.getId()}">
-
-                            <div class="form-floating mb-3 col-md-6">
-                                <select class="form-select" name="identifiant" id="identifiant">
-                                    <option value="">Veuillez selectionner
-                                    </option>
-                                    @for(var el: nifList)
-                                        <option value="${el.getIdentifiant()}">
-                                            ${el.getIdentifiant()} - ${el.getRaisonSociale()}
-                                        </option>
-                                    @endfor
-                                </select>
-                                <label for="identifiant"> Nif  </label>
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                    Annuler
-                                </button>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="nifDeleteModal" tabindex="-1"
-         aria-labelledby="nifDeleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger"> suppression d'un nif du marché</div>
-                <div class="card-body">
-                    Voulez-vous supprimer ce nif : <span id="nifToDelete" class="fw-bold">Identifiant à supprimer</span>
                     </div>
-                <div>
-                    <a href="#" id="nifId" class="btn btn-danger">Supprimer</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Annuler
-                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal activité -->
+    <div class="modal fade" id="activiteAddModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Nouvelle Activité</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="/marche/savemarcheActivite" method="post">
+                    <div class="modal-body p-4">
+                        <input type="hidden" name="marcheId" value="${marcheDTO.getId()}">
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Sélectionner l'Activité</label>
+                            <select class="form-select border-success-subtle" name="codeActivite" id="selectActivite" required>
+                                <option value="">Choisir...</option>
+                                @for(var el: dppActiviteList)
+                                    <option value="${el.getCodeActivite()}">${el.getCodeActivite()}
+                                        - ${el.getIntituleActivite()}</option>
+                                @endfor
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold small">Montant HT</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control border-success-subtle" name="montant"
+                                           required>
+                                    <span class="input-group-text">CFA</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold small">Taux (%)</label>
+                                <input type="number" class="form-control border-success-subtle" name="taux" value=""
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light border-0">
+                        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-success px-4">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="activiteEditModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Modifier Activité</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="/marche/updatemarcheActivite" method="post">
+                    <div class="modal-body p-4">
+                        <input type="hidden" id="edit_marcheId" name="marcheId">
+                        <input type="hidden" id="edit_id" name="id">
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Sélectionner l'Activité</label>
+                            <select class="form-select border-success-subtle" name="codeActivite" id="edit_codeActivite" required readonly>
+                                <option value="">Choisir...</option>
+                                @for(var el: dppActiviteList)
+                                    <option value="${el.getCodeActivite()}">${el.getCodeActivite()}
+                                        - ${el.getIntituleActivite()}</option>
+                                @endfor
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold small">Montant HT</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control border-success-subtle" name="montant" id="edit_montant"
+                                           required>
+                                    <span class="input-group-text">CFA</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold small">Taux (%)</label>
+                                <input type="number" class="form-control border-success-subtle" name="taux" id="edit_taux"
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light border-0">
+                        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-success px-4">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="activiteDeleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-body p-4 text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-x-circle text-danger" style="font-size: 3.5rem;"></i>
+                    </div>
+
+                    <h5 class="fw-bold text-dark">Supprimer l'activité  : <span id="activiteToDelete"></span> ?</h5>
+                    <p class="text-muted small" id="deleteActiviteMsg">
+                        Cette action est irréversible.
+                    </p>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-center mt-4">
+                        <button type="button" class="btn btn-light px-4 border" data-bs-dismiss="modal">Annuler</button>
+                        <a id="btn-confirm-delete-activite" href="#" class="btn btn-danger px-4 shadow-sm">
+                            Confirmer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal nif -->
+    <div class="modal fade" id="nifAddModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title"><i class="bi bi-person-plus me-2"></i>Associer un NIF</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="/marche/savemarcheNif" method="post">
+                    <div class="modal-body p-4">
+                        <input type="hidden" name="marcheId" value="${marcheDTO.getId()}">
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-uppercase">Sélectionner l'Identifiant Fiscal (NIF)</label>
+                            <select class="form-select border-success-subtle" name="identifiant" id="selectNif" required>
+                                <option value="">Rechercher un NIF...</option>
+                                @for(var el : nifList)
+                                    <option value="${el.getIdentifiant()}">${el.getIdentifiant()} - ${el.getRaisonSociale()}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light border-0">
+                        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-success px-4">
+                            <i class="bi bi-check-circle me-1"></i> Valider l'association
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="nifEditModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Modifier Nif</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="/marche/updatemarcheNif" method="post">
+                    <div class="modal-body p-4">
+                        <input type="hidden" id="edit_marcheId" name="marcheId">
+                        <input type="hidden" id="edit_id" name="id">
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Sélectionner le nif</label>
+                            <select class="form-select border-success-subtle" name="codeActivite" id="edit_identifiant" >
+                                <option value="">Choisir...</option>
+                                @for(var el: nifList)
+                                    <option value="${el.getIdentifiant()}">${el.getIdentifiant()}
+                                        - ${el.getRaisonSociale()}</option>
+                                @endfor
+                            </select>
+                        </div>
+
+                        <div class="modal-footer bg-light border-0">
+                            <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-success px-4">Enregistrer</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="nifDeleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-body p-4 text-center">
+                    <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
+                    <h5 class="mt-3 fw-bold">Confirmation</h5>
+                    <p class="text-muted" id="deleteMsgNif">Voulez-vous détacher ce NIF :<span id="nifToDelete"></span> ?</p>
+                    <div class="d-flex gap-2 justify-content-center mt-4">
+                        <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Non</button>
+                        <a id="btn-confirm-delete-nif" href="#" class="btn btn-danger px-4">Oui, Supprimer</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -322,12 +382,18 @@ content = @`
     <script>
         function supprimer_nif(id, identifiant, rs) {
             const text = identifiant + " - " + rs
-           const nifToDelete = document.getElementById("nifToDelete");
-           nifToDelete.innerHTML = text;
+            const c = document.getElementById("nifToDelete");
+            nifToDelete.innerHTML = text;
 
-            const nifId = document.getElementById("nifId");
+            const nifId = document.getElementById("btn-confirm-delete-nif");
             nifId.setAttribute("href", "/marche/nif/delete/" + id);
 
+
+        }
+
+        function edit_nif(id, identifiant) {
+            document.getElementById('edit_id').value = id;
+            document.getElementById('edit_identifiant').value = identifiant;
 
         }
 
@@ -338,12 +404,11 @@ content = @`
             const activiteToDelete = document.getElementById("activiteToDelete");
             activiteToDelete.innerHTML = text;
 
-            const activiteId = document.getElementById("activiteId");
+            const activiteId = document.getElementById("btn-confirm-delete-activite");
             activiteId.setAttribute("href", "/marche/activite/delete/" + id);
 
 
         }
-
 
 
         function edit_activite(id, marcheId, codeActivite, montant, taux) {
@@ -354,9 +419,16 @@ content = @`
             document.getElementById('edit_taux').value = taux;
         }
 
+        new SlimSelect({
+            select: '#selectActivite',
+            placeholder: 'Rechercher une activité...'
+        });
 
 
-
+        new SlimSelect({
+            select: '#selectNif',
+            placeholder: 'Rechercher un NIF...'
+        });
 
 
 

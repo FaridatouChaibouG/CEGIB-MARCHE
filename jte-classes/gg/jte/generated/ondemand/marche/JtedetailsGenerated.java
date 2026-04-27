@@ -1,123 +1,133 @@
 package gg.jte.generated.ondemand.marche;
 import com.advinteck.cegib.dto.ActiviteDTO;
 import com.advinteck.cegib.dto.MarcheDTO;
-import com.advinteck.cegib.generated.marche.tables.MarcheActivite;
 import com.advinteck.cegib.generated.referentiel.tables.pojos.*;
 import com.advinteck.cegib.dto.NifDTO;
-import com.advinteck.cegib.generated.marche.tables.pojos.*;
 import java.util.Map;
 import java.util.List;
-import org.springframework.validation.BindingResult;
 @SuppressWarnings("unchecked")
 public final class JtedetailsGenerated {
 	public static final String JTE_NAME = "marche/details.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,5,6,7,8,10,10,10,10,18,21,21,30,30,30,34,34,34,38,38,38,42,42,42,46,46,46,50,50,50,55,55,55,59,59,59,63,63,63,67,67,67,71,71,71,85,85,88,88,88,88,88,88,88,88,88,88,88,88,88,88,88,89,89,89,89,89,89,89,89,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,109,109,127,127,130,130,130,130,130,130,131,131,131,131,131,131,131,131,131,131,131,131,134,134,157,157,157,157,157,157,157,157,157,163,163,164,164,164,164,164,164,164,164,164,165,165,165,167,167,275,275,275,275,275,275,275,275,275,281,281,282,282,282,282,282,282,282,282,282,283,283,283,283,283,283,285,285,364,364,364,368,368,368,10,11,12,13,14,15,16,17,17,17,17};
-	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, List<Nifs> nifList, List<DppdActivite> dppActiviteList, BindingResult bindingResult, MarcheDTO marcheDTO, NifDTO nifDTO, Map<String, String> messages, List<NifDTO> marcheNifDTOs, List<ActiviteDTO> marcheActiviteDTOs) {
-		gg.jte.generated.ondemand.JtelayoutGenerated.render(jteOutput, jteHtmlInterceptor, "Détail du marché", new gg.jte.html.HtmlContent() {
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,5,7,7,7,7,14,14,17,17,18,21,27,36,36,36,38,39,40,41,44,44,44,48,48,48,52,52,52,57,57,57,61,61,61,66,66,66,70,70,70,74,74,74,81,103,103,106,106,106,107,107,107,109,109,109,111,111,111,112,112,112,115,115,115,115,115,115,115,115,115,115,115,115,115,115,115,115,115,115,115,115,120,120,120,120,120,120,120,120,126,126,133,145,145,148,148,148,149,149,149,152,152,152,152,152,152,152,152,152,152,152,152,158,158,158,158,158,158,158,158,164,164,171,181,181,181,181,181,181,181,181,181,187,187,188,188,188,188,188,188,188,188,188,188,188,188,189,189,189,190,190,235,235,236,236,236,236,236,236,236,236,236,236,236,236,237,237,237,238,238,291,301,301,301,301,301,301,301,301,301,307,307,308,308,308,308,308,308,308,308,308,308,308,308,308,308,308,309,309,343,343,344,344,344,344,344,344,344,344,344,344,344,344,345,345,345,346,346,436,436,436,440,440,440,7,8,9,10,11,12,12,12,12};
+	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, List<Nifs> nifList, List<DppdActivite> dppActiviteList, MarcheDTO marcheDTO, Map<String, String> messages, List<NifDTO> marcheNifDTOs, List<ActiviteDTO> marcheActiviteDTOs) {
+		jteOutput.writeContent("\n");
+		gg.jte.generated.ondemand.JtelayoutGenerated.render(jteOutput, jteHtmlInterceptor, "Détail du Marché", new gg.jte.html.HtmlContent() {
 			public void writeTo(gg.jte.html.HtmlTemplateOutput jteOutput) {
-				jteOutput.writeContent("\n    <div class=\"card\">\n        <div class=\"mt-2 mb-3 text-end\">\n            <a href=\"/marche/list\" class=\"btn btn-warning\">Retour</a>\n        </div>\n        <div class=\"card mb-5\">\n            <div class=\"card-header\">Information générale</div>\n            <ul class=\"list-group list-group-flush\">\n                <li class=\"list-group-item\">\n                    <b>ID : </b> ");
-				jteOutput.setContext("li", null);
+				jteOutput.writeContent("\n    ");
+				jteOutput.writeContent("\n    <div class=\"d-flex justify-content-between align-items-center mb-4\">\n        <h4 class=\"text-success fw-bold\"><i ></i>   </h4>\n");
+				jteOutput.writeContent("\n        <a href=\"/marche/list\" class=\"btn btn-outline-secondary shadow-sm\">\n            <i class=\"bi bi-arrow-left me-1\"></i> Retour à la liste\n        </a>\n    </div>\n\n    ");
+				jteOutput.writeContent("\n    <div class=\"card border-0 shadow-sm mb-4\">\n        <div class=\"card-header bg-white py-3\">\n            <h5 class=\"mb-0 text-dark fw-bold\">Informations Générales</h5>\n        </div>\n        <div class=\"card-body\">\n            <div class=\"row g-3\">\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"text-muted d-block\">ID Interne</small>\n                    <span class=\"fw-bold text-dark\">");
+				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getId());
-				jteOutput.writeContent("\n                </li>\n\n                <li class=\"list-group-item\">\n                    <b>Num de marché : </b> ");
-				jteOutput.setContext("li", null);
-				jteOutput.writeUserContent(marcheDTO.getNumMarche());
-				jteOutput.writeContent("\n                </li>\n\n                <li class=\"list-group-item\">\n                    <b>Imputation : </b> ");
-				jteOutput.setContext("li", null);
-				jteOutput.writeUserContent(marcheDTO.getImputation());
-				jteOutput.writeContent("\n                </li>\n\n                <li class=\"list-group-item\">\n                    <b>Objet du marché : </b> ");
-				jteOutput.setContext("li", null);
-				jteOutput.writeUserContent(marcheDTO.getObjetMarche());
-				jteOutput.writeContent("\n                </li>\n\n                <li class=\"list-group-item\">\n                    <b>Date d'approbation : </b> ");
-				jteOutput.setContext("li", null);
+				jteOutput.writeContent("</span>\n                </div>\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"text-muted d-block\">Date Approbation</small>\n                    <span class=\"fw-bold\">");
+				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getDateApprobation().toString());
-				jteOutput.writeContent("\n                </li>\n\n                <li class=\"list-group-item\">\n                    <b>Autorite contractante : </b> ");
-				jteOutput.setContext("li", null);
-				jteOutput.writeUserContent(marcheDTO.getAutoriteContractanteIntitule());
-				jteOutput.writeContent("\n                </li>\n\n                <li class=\"list-group-item\">\n                    <b>Structure de l'autorite contractante\n                        : </b> ");
-				jteOutput.setContext("li", null);
-				jteOutput.writeUserContent(marcheDTO.getStructureAutoriteContractanteIntutule());
-				jteOutput.writeContent("\n                </li>\n\n                <li class=\"list-group-item\">\n                    <b>Approuvé ar : </b> ");
-				jteOutput.setContext("li", null);
+				jteOutput.writeContent("</span>\n                </div>\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"text-muted d-block\">Approuvé par</small>\n                    <span class=\"badge bg-light text-dark border\">");
+				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getApprouvePar());
-				jteOutput.writeContent("\n                </li>\n\n                <li class=\"list-group-item\">\n                    <b>Titulaire du marché : </b> ");
-				jteOutput.setContext("li", null);
+				jteOutput.writeContent("</span>\n                </div>\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"text-muted d-block\">Imputation</small>\n                    <span class=\"fw-bold\">");
+				jteOutput.setContext("span", null);
+				jteOutput.writeUserContent(marcheDTO.getImputation());
+				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-5\">\n                    <small class=\"text-muted d-block\">Objet du Marché</small>\n                    <p class=\"mb-0 fw-medium\">");
+				jteOutput.setContext("p", null);
+				jteOutput.writeUserContent(marcheDTO.getObjetMarche());
+				jteOutput.writeContent("</p>\n                </div>\n                <div class=\"col-md-4\">\n                    <small class=\"text-muted d-block\">Titulaire</small>\n                    <span class=\"fw-bold text-primary\">");
+				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getTitulaireMarche());
-				jteOutput.writeContent("\n                </li>\n\n                <li class=\"list-group-item\">\n                    <b>Type de marché : </b> ");
-				jteOutput.setContext("li", null);
+				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-4\">\n                    <small class=\"text-muted d-block\">Autorité Contractante</small>\n                    <span class=\"small\">");
+				jteOutput.setContext("span", null);
+				jteOutput.writeUserContent(marcheDTO.getAutoriteContractanteIntitule());
+				jteOutput.writeContent("</span>\n                </div>\n                <div class=\"col-md-4\">\n                    <small class=\"text-muted d-block\">Type</small>\n                    <span class=\"small\">");
+				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getTypeMarcheIntitule());
-				jteOutput.writeContent("\n                </li>\n\n                <li class=\"list-group-item\">\n                    <b>Mode de passation : </b> ");
-				jteOutput.setContext("li", null);
-				jteOutput.writeUserContent( marcheDTO.getModePassationIntitule());
-				jteOutput.writeContent("\n                </li>\n\n            </ul>\n        </div>\n    </div>\n\n\n    <div class=\"row\">\n        <div class=\"col-md-6 \">\n            <div class=\"card\">\n                <div class=\"card-header\">Activités</div>\n                <div class=\"card-body\">\n                    <ul class=\"list-group list-group-flush\">\n                        ");
+				jteOutput.writeContent("</span>\n                </div>\n                <div class=\"col-md-4\">\n                    <small class=\"text-muted d-block\">Mode</small>\n                    <span class=\"small\">");
+				jteOutput.setContext("span", null);
+				jteOutput.writeUserContent(marcheDTO.getModePassationIntitule());
+				jteOutput.writeContent("</span>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"row g-4\">\n        ");
+				jteOutput.writeContent("\n        <div class=\"col-lg-8\">\n            <div class=\"card border-0 shadow-sm h-100\">\n                <div class=\"card-header bg-white d-flex justify-content-between align-items-center py-3\">\n                    <h5 class=\"mb-0 fw-bold\">Activités</h5>\n                    <button class=\"btn btn-sm btn-success rounded-pill\" data-bs-toggle=\"modal\"\n                            data-bs-target=\"#activiteAddModal\">\n                        <i class=\"bi bi-plus-lg me-1\"></i> Ajouter\n                    </button>\n                </div>\n                <div class=\"table-responsive\">\n                    <table class=\"table table-hover align-middle mb-0\">\n                        <thead class=\"table-light\">\n                        <tr class=\"small text-uppercase\">\n                            <th class=\"ps-4\">Code / Intitulé</th>\n                            <th class=\"text-center\">Taux (%)</th>\n                            <th class=\"text-end\">Montant HT</th>\n                            <th class=\"text-end\">Montant TTC</th>\n                            <th class=\"text-center\">Actions</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                        ");
 				for (var el : marcheActiviteDTOs) {
-					jteOutput.writeContent("\n\n                            <li class=\"list-group-item\">\n                                <b>CodeActivite : </b> ");
-					jteOutput.setContext("li", null);
+					jteOutput.writeContent("\n                            <tr>\n                                <td class=\"ps-4\">\n                                    <div class=\"fw-bold text-dark\">");
+					jteOutput.setContext("div", null);
 					jteOutput.writeUserContent(el.getCodeActivite());
-					jteOutput.writeContent("  |  ");
-					jteOutput.setContext("li", null);
+					jteOutput.writeContent("</div>\n                                    <div class=\"small text-muted\">");
+					jteOutput.setContext("div", null);
 					jteOutput.writeUserContent(el.getIntituleActivite());
-					jteOutput.writeContent("  |  ");
-					jteOutput.setContext("li", null);
+					jteOutput.writeContent("</div>\n                                </td>\n                                <td class=\"text-center\"><span class=\"badge bg-light text-dark\">");
+					jteOutput.setContext("span", null);
 					jteOutput.writeUserContent(el.getTaux());
-					jteOutput.writeContent("  |  ");
-					jteOutput.setContext("li", null);
+					jteOutput.writeContent("%</span>\n                                </td>\n                                <td class=\"text-end fw-medium\">");
+					jteOutput.setContext("td", null);
 					jteOutput.writeUserContent(el.getMontant());
-					jteOutput.writeContent("  | ");
-					jteOutput.setContext("li", null);
-					jteOutput.writeUserContent(el.getMontant() * (100 + el.getTaux() / 100));
-					jteOutput.writeContent(" |\n                                <i data-bs-toggle=\"modal\" onclick=\"supprimer_activite( '");
-					jteOutput.setContext("i", "onclick");
+					jteOutput.writeContent("</td>\n                                <td class=\"text-end fw-bold text-success\">");
+					jteOutput.setContext("td", null);
+					jteOutput.writeUserContent(el.getMontant() * (100 + el.getTaux()) / 100);
+					jteOutput.writeContent("</td>\n                                <td class=\"text-center\">\n                                    <button class=\"btn btn-sm btn-outline-primary border-0\"\n                                            onclick=\"edit_activite('");
+					jteOutput.setContext("button", "onclick");
 					jteOutput.writeUserContent(el.getId());
-					jteOutput.setContext("i", null);
-					jteOutput.writeContent("','");
-					jteOutput.setContext("i", "onclick");
-					jteOutput.writeUserContent(el.getCodeActivite());
-					jteOutput.setContext("i", null);
-					jteOutput.writeContent("')\"\n                                   data-bs-target=\"#activiteDeleteModal\" class=\"bi bi-trash text-danger\"></i> |\n\n                                <i data-bs-toggle=\"modal\"\n                                   data-bs-target=\"#activiteEditModal\"\n                                   onclick=\"edit_activite('");
-					jteOutput.setContext("i", "onclick");
-					jteOutput.writeUserContent(el.getId());
-					jteOutput.setContext("i", null);
+					jteOutput.setContext("button", null);
 					jteOutput.writeContent("', '");
-					jteOutput.setContext("i", "onclick");
+					jteOutput.setContext("button", "onclick");
 					jteOutput.writeUserContent(el.getMarcheId());
-					jteOutput.setContext("i", null);
+					jteOutput.setContext("button", null);
 					jteOutput.writeContent("', '");
-					jteOutput.setContext("i", "onclick");
+					jteOutput.setContext("button", "onclick");
 					jteOutput.writeUserContent(el.getCodeActivite());
-					jteOutput.setContext("i", null);
+					jteOutput.setContext("button", null);
 					jteOutput.writeContent("', '");
-					jteOutput.setContext("i", "onclick");
+					jteOutput.setContext("button", "onclick");
 					jteOutput.writeUserContent(el.getMontant());
-					jteOutput.setContext("i", null);
+					jteOutput.setContext("button", null);
 					jteOutput.writeContent("', '");
-					jteOutput.setContext("i", "onclick");
+					jteOutput.setContext("button", "onclick");
 					jteOutput.writeUserContent(el.getTaux());
-					jteOutput.setContext("i", null);
-					jteOutput.writeContent("')\"\n                                   class=\"bi bi-pencil-square text-primary me-2\"\n                                   style=\"cursor: pointer;\">\n                                </i>\n\n\n\n                            </li>\n\n\n\n\n\n\n\n                        ");
-				}
-				jteOutput.writeContent("\n\n                        <li class=\"list-group-item text-center\">\n                            <span class=\"btn btn-success\">\n                               <span href=\"#\" class=\"btn\" data-bs-toggle=\"modal\"\n                                     data-bs-target=\"#activiteAddModal\">Ajouter</span>\n                            </span>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-6\">\n            <div class=\"card\">\n                <div class=\"card-header\">NIF</div>\n                <div class=\"card-body\">\n                    <ul class=\"list-group list-group-flush\">\n\n                        ");
-				for (var el : marcheNifDTOs) {
-					jteOutput.writeContent("\n\n                            <li class=\"list-group-item\">\n                                <b>Identifiant : </b> ");
-					jteOutput.setContext("li", null);
-					jteOutput.writeUserContent(el.getIdentifiant());
-					jteOutput.writeContent(" | ");
-					jteOutput.setContext("li", null);
-					jteOutput.writeUserContent(el.getRaisonSociale());
-					jteOutput.writeContent(" |\n                                <i data-bs-toggle=\"modal\" onclick=\"supprimer_nif( '");
-					jteOutput.setContext("i", "onclick");
+					jteOutput.setContext("button", null);
+					jteOutput.writeContent("')\"\n                                            data-bs-toggle=\"modal\" data-bs-target=\"#activiteEditModal\">\n                                        <i class=\"bi bi-pencil\"></i>\n                                    </button>\n                                    <button class=\"btn btn-sm btn-outline-danger border-0\"\n                                            onclick=\"supprimer_activite('");
+					jteOutput.setContext("button", "onclick");
 					jteOutput.writeUserContent(el.getId());
-					jteOutput.setContext("i", null);
+					jteOutput.setContext("button", null);
 					jteOutput.writeContent("','");
-					jteOutput.setContext("i", "onclick");
-					jteOutput.writeUserContent(el.getIdentifiant());
-					jteOutput.setContext("i", null);
-					jteOutput.writeContent("', '");
-					jteOutput.setContext("i", "onclick");
-					jteOutput.writeUserContent(el.getRaisonSociale());
-					jteOutput.setContext("i", null);
-					jteOutput.writeContent("')\"\n                                   data-bs-target=\"#nifDeleteModal\" class=\"bi bi-trash text-danger\"></i>\n                            </li>\n                        ");
+					jteOutput.setContext("button", "onclick");
+					jteOutput.writeUserContent(el.getCodeActivite());
+					jteOutput.setContext("button", null);
+					jteOutput.writeContent("')\"\n                                            data-bs-toggle=\"modal\" data-bs-target=\"#activiteDeleteModal\">\n                                        <i class=\"bi bi-trash\"></i>\n                                    </button>\n                                </td>\n                            </tr>\n                        ");
 				}
-				jteOutput.writeContent("\n\n                        <li class=\"list-group-item text-center\">\n                            <span class=\"btn btn-success\">\n                               <span href=\"#\" class=\"btn\" data-bs-toggle=\"modal\"\n                                     data-bs-target=\"#nifAddModal\">Ajouter</span>\n                            </span>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"modal fade\" id=\"activiteAddModal\" tabindex=\"-1\"\n         aria-labelledby=\"activiteAddModalLabel\" aria-hidden=\"true\">\n        <div class=\"modal-dialog\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header bg-success\"> Ajout d'une activité au marché</div>\n                <div class=\"card-body\">\n                    <form action=\"/marche/savemarcheActivite\" method=\"post\">\n                        <div class=\"row mb-3\">\n\n                            <input type=\"hidden\" name=\"marcheId\"");
+				jteOutput.writeContent("\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n\n        ");
+				jteOutput.writeContent("\n        <div class=\"col-lg-4\">\n            <div class=\"card border-0 shadow-sm h-100\">\n                <div class=\"card-header bg-white d-flex justify-content-between align-items-center py-3\">\n                    <h5 class=\"mb-0 fw-bold\">NIF Associés</h5>\n                    <button class=\"btn btn-sm btn-success rounded-pill\" data-bs-toggle=\"modal\"\n                            data-bs-target=\"#nifAddModal\">\n                        <i class=\"bi bi-plus-lg me-1\"></i> Ajouter\n                    </button>\n                </div>\n                <div class=\"card-body p-0\">\n                    <div class=\"list-group list-group-flush\">\n                        ");
+				for (var el : marcheNifDTOs) {
+					jteOutput.writeContent("\n                            <div class=\"list-group-item py-3 d-flex justify-content-between align-items-center\">\n                                <div>\n                                    <div class=\"fw-bold text-dark\">");
+					jteOutput.setContext("div", null);
+					jteOutput.writeUserContent(el.getIdentifiant());
+					jteOutput.writeContent("</div>\n                                    <div class=\"small text-muted\">");
+					jteOutput.setContext("div", null);
+					jteOutput.writeUserContent(el.getRaisonSociale());
+					jteOutput.writeContent("</div>\n                                </div>\n                                <button class=\"btn btn-link text-danger p-0\"\n                                        onclick=\"supprimer_nif('");
+					jteOutput.setContext("button", "onclick");
+					jteOutput.writeUserContent(el.getId());
+					jteOutput.setContext("button", null);
+					jteOutput.writeContent("','");
+					jteOutput.setContext("button", "onclick");
+					jteOutput.writeUserContent(el.getIdentifiant());
+					jteOutput.setContext("button", null);
+					jteOutput.writeContent("', '");
+					jteOutput.setContext("button", "onclick");
+					jteOutput.writeUserContent(el.getRaisonSociale());
+					jteOutput.setContext("button", null);
+					jteOutput.writeContent("')\"\n                                        data-bs-toggle=\"modal\" data-bs-target=\"#nifDeleteModal\">\n                                    <i class=\"bi bi-trash text-danger\"></i>\n                                </button>\n                                <div>\n                                    <button class=\"btn btn-sm btn-outline-primary border-0\"\n                                            onclick=\"edit_nif('");
+					jteOutput.setContext("button", "onclick");
+					jteOutput.writeUserContent(el.getId());
+					jteOutput.setContext("button", null);
+					jteOutput.writeContent("', '");
+					jteOutput.setContext("button", "onclick");
+					jteOutput.writeUserContent(el.getIdentifiant());
+					jteOutput.setContext("button", null);
+					jteOutput.writeContent("')\"\n                                            data-bs-toggle=\"modal\" data-bs-target=\"#nifEditModal\">\n                                        <i class=\"bi bi-pencil\"></i>\n                                    </button>\n                            </div>\n                            </div>\n                        ");
+				}
+				jteOutput.writeContent("\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    ");
+				jteOutput.writeContent("\n    <div class=\"modal fade\" id=\"activiteAddModal\" tabindex=\"-1\">\n        <div class=\"modal-dialog modal-dialog-centered\">\n            <div class=\"modal-content border-0 shadow\">\n                <div class=\"modal-header bg-success text-white\">\n                    <h5 class=\"modal-title\">Nouvelle Activité</h5>\n                    <button type=\"button\" class=\"btn-close btn-close-white\" data-bs-dismiss=\"modal\"></button>\n                </div>\n                <form action=\"/marche/savemarcheActivite\" method=\"post\">\n                    <div class=\"modal-body p-4\">\n                        <input type=\"hidden\" name=\"marcheId\"");
 				var __jte_html_attribute_0 = marcheDTO.getId();
 				if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_0)) {
 					jteOutput.writeContent(" value=\"");
@@ -126,9 +136,9 @@ public final class JtedetailsGenerated {
 					jteOutput.setContext("input", null);
 					jteOutput.writeContent("\"");
 				}
-				jteOutput.writeContent(">\n\n                            <div class=\"form-floating mb-3 col-md-6\">\n                                <select class=\"form-select\" name=\"codeActivite\" id=\"codeActivite\">\n                                    <option value=\"\">Veuillez selectionner\n                                    </option>\n                                    ");
+				jteOutput.writeContent(">\n\n                        <div class=\"mb-3\">\n                            <label class=\"form-label fw-bold small\">Sélectionner l'Activité</label>\n                            <select class=\"form-select border-success-subtle\" name=\"codeActivite\" id=\"selectActivite\" required>\n                                <option value=\"\">Choisir...</option>\n                                ");
 				for (var el: dppActiviteList) {
-					jteOutput.writeContent("\n                                        <option");
+					jteOutput.writeContent("\n                                    <option");
 					var __jte_html_attribute_1 = el.getCodeActivite();
 					if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_1)) {
 						jteOutput.writeContent(" value=\"");
@@ -137,40 +147,82 @@ public final class JtedetailsGenerated {
 						jteOutput.setContext("option", null);
 						jteOutput.writeContent("\"");
 					}
-					jteOutput.writeContent(">\n                                            ");
+					jteOutput.writeContent(">");
 					jteOutput.setContext("option", null);
 					jteOutput.writeUserContent(el.getCodeActivite());
-					jteOutput.writeContent("\n                                        </option>\n                                    ");
+					jteOutput.writeContent("\n                                        - ");
+					jteOutput.setContext("option", null);
+					jteOutput.writeUserContent(el.getIntituleActivite());
+					jteOutput.writeContent("</option>\n                                ");
 				}
-				jteOutput.writeContent("\n                                </select>\n                                <label for=\"codeActivite\"> Activité  </label>\n                            </div>\n\n                            <div class=\"form-floating mb-3 col-md-6\">\n                                <input type=\"number\" class=\"form-control\" id=\"montant\" name=\"montant\" placeholder=\"Montant\" >\n                                <label for=\"montant\">Montant </label>\n\n\n                            </div>\n\n\n                            <div class=\"form-floating mb-3 col-md-6\">\n                                <input type=\"number\" class=\"form-control\" id=\"taux\" name=\"taux\" placeholder=\"Taux\" >\n                                <label for=\"taux\"> Taux </label>\n\n\n                            </div>\n\n\n\n                            <div>\n                                <button type=\"submit\" class=\"btn btn-primary\">Enregistrer</button>\n                                <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">\n                                    Annuler\n                                </button>\n                            </div>\n\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"modal fade\" id=\"activiteDeleteModal\" tabindex=\"-1\"\n         aria-labelledby=\"activiteDeleteModalLabel\" aria-hidden=\"true\">\n        <div class=\"modal-dialog\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header bg-danger\"> suppression d'une activité du marché</div>\n                <div class=\"card-body\">\n                    Voulez-vous supprimer l'activité : <span id=\"activiteToDelete\" class=\"fw-bold\">Code_activité à supprimer</span>\n                </div>\n                <div>\n                    <a href=\"#\" id=\"activiteId\" class=\"btn btn-danger\">Supprimer</a>\n                    <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">\n                        Annuler\n                    </button>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"modal fade\" id=\"activiteEditModal\" tabindex=\"-1\" aria-hidden=\"true\">\n        <div class=\"modal-dialog\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header bg-primary text-white\"> Modification de l'activité </div>\n                <div class=\"card-body\">\n\n                    <form action=\"/marche/updatemarcheActivite\" method=\"post\">\n                        <div class=\"row mb-3\">\n\n                            <input type=\"hidden\" name=\"id\" id=\"edit_id\">\n                            <input type=\"hidden\" name=\"marcheId\" id=\"edit_marcheId\">\n\n                            <div class=\"form-floating mb-3 col-md-12\">\n                                <input type=\"text\" class=\"form-control\" id=\"edit_codeActivite\" name=\"codeActivite\" readonly>\n                                <label for=\"edit_codeActivite\"> Code de l'activité </label>\n                            </div>\n\n                            <div class=\"form-floating mb-3 col-md-6\">\n                                <input type=\"number\" class=\"form-control\" id=\"edit_montant\" name=\"montant\" required>\n                                <label for=\"edit_montant\">Montant</label>\n                            </div>\n\n                            <div class=\"form-floating mb-3 col-md-6\">\n                                <input type=\"number\" class=\"form-control\" id=\"edit_taux\" name=\"taux\" required>\n                                <label for=\"edit_taux\">Taux</label>\n                            </div>\n\n                            <div class=\"mt-3\">\n                                <button type=\"submit\" class=\"btn btn-primary\">Enregistrer</button>\n                                <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Annuler</button>\n                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n\n\n\n\n\n\n\n\n    <div class=\"modal fade\" id=\"nifAddModal\" tabindex=\"-1\"\n         aria-labelledby=\"nifAddModalLabel\" aria-hidden=\"true\">\n        <div class=\"modal-dialog\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header bg-success\"> Ajout d'un nif au marché</div>\n                <div class=\"card-body\">\n                    <form action=\"/marche/savemarcheNif\" method=\"post\">\n                        <div class=\"row mb-3\">\n\n                            <input type=\"hidden\" name=\"marcheId\"");
-				var __jte_html_attribute_2 = marcheDTO.getId();
-				if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_2)) {
-					jteOutput.writeContent(" value=\"");
-					jteOutput.setContext("input", "value");
-					jteOutput.writeUserContent(__jte_html_attribute_2);
-					jteOutput.setContext("input", null);
-					jteOutput.writeContent("\"");
-				}
-				jteOutput.writeContent(">\n\n                            <div class=\"form-floating mb-3 col-md-6\">\n                                <select class=\"form-select\" name=\"identifiant\" id=\"identifiant\">\n                                    <option value=\"\">Veuillez selectionner\n                                    </option>\n                                    ");
-				for (var el: nifList) {
-					jteOutput.writeContent("\n                                        <option");
-					var __jte_html_attribute_3 = el.getIdentifiant();
-					if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_3)) {
+				jteOutput.writeContent("\n                            </select>\n                        </div>\n\n                        <div class=\"row\">\n                            <div class=\"col-md-6 mb-3\">\n                                <label class=\"form-label fw-bold small\">Montant HT</label>\n                                <div class=\"input-group\">\n                                    <input type=\"number\" class=\"form-control border-success-subtle\" name=\"montant\"\n                                           required>\n                                    <span class=\"input-group-text\">CFA</span>\n                                </div>\n                            </div>\n                            <div class=\"col-md-6 mb-3\">\n                                <label class=\"form-label fw-bold small\">Taux (%)</label>\n                                <input type=\"number\" class=\"form-control border-success-subtle\" name=\"taux\" value=\"\"\n                                       required>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"modal-footer bg-light border-0\">\n                        <button type=\"button\" class=\"btn btn-secondary px-4\" data-bs-dismiss=\"modal\">Annuler</button>\n                        <button type=\"submit\" class=\"btn btn-success px-4\">Enregistrer</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"modal fade\" id=\"activiteEditModal\" tabindex=\"-1\">\n        <div class=\"modal-dialog modal-dialog-centered\">\n            <div class=\"modal-content border-0 shadow\">\n                <div class=\"modal-header bg-success text-white\">\n                    <h5 class=\"modal-title\">Modifier Activité</h5>\n                    <button type=\"button\" class=\"btn-close btn-close-white\" data-bs-dismiss=\"modal\"></button>\n                </div>\n                <form action=\"/marche/updatemarcheActivite\" method=\"post\">\n                    <div class=\"modal-body p-4\">\n                        <input type=\"hidden\" id=\"edit_marcheId\" name=\"marcheId\">\n                        <input type=\"hidden\" id=\"edit_id\" name=\"id\">\n\n                        <div class=\"mb-3\">\n                            <label class=\"form-label fw-bold small\">Sélectionner l'Activité</label>\n                            <select class=\"form-select border-success-subtle\" name=\"codeActivite\" id=\"edit_codeActivite\" required readonly>\n                                <option value=\"\">Choisir...</option>\n                                ");
+				for (var el: dppActiviteList) {
+					jteOutput.writeContent("\n                                    <option");
+					var __jte_html_attribute_2 = el.getCodeActivite();
+					if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_2)) {
 						jteOutput.writeContent(" value=\"");
 						jteOutput.setContext("option", "value");
-						jteOutput.writeUserContent(__jte_html_attribute_3);
+						jteOutput.writeUserContent(__jte_html_attribute_2);
 						jteOutput.setContext("option", null);
 						jteOutput.writeContent("\"");
 					}
-					jteOutput.writeContent(">\n                                            ");
+					jteOutput.writeContent(">");
+					jteOutput.setContext("option", null);
+					jteOutput.writeUserContent(el.getCodeActivite());
+					jteOutput.writeContent("\n                                        - ");
+					jteOutput.setContext("option", null);
+					jteOutput.writeUserContent(el.getIntituleActivite());
+					jteOutput.writeContent("</option>\n                                ");
+				}
+				jteOutput.writeContent("\n                            </select>\n                        </div>\n\n                        <div class=\"row\">\n                            <div class=\"col-md-6 mb-3\">\n                                <label class=\"form-label fw-bold small\">Montant HT</label>\n                                <div class=\"input-group\">\n                                    <input type=\"number\" class=\"form-control border-success-subtle\" name=\"montant\" id=\"edit_montant\"\n                                           required>\n                                    <span class=\"input-group-text\">CFA</span>\n                                </div>\n                            </div>\n                            <div class=\"col-md-6 mb-3\">\n                                <label class=\"form-label fw-bold small\">Taux (%)</label>\n                                <input type=\"number\" class=\"form-control border-success-subtle\" name=\"taux\" id=\"edit_taux\"\n                                       required>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"modal-footer bg-light border-0\">\n                        <button type=\"button\" class=\"btn btn-secondary px-4\" data-bs-dismiss=\"modal\">Annuler</button>\n                        <button type=\"submit\" class=\"btn btn-success px-4\">Enregistrer</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"modal fade\" id=\"activiteDeleteModal\" tabindex=\"-1\" aria-hidden=\"true\">\n        <div class=\"modal-dialog modal-dialog-centered\">\n            <div class=\"modal-content border-0 shadow-lg\">\n                <div class=\"modal-body p-4 text-center\">\n                    <div class=\"mb-3\">\n                        <i class=\"bi bi-x-circle text-danger\" style=\"font-size: 3.5rem;\"></i>\n                    </div>\n\n                    <h5 class=\"fw-bold text-dark\">Supprimer l'activité  : <span id=\"activiteToDelete\"></span> ?</h5>\n                    <p class=\"text-muted small\" id=\"deleteActiviteMsg\">\n                        Cette action est irréversible.\n                    </p>\n\n                    <div class=\"d-grid gap-2 d-md-flex justify-content-center mt-4\">\n                        <button type=\"button\" class=\"btn btn-light px-4 border\" data-bs-dismiss=\"modal\">Annuler</button>\n                        <a id=\"btn-confirm-delete-activite\" href=\"#\" class=\"btn btn-danger px-4 shadow-sm\">\n                            Confirmer\n                        </a>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    ");
+				jteOutput.writeContent("\n    <div class=\"modal fade\" id=\"nifAddModal\" tabindex=\"-1\" aria-hidden=\"true\">\n        <div class=\"modal-dialog modal-dialog-centered\">\n            <div class=\"modal-content border-0 shadow\">\n                <div class=\"modal-header bg-success text-white\">\n                    <h5 class=\"modal-title\"><i class=\"bi bi-person-plus me-2\"></i>Associer un NIF</h5>\n                    <button type=\"button\" class=\"btn-close btn-close-white\" data-bs-dismiss=\"modal\"></button>\n                </div>\n                <form action=\"/marche/savemarcheNif\" method=\"post\">\n                    <div class=\"modal-body p-4\">\n                        <input type=\"hidden\" name=\"marcheId\"");
+				var __jte_html_attribute_3 = marcheDTO.getId();
+				if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_3)) {
+					jteOutput.writeContent(" value=\"");
+					jteOutput.setContext("input", "value");
+					jteOutput.writeUserContent(__jte_html_attribute_3);
+					jteOutput.setContext("input", null);
+					jteOutput.writeContent("\"");
+				}
+				jteOutput.writeContent(">\n\n                        <div class=\"mb-3\">\n                            <label class=\"form-label fw-bold small text-uppercase\">Sélectionner l'Identifiant Fiscal (NIF)</label>\n                            <select class=\"form-select border-success-subtle\" name=\"identifiant\" id=\"selectNif\" required>\n                                <option value=\"\">Rechercher un NIF...</option>\n                                ");
+				for (var el : nifList) {
+					jteOutput.writeContent("\n                                    <option");
+					var __jte_html_attribute_4 = el.getIdentifiant();
+					if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_4)) {
+						jteOutput.writeContent(" value=\"");
+						jteOutput.setContext("option", "value");
+						jteOutput.writeUserContent(__jte_html_attribute_4);
+						jteOutput.setContext("option", null);
+						jteOutput.writeContent("\"");
+					}
+					jteOutput.writeContent(">");
 					jteOutput.setContext("option", null);
 					jteOutput.writeUserContent(el.getIdentifiant());
 					jteOutput.writeContent(" - ");
 					jteOutput.setContext("option", null);
 					jteOutput.writeUserContent(el.getRaisonSociale());
-					jteOutput.writeContent("\n                                        </option>\n                                    ");
+					jteOutput.writeContent("</option>\n                                ");
 				}
-				jteOutput.writeContent("\n                                </select>\n                                <label for=\"identifiant\"> Nif  </label>\n                            </div>\n                            <div>\n                                <button type=\"submit\" class=\"btn btn-primary\">Enregistrer</button>\n                                <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">\n                                    Annuler\n                                </button>\n                            </div>\n\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"modal fade\" id=\"nifDeleteModal\" tabindex=\"-1\"\n         aria-labelledby=\"nifDeleteModalLabel\" aria-hidden=\"true\">\n        <div class=\"modal-dialog\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header bg-danger\"> suppression d'un nif du marché</div>\n                <div class=\"card-body\">\n                    Voulez-vous supprimer ce nif : <span id=\"nifToDelete\" class=\"fw-bold\">Identifiant à supprimer</span>\n                    </div>\n                <div>\n                    <a href=\"#\" id=\"nifId\" class=\"btn btn-danger\">Supprimer</a>\n                    <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">\n                        Annuler\n                    </button>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <script>\n        function supprimer_nif(id, identifiant, rs) {\n            const text = identifiant + \" - \" + rs\n           const nifToDelete = document.getElementById(\"nifToDelete\");\n           nifToDelete.innerHTML = text;\n\n            const nifId = document.getElementById(\"nifId\");\n            nifId.setAttribute(\"href\", \"/marche/nif/delete/\" + id);\n\n\n        }\n\n\n\n        function supprimer_activite(id, codeActivite) {\n            const text = codeActivite\n            const activiteToDelete = document.getElementById(\"activiteToDelete\");\n            activiteToDelete.innerHTML = text;\n\n            const activiteId = document.getElementById(\"activiteId\");\n            activiteId.setAttribute(\"href\", \"/marche/activite/delete/\" + id);\n\n\n        }\n\n\n\n        function edit_activite(id, marcheId, codeActivite, montant, taux) {\n            document.getElementById('edit_id').value = id;\n            document.getElementById('edit_marcheId').value = marcheId;\n            document.getElementById('edit_codeActivite').value = codeActivite;\n            document.getElementById('edit_montant').value = montant;\n            document.getElementById('edit_taux').value = taux;\n        }\n\n\n\n\n\n\n\n\n    </script>\n");
+				jteOutput.writeContent("\n                            </select>\n                        </div>\n                    </div>\n                    <div class=\"modal-footer bg-light border-0\">\n                        <button type=\"button\" class=\"btn btn-secondary px-4\" data-bs-dismiss=\"modal\">Annuler</button>\n                        <button type=\"submit\" class=\"btn btn-success px-4\">\n                            <i class=\"bi bi-check-circle me-1\"></i> Valider l'association\n                        </button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n\n\n\n\n    <div class=\"modal fade\" id=\"nifEditModal\" tabindex=\"-1\">\n        <div class=\"modal-dialog modal-dialog-centered\">\n            <div class=\"modal-content border-0 shadow\">\n                <div class=\"modal-header bg-success text-white\">\n                    <h5 class=\"modal-title\">Modifier Nif</h5>\n                    <button type=\"button\" class=\"btn-close btn-close-white\" data-bs-dismiss=\"modal\"></button>\n                </div>\n                <form action=\"/marche/updatemarcheNif\" method=\"post\">\n                    <div class=\"modal-body p-4\">\n                        <input type=\"hidden\" id=\"edit_marcheId\" name=\"marcheId\">\n                        <input type=\"hidden\" id=\"edit_id\" name=\"id\">\n\n                        <div class=\"mb-3\">\n                            <label class=\"form-label fw-bold small\">Sélectionner le nif</label>\n                            <select class=\"form-select border-success-subtle\" name=\"codeActivite\" id=\"edit_identifiant\" >\n                                <option value=\"\">Choisir...</option>\n                                ");
+				for (var el: nifList) {
+					jteOutput.writeContent("\n                                    <option");
+					var __jte_html_attribute_5 = el.getIdentifiant();
+					if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_5)) {
+						jteOutput.writeContent(" value=\"");
+						jteOutput.setContext("option", "value");
+						jteOutput.writeUserContent(__jte_html_attribute_5);
+						jteOutput.setContext("option", null);
+						jteOutput.writeContent("\"");
+					}
+					jteOutput.writeContent(">");
+					jteOutput.setContext("option", null);
+					jteOutput.writeUserContent(el.getIdentifiant());
+					jteOutput.writeContent("\n                                        - ");
+					jteOutput.setContext("option", null);
+					jteOutput.writeUserContent(el.getRaisonSociale());
+					jteOutput.writeContent("</option>\n                                ");
+				}
+				jteOutput.writeContent("\n                            </select>\n                        </div>\n\n                        <div class=\"modal-footer bg-light border-0\">\n                            <button type=\"button\" class=\"btn btn-secondary px-4\" data-bs-dismiss=\"modal\">Annuler</button>\n                            <button type=\"submit\" class=\"btn btn-success px-4\">Enregistrer</button>\n                        </div>\n\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n\n\n\n\n\n    <div class=\"modal fade\" id=\"nifDeleteModal\" tabindex=\"-1\" aria-hidden=\"true\">\n        <div class=\"modal-dialog modal-dialog-centered\">\n            <div class=\"modal-content border-0 shadow\">\n                <div class=\"modal-body p-4 text-center\">\n                    <i class=\"bi bi-exclamation-triangle text-danger\" style=\"font-size: 3rem;\"></i>\n                    <h5 class=\"mt-3 fw-bold\">Confirmation</h5>\n                    <p class=\"text-muted\" id=\"deleteMsgNif\">Voulez-vous détacher ce NIF :<span id=\"nifToDelete\"></span> ?</p>\n                    <div class=\"d-flex gap-2 justify-content-center mt-4\">\n                        <button type=\"button\" class=\"btn btn-light px-4\" data-bs-dismiss=\"modal\">Non</button>\n                        <a id=\"btn-confirm-delete-nif\" href=\"#\" class=\"btn btn-danger px-4\">Oui, Supprimer</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <script>\n        function supprimer_nif(id, identifiant, rs) {\n            const text = identifiant + \" - \" + rs\n            const c = document.getElementById(\"nifToDelete\");\n            nifToDelete.innerHTML = text;\n\n            const nifId = document.getElementById(\"btn-confirm-delete-nif\");\n            nifId.setAttribute(\"href\", \"/marche/nif/delete/\" + id);\n\n\n        }\n\n        function edit_nif(id, identifiant) {\n            document.getElementById('edit_id').value = id;\n            document.getElementById('edit_identifiant').value = identifiant;\n\n        }\n\n\n\n        function supprimer_activite(id, codeActivite) {\n            const text = codeActivite\n            const activiteToDelete = document.getElementById(\"activiteToDelete\");\n            activiteToDelete.innerHTML = text;\n\n            const activiteId = document.getElementById(\"btn-confirm-delete-activite\");\n            activiteId.setAttribute(\"href\", \"/marche/activite/delete/\" + id);\n\n\n        }\n\n\n        function edit_activite(id, marcheId, codeActivite, montant, taux) {\n            document.getElementById('edit_id').value = id;\n            document.getElementById('edit_marcheId').value = marcheId;\n            document.getElementById('edit_codeActivite').value = codeActivite;\n            document.getElementById('edit_montant').value = montant;\n            document.getElementById('edit_taux').value = taux;\n        }\n\n        new SlimSelect({\n            select: '#selectActivite',\n            placeholder: 'Rechercher une activité...'\n        });\n\n\n        new SlimSelect({\n            select: '#selectNif',\n            placeholder: 'Rechercher un NIF...'\n        });\n\n\n\n\n    </script>\n");
 			}
 		}, messages);
 		jteOutput.writeContent("\n\n\n\n");
@@ -178,12 +230,10 @@ public final class JtedetailsGenerated {
 	public static void renderMap(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, java.util.Map<String, Object> params) {
 		List<Nifs> nifList = (List<Nifs>)params.get("nifList");
 		List<DppdActivite> dppActiviteList = (List<DppdActivite>)params.get("dppActiviteList");
-		BindingResult bindingResult = (BindingResult)params.get("bindingResult");
 		MarcheDTO marcheDTO = (MarcheDTO)params.get("marcheDTO");
-		NifDTO nifDTO = (NifDTO)params.get("nifDTO");
 		Map<String, String> messages = (Map<String, String>)params.get("messages");
 		List<NifDTO> marcheNifDTOs = (List<NifDTO>)params.get("marcheNifDTOs");
 		List<ActiviteDTO> marcheActiviteDTOs = (List<ActiviteDTO>)params.get("marcheActiviteDTOs");
-		render(jteOutput, jteHtmlInterceptor, nifList, dppActiviteList, bindingResult, marcheDTO, nifDTO, messages, marcheNifDTOs, marcheActiviteDTOs);
+		render(jteOutput, jteHtmlInterceptor, nifList, dppActiviteList, marcheDTO, messages, marcheNifDTOs, marcheActiviteDTOs);
 	}
 }

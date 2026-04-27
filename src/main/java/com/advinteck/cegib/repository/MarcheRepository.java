@@ -10,6 +10,7 @@ import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -17,12 +18,12 @@ public class MarcheRepository {
 
     private final DSLContext dsl;
 
-    public VMarches findOneMarcheById(Long id) {
+    public Optional<VMarches> findOneMarcheById(Long id) {
 
         return dsl
                 .selectFrom(Tables.V_MARCHES)
                 .where(Tables.V_MARCHES.ID.eq(id))
-                .fetchOneInto(VMarches.class);
+                .fetchOptionalInto(VMarches.class);
     }
 
 

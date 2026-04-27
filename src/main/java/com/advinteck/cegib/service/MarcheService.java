@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -48,7 +49,7 @@ private final ReferentielService referentielService;
         List<VMarches> marchesList = marcheRepository.findAll();
         List<MarcheDTO> marcheDTOList = new ArrayList<>();
         for (var marches: marchesList){
-            MarcheDTO marcheDTO = new MarcheDTO(marches.getId(), marches.getNumeroMarche(), marches.getImputation(), marches.getObjetMarche(), marches.getDateApprobation().toLocalDate(),
+            MarcheDTO marcheDTO = new MarcheDTO(marches.getId(),  marches.getImputation(), marches.getObjetMarche(), marches.getDateApprobation().toLocalDate(),
                     marches.getAutoriteContractanteCode(), marches.getAutoriteContractanteIntitule(), marches.getStructureAutoriteContractanteCode(), marches.getStructureAutoriteContractanteIntitule(),marches.getApprouvePar(),
                     marches.getTitulaireMarche(), marches.getTypeMarcheCode(), marches.getTypeMarcheIntitule(), marches.getModeDePassationCode(), marches.getModePassationIntitule());
             marcheDTOList.add(marcheDTO);
@@ -101,7 +102,7 @@ private final ReferentielService referentielService;
 
     public void save(MarcheDTO marcheDTO) throws Exception{
         Marches marches = new Marches();
-        marches.setNumeroMarche(marcheDTO.getNumMarche());
+//        marches.setNumeroMarche(marcheDTO.getNumMarche());
         marches.setImputation(marcheDTO.getImputation());
         marches.setObjetMarche(marcheDTO.getObjetMarche());
         marches.setDateApprobation(LocalDateTime.of(marcheDTO.getDateApprobation(), LocalTime.of(0,0,0)));
@@ -118,11 +119,17 @@ private final ReferentielService referentielService;
 
 
 
-    public MarcheDTO findOneMarcheById(Long id) {
-        VMarches marches = marcheRepository.findOneMarcheById(id);
-        return  new MarcheDTO(
+    public Optional<MarcheDTO> findOneMarcheById(Long id) {
+
+        Optional<VMarches> marchesOpt = marcheRepository.findOneMarcheById(id);
+
+        if (marchesOpt.isEmpty()) return Optional.empty();
+
+        VMarches marches = marchesOpt.get();
+
+        return  Optional.of(new MarcheDTO(
                 marches.getId(),
-                marches.getNumeroMarche(),
+//                marches.getNumeroMarche(),
                 marches.getImputation(),
                 marches.getObjetMarche(),
                 marches.getDateApprobation().toLocalDate(),
@@ -139,7 +146,7 @@ private final ReferentielService referentielService;
 
 
 
-        );
+        ));
     }
 
 
@@ -180,19 +187,22 @@ private final ReferentielService referentielService;
     }
 
 
+    public void editNif(NifDTO nifDTO){
+        MarcheNifs marcheNifs = new MarcheNifs();
+        marcheNifs.setId(nifDTO.getId()); // On garde l'ID de la ligne
+        marcheNifs.setMarcheId(nifDTO.getMarcheId()); // On garde l'ID du marché parent
+        marcheNifs.setIdentifiant(nifDTO.getIdentifiant()); // On met le NIF dans la bonne colonne
+
+        marcheNifsDao.update(marcheNifs);
+    }
+
+
+
 
 
     public boolean NumeroMarcheAlreadyExists(String numMarche){
         return marchesDao.fetchOptionalByNumeroMarche(numMarche).isPresent();
     }
-
-//
-//    public boolean IdentifiantAlreadyExists(String identifiant){
-//        return marcheNifsDao.fetchByIdentifiant(identifiant).isEmpty();
-//    }
-
-
-
 
 
 

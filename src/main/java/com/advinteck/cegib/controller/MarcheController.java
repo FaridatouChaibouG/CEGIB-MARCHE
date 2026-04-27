@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/marche")
@@ -71,18 +68,18 @@ public class MarcheController {
             return "marche/form";
         }
 
-        String NumeroMarche = marcheDTO.getNumMarche();
-        if (marcheService.NumeroMarcheAlreadyExists(NumeroMarche)) {
-            messages.put("danger", "Le numéro du marché " + NumeroMarche + " est déjà attribué.");
-            model.addAttribute("messages", messages);
-            model.addAttribute("imputationList", referentielService.imputationsList());
-            model.addAttribute("autoriteContractanteList", referentielService.autoriteContractantesList());
-            model.addAttribute("structureAutoriteContractanteList", referentielService.structureAutoriteContractantesList());
-            model.addAttribute("typeMarcheList", referentielService.typeMarchesList());
-            model.addAttribute("modePassationList", referentielService.modePassationsList());
-
-            return "marche/form";
-        }
+//        String NumeroMarche = marcheDTO.getNumMarche();
+//        if (marcheService.NumeroMarcheAlreadyExists(NumeroMarche)) {
+//            messages.put("danger", "Le numéro du marché " + NumeroMarche + " est déjà attribué.");
+//            model.addAttribute("messages", messages);
+//            model.addAttribute("imputationList", referentielService.imputationsList());
+//            model.addAttribute("autoriteContractanteList", referentielService.autoriteContractantesList());
+//            model.addAttribute("structureAutoriteContractanteList", referentielService.structureAutoriteContractantesList());
+//            model.addAttribute("typeMarcheList", referentielService.typeMarchesList());
+//            model.addAttribute("modePassationList", referentielService.modePassationsList());
+//
+//            return "marche/form";
+//        }
 
         try {
             marcheService.save(marcheDTO);
@@ -104,9 +101,9 @@ public class MarcheController {
             @PathVariable Long id
     ) {
 
-        MarcheDTO marcheDTO = marcheService.findOneMarcheById(id);
+        Optional<MarcheDTO> marcheDTO = marcheService.findOneMarcheById(id);
 
-        if (marcheDTO == null) {
+        if (marcheDTO.isEmpty()) {
             Map<String, String> messages = new HashMap<>();
             messages.put("danger", "Marché non trouvé pour l'id : " + id);
 
@@ -115,14 +112,14 @@ public class MarcheController {
         }
 
 
-        model.addAttribute("marcheDTO", marcheDTO);
+        model.addAttribute("marcheDTO", marcheDTO.get());
 
         //recuperation de la liste des marche_nif
         model.addAttribute("marcheNifDTOs", marcheService.marcheNifList(id));
 
         model.addAttribute("nifList", referentielService.nifsList());
 
-//        model.addAttribute("marcheActiviteDTOs", marcheActiviteDTOs);
+        //recuperation de la liste des marche_activite
         model.addAttribute("marcheActiviteDTOs", marcheService.marcheActiviteList(id));
 
         model.addAttribute("dppActiviteList", referentielService.dppdActiviteList());
@@ -142,6 +139,22 @@ public class MarcheController {
 
 
         messages.put("success", "Nif ajouté avec succes.");
+        redirectAttributes.addFlashAttribute("messages", messages);
+        return "redirect:/marche/details/" + nifDTO.getMarcheId();
+    }
+
+    @PostMapping("/updatemarcheNif")
+    public String editNif(@ModelAttribute  NifDTO nifDTO,Model model, RedirectAttributes redirectAttributes){
+
+
+        Map<String, String> messages = new HashMap<>();
+        try {
+            marcheService.editNif(nifDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        messages.put("success", " Nif modifié avec succes.");
         redirectAttributes.addFlashAttribute("messages", messages);
         return "redirect:/marche/details/" + nifDTO.getMarcheId();
     }

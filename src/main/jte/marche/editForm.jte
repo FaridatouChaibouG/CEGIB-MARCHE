@@ -35,6 +35,18 @@ content = @`
                 <input type="hidden" name="id" value="${marcheDTO.getId()}">
 
                 <!-- Section Info Principale -->
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-12">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control border-success-subtle" id="numMarche" name="numMarche"
+                                   placeholder="Num de marché provisoire" value="${marcheDTO.getNumMarche()}" readonly>
+                            <label for="numMarche"><i class="bi  me-2"></i>Num de marché provisoire</label>
+                            @template.formMessage(bindingResult = bindingResult, field = "numMarche")
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row g-3 mb-4">
                     <div class="col-md-12">
                         <div class="form-floating mb-3">
@@ -98,7 +110,7 @@ content = @`
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="structureAutoriteContractanteCode" id="structureAutoriteContractanteCode">
                                 <option value="">Sélectionner...</option>
@@ -113,7 +125,7 @@ content = @`
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="typeMarcheCode" id="typeMarcheCode">
                                 <option value="">Sélectionner...</option>
@@ -128,7 +140,7 @@ content = @`
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="modePassationCode" id="modePassationCode">
                                 <option value="">Sélectionner...</option>
@@ -142,6 +154,16 @@ content = @`
                             @template.formMessage(bindingResult = bindingResult, field = "modePassationCode")
                         </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="titulaireMarche" name="titulaireMarche"
+                                   placeholder="Titulaire du  marché" value="${marcheDTO.getTitulaireMarche()}">
+                            <label for="titulaireMarche"><i class="bi bi-person-check me-2"></i>Titulaire du  marché</label>
+                            @template.formMessage(bindingResult = bindingResult, field = "titulaireMarche")
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="mt-4 pt-3 border-top d-flex gap-2">
@@ -164,5 +186,9 @@ content = @`
         new SlimSelect({ select: '#structureAutoriteContractanteCode', ...config });
         new SlimSelect({ select: '#typeMarcheCode', ...config });
         new SlimSelect({ select: '#modePassationCode', ...config });
+
+
+
+
     </script>
 `)

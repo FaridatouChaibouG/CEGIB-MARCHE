@@ -283,4 +283,49 @@ public class MarchesDao extends DAOImpl<MarchesRecord, com.advinteck.cegib.gener
     public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByLastUpdate(LocalDateTime... values) {
         return fetch(Marches.MARCHES.LAST_UPDATE, values);
     }
+
+    /**
+     * Fetch records that have <code>statut BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchRangeOfStatut(String lowerInclusive, String upperInclusive) {
+        return fetchRange(Marches.MARCHES.STATUT, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>statut IN (values)</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByStatut(String... values) {
+        return fetch(Marches.MARCHES.STATUT, values);
+    }
+
+    /**
+     * Fetch records that have <code>owner BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchRangeOfOwner(String lowerInclusive, String upperInclusive) {
+        return fetchRange(Marches.MARCHES.OWNER, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>owner IN (values)</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByOwner(String... values) {
+        return fetch(Marches.MARCHES.OWNER, values);
+    }
+
+    /**
+     * Fetch records that have <code>observation BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchRangeOfObservation(String lowerInclusive, String upperInclusive) {
+        return fetchRange(Marches.MARCHES.OBSERVATION, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>observation IN (values)</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByObservation(String... values) {
+        return fetch(Marches.MARCHES.OBSERVATION, values);
+    }
 }

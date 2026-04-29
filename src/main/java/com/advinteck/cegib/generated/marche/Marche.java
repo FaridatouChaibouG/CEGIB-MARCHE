@@ -70,6 +70,7 @@ public class Marche extends SchemaImpl {
         return Arrays.asList(
             Sequences.MARCHE_ACTIVITE_ID_SEQ,
             Sequences.MARCHE_NIFS_ID_SEQ,
+            Sequences.MARCHE_NUMERO_SEQ,
             Sequences.MARCHES_ID_SEQ
         );
     }

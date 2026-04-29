@@ -50,9 +50,9 @@ private final ReferentielService referentielService;
         List<VMarches> marchesList = marcheRepository.findAll();
         List<MarcheDTO> marcheDTOList = new ArrayList<>();
         for (var marches: marchesList){
-            MarcheDTO marcheDTO = new MarcheDTO(marches.getId(),  marches.getImputation(), marches.getImputationIntitule() ,marches.getObjetMarche(), marches.getDateApprobation().toLocalDate(),
+            MarcheDTO marcheDTO = new MarcheDTO(marches.getId(), marches.getNumeroMarche(), marches.getImputation(), marches.getImputationIntitule() ,marches.getObjetMarche(), marches.getDateApprobation().toLocalDate(),
                     marches.getAutoriteContractanteCode(), marches.getAutoriteContractanteIntitule(), marches.getStructureAutoriteContractanteCode(), marches.getStructureAutoriteContractanteIntitule(),marches.getApprouvePar(),
-                    marches.getTypeMarcheCode(), marches.getTypeMarcheIntitule(), marches.getModeDePassationCode(), marches.getModePassationIntitule());
+                   marches.getTitulaireMarche(), marches.getTypeMarcheCode(), marches.getTypeMarcheIntitule(), marches.getModeDePassationCode(), marches.getModePassationIntitule());
             marcheDTOList.add(marcheDTO);
         }
         return marcheDTOList;
@@ -103,22 +103,17 @@ private final ReferentielService referentielService;
 
     public void save(MarcheDTO marcheDTO) throws Exception{
         Marches marches = new Marches();
-//        marches.setNumeroMarche(marcheDTO.getNumMarche());
+        marches.setNumeroMarche(marcheDTO.getNumMarche());
         marches.setImputation(marcheDTO.getImputation());
         marches.setObjetMarche(marcheDTO.getObjetMarche());
         marches.setDateApprobation(LocalDateTime.of(marcheDTO.getDateApprobation(), LocalTime.of(0,0,0)));
         marches.setAutoriteContractanteCode(marcheDTO.getAutoriteContractanteCode());
         marches.setStructureAutoriteContractanteCode(marcheDTO.getStructureAutoriteContractanteCode());
         marches.setApprouvePar(marcheDTO.getApprouvePar());
-//        marches.setTitulaireMarche(marcheDTO.getTitulaireMarche());
+        marches.setTitulaireMarche(marcheDTO.getTitulaireMarche());
         marches.setTypeMarcheCode(marcheDTO.getTypeMarcheCode());
         marches.setModeDePassationCode(marcheDTO.getModePassationCode());
 
-
-
-        if (marches.getTitulaireMarche() == null || marches.getTitulaireMarche().isEmpty()) {
-            marches.setTitulaireMarche("005");
-        }
 
         marchesDao.insert(marches);
 
@@ -131,8 +126,9 @@ private final ReferentielService referentielService;
     public void update(MarcheDTO marcheDTO){
         Marches marches = new Marches();
         marches.setId(marcheDTO.getId());
+        marches.setNumeroMarche(marcheDTO.getNumMarche());
         marches.setObjetMarche(marcheDTO.getObjetMarche());
-//        marches.setTitulaireMarche(marcheDTO.getTitulaireMarche());
+        marches.setTitulaireMarche(marcheDTO.getTitulaireMarche());
         marches.setApprouvePar(marcheDTO.getApprouvePar());
         marches.setDateApprobation(LocalDateTime.of(marcheDTO.getDateApprobation(), LocalTime.of(0,0,0)));
         marches.setImputation(marcheDTO.getImputation());
@@ -161,7 +157,7 @@ private final ReferentielService referentielService;
 
         return  Optional.of(new MarcheDTO(
                 marches.getId(),
-//                marches.getNumeroMarche(),
+                marches.getNumeroMarche(),
                 marches.getImputation(),
                 marches.getImputationIntitule(),
                 marches.getObjetMarche(),
@@ -171,7 +167,7 @@ private final ReferentielService referentielService;
                 marches.getStructureAutoriteContractanteCode(),
                 marches.getStructureAutoriteContractanteIntitule(),
                 marches.getApprouvePar(),
-//                marches.getTitulaireMarche(),
+                marches.getTitulaireMarche(),
                 marches.getTypeMarcheCode(),
                 marches.getTypeMarcheIntitule(),
                 marches.getModeDePassationCode(),

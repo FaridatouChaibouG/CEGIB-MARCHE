@@ -32,16 +32,16 @@ content = @`
                 <div class="modal-dialog modal-dialog-centered text-start">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title text-dark fs-6"  >Êtes-vous sûr de vouloir supprimer ce marché ?</h5>
+                            <h5 class="modal-title text-dark fs-6"  >Souhaitez-vous supprimer ce marché ?</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <%--                                        <div class="modal-body">--%>
                         <%--                                            Voulez-vous supprimer le marché : <b>${marche.getNumMarche()}</b> ?--%>
                         <%--                                        </div>--%>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
                             <a href="/marche/delete/Delete/${marcheDTO.getId()}" class="btn btn-outline-danger shadow-sm">
-                                <i class="bi bi-arrow me-1"></i> Oui supprimer définitivement
+                                <i class="bi bi-arrow me-1"></i> Oui
 
                             </a>
                         </div>
@@ -76,11 +76,17 @@ content = @`
         <div class="card-body">
             <div class="row g-3">
 
-                <div class="col-md-3 col-6">
-                    <small class="fw-bold d-block">ID Interne</small>
-                    <span class="small text-dark">
-                        ${marcheDTO.getId()}
-                    </span>
+
+
+
+                <div class="col-md-5">
+                    <small class="fw-bold d-block">
+                        Num de marché provisoire
+                    </small>
+
+                    <p class="mb-0 fw-medium">
+                        ${marcheDTO.getNumMarche()}
+                    </p>
                 </div>
 
                 <div class="col-md-5">
@@ -95,7 +101,7 @@ content = @`
 
                 <div class="col-md-3 col-6">
                     <small class="fw-bold d-block">
-                        Imputation
+                        Imputation Budgétaire
                     </small>
 
                     <span class="small">
@@ -104,7 +110,7 @@ content = @`
                 </div>
 
                 <div class="col-md-4">
-                    <small class="fw-bold d-block">Type</small>
+                    <small class="fw-bold d-block">Type de marché</small>
 
                     <span class="small">
                         ${marcheDTO.getTypeMarcheIntitule()}
@@ -112,7 +118,7 @@ content = @`
                 </div>
 
                 <div class="col-md-4">
-                    <small class="fw-bold d-block">Mode</small>
+                    <small class="fw-bold d-block">Mode de passation</small>
 
                     <span class="small">
                         ${marcheDTO.getModePassationIntitule()}
@@ -141,12 +147,14 @@ content = @`
 
                 <div class="col-md-3 col-6">
                     <small class="fw-bold d-block">
-                        Date Approbation
+                        Date d'approbation
                     </small>
 
-                    <span class="small">
-                        ${marcheDTO.getDateApprobation().toString()}
-                    </span>
+                    <td>
+                        <small>
+                            ${marcheDTO.getDateApprobation().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))}
+                        </small>
+                    </td>
                 </div>
 
                 <div class="col-md-3 col-6">
@@ -154,8 +162,18 @@ content = @`
                         Approuvé par
                     </small>
 
-                    <span class="badge bg-light text-dark border">
+                    <span class="small">
                         ${marcheDTO.getApprouvePar()}
+                    </span>
+                </div>
+
+                <div class="col-md-3 col-6">
+                    <small class="fw-bold d-block">
+                        Titulaire du marché
+                    </small>
+
+                    <span class="small">
+                        ${marcheDTO.getTitulaireMarche()}
                     </span>
                 </div>
 

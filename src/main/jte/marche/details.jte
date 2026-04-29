@@ -18,8 +18,8 @@ messages = messages,
 content = @`
     <!-- Actions Bar -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4 class="text-success fw-bold"><i ></i>   </h4>
-<%--        <h4 class="text-success fw-bold"><i class="bi bi-file-earmark-text me-2"></i>  ${marcheDTO.getNumMarche()} </h4>--%>
+        <h4 class="text-success fw-bold"><i  class="bi bi-file-earmark-text me-2"> ${marcheDTO.getNumMarche()}</i>   </h4>
+      <h4 class="text-success fw-bold"> </h4>
         <a href="/marche/list" class="btn btn-outline-secondary shadow-sm">
             <i class="bi bi-arrow-left me-1"></i> Retour à la liste
         </a>
@@ -32,9 +32,11 @@ content = @`
         </div>
         <div class="card-body">
             <div class="row g-3">
+
+
                 <div class="col-md-3 col-6">
-                    <small class="fw-bold d-block">ID Interne</small>
-                    <span class="small text-dark">${marcheDTO.getId()}</span>
+                    <small class="fw-bold d-block">Numéro provisoire du  marché </small>
+                    <span class="small">${marcheDTO.getNumMarche()}</span>
                 </div>
 
                 <div class="col-md-5">
@@ -57,10 +59,7 @@ content = @`
                     <small class="fw-bold d-block">Mode de Passation</small>
                     <span class="small">${marcheDTO.getModePassationIntitule()}</span>
                 </div>
-<%--                <div class="col-md-3 col-6">--%>
-<%--                    <small class="text-muted d-block">Numéro Marché</small>--%>
-<%--                    <span class="badge bg-success-subtle text-success border border-success-subtle">${marcheDTO.getNumMarche()}</span>--%>
-<%--                </div>--%>
+
                 <div class="col-md-4">
                     <small class="fw-bold d-block">Autorité Contractante</small>
                     <span class="small">${marcheDTO.getAutoriteContractanteIntitule()}</span>
@@ -73,19 +72,21 @@ content = @`
 
                 <div class="col-md-3 col-6">
                     <small class="fw-bold d-block">Date d'approbation</small>
-                    <span class="small">${marcheDTO.getDateApprobation().toString()}</span>
+                    <small>
+                        ${marcheDTO.getDateApprobation().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))}
+                    </small>
                 </div>
                 <div class="col-md-3 col-6">
                     <small class="fw-bold d-block">Approuvé par</small>
-                    <span class="badge bg-light text-dark border">${marcheDTO.getApprouvePar()}</span>
+                    <span class="small">${marcheDTO.getApprouvePar()}</span>
                 </div>
 
 
 
-<%--                <div class="col-md-4">--%>
-<%--                    <small class="text-muted d-block">Titulaire</small>--%>
-<%--                    <span class="fw-bold text-primary">${marcheDTO.getTitulaireMarche()}</span>--%>
-<%--                </div>--%>
+                <div class="col-md-4">
+                    <small class="fw-bold d-block">Titulaire du marché</small>
+                    <span class="small">${marcheDTO.getTitulaireMarche()}</span>
+                </div>
 
 
 

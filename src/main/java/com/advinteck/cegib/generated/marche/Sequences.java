@@ -26,6 +26,11 @@ public class Sequences {
     public static final Sequence<Long> MARCHE_NIFS_ID_SEQ = Internal.createSequence("marche_nifs_id_seq", Marche.MARCHE, SQLDataType.BIGINT.nullable(false), null, null, null, null, false, null);
 
     /**
+     * The sequence <code>marche.marche_numero_seq</code>
+     */
+    public static final Sequence<Long> MARCHE_NUMERO_SEQ = Internal.createSequence("marche_numero_seq", Marche.MARCHE, SQLDataType.BIGINT.nullable(false), null, null, null, null, false, null);
+
+    /**
      * The sequence <code>marche.marches_id_seq</code>
      */
     public static final Sequence<Long> MARCHES_ID_SEQ = Internal.createSequence("marches_id_seq", Marche.MARCHE, SQLDataType.BIGINT.nullable(false), null, null, null, null, false, null);

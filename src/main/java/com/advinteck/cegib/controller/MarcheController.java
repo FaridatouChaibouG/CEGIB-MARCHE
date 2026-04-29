@@ -71,18 +71,18 @@ public class MarcheController {
 
 
 
-//        String NumeroMarche = marcheDTO.getNumMarche();
-//        if (marcheService.NumeroMarcheAlreadyExists(NumeroMarche)) {
-//            messages.put("danger", "Le numéro du marché " + NumeroMarche + " est déjà attribué.");
-//            model.addAttribute("messages", messages);
-//            model.addAttribute("imputationList", referentielService.imputationsList());
-//            model.addAttribute("autoriteContractanteList", referentielService.autoriteContractantesList());
-//            model.addAttribute("structureAutoriteContractanteList", referentielService.structureAutoriteContractantesList());
-//            model.addAttribute("typeMarcheList", referentielService.typeMarchesList());
-//            model.addAttribute("modePassationList", referentielService.modePassationsList());
-//
-//            return "marche/form";
-//        }
+        String NumeroMarche = marcheDTO.getNumMarche();
+        if (marcheService.NumeroMarcheAlreadyExists(NumeroMarche)) {
+            messages.put("danger", "Le numéro du marché " + NumeroMarche + " est déjà attribué.");
+            model.addAttribute("messages", messages);
+            model.addAttribute("imputationList", referentielService.imputationsList());
+            model.addAttribute("autoriteContractanteList", referentielService.autoriteContractantesList());
+            model.addAttribute("structureAutoriteContractanteList", referentielService.structureAutoriteContractantesList());
+            model.addAttribute("typeMarcheList", referentielService.typeMarchesList());
+            model.addAttribute("modePassationList", referentielService.modePassationsList());
+
+            return "marche/form";
+        }
 
         try {
             marcheService.save(marcheDTO);
@@ -269,11 +269,7 @@ public class MarcheController {
 
     @PostMapping("/update")
     public String update(
-            @ModelAttribute @Valid MarcheDTO marcheDTO,
-            BindingResult bindingResult,
-            Model model,
-            RedirectAttributes redirectAttributes
-    ) {
+            @ModelAttribute @Valid MarcheDTO marcheDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
 
@@ -306,10 +302,7 @@ public class MarcheController {
 
 
     @GetMapping("/delete/{id}")
-    public String deleteMarche(
-            @PathVariable Long id,
-            RedirectAttributes redirectAttributes,
-            Model model) {
+    public String deleteMarche( @PathVariable Long id, RedirectAttributes redirectAttributes, Model model) {
 
         Map<String, String> messages = new HashMap<>();
 

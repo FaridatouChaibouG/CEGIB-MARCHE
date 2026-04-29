@@ -8,17 +8,19 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public final class JtedetailsGenerated {
 	public static final String JTE_NAME = "marche/details.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,5,7,7,7,7,14,14,17,17,18,21,27,36,36,36,41,41,41,47,47,47,53,53,53,57,57,57,59,60,61,62,65,65,65,70,70,70,75,75,75,79,79,79,84,85,86,87,96,118,118,121,121,121,122,122,122,124,124,124,127,127,127,131,131,131,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,141,141,141,141,141,141,141,141,147,147,154,166,166,169,169,169,170,170,170,173,173,173,173,173,173,173,173,173,173,173,173,177,178,179,180,181,182,183,185,185,192,202,202,202,202,202,202,202,202,202,208,208,209,209,209,209,209,209,209,209,209,209,209,209,210,210,210,211,211,256,256,257,257,257,257,257,257,257,257,257,257,257,257,258,258,258,259,259,312,322,322,322,322,322,322,322,322,322,328,328,329,329,329,329,329,329,329,329,329,329,329,329,329,329,329,330,330,364,364,365,365,365,365,365,365,365,365,365,365,365,365,366,366,366,367,367,457,457,457,461,461,461,7,8,9,10,11,12,12,12,12};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,5,7,7,7,7,14,14,17,17,18,20,20,20,27,38,38,38,43,43,43,49,49,49,55,55,55,59,59,59,64,64,64,69,69,69,75,75,75,80,80,80,87,87,87,97,119,119,122,122,122,123,123,123,125,125,125,128,128,128,132,132,132,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,142,142,142,142,142,142,142,142,148,148,155,167,167,170,170,170,171,171,171,174,174,174,174,174,174,174,174,174,174,174,174,178,179,180,181,182,183,184,186,186,193,203,203,203,203,203,203,203,203,203,209,209,210,210,210,210,210,210,210,210,210,210,210,210,211,211,211,212,212,257,257,258,258,258,258,258,258,258,258,258,258,258,258,259,259,259,260,260,313,323,323,323,323,323,323,323,323,323,329,329,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,331,331,365,365,366,366,366,366,366,366,366,366,366,366,366,366,367,367,367,368,368,458,458,458,462,462,462,7,8,9,10,11,12,12,12,12};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, List<Nifs> nifList, List<DppdActivite> dppActiviteList, MarcheDTO marcheDTO, Map<String, String> messages, List<NifDTO> marcheNifDTOs, List<ActiviteDTO> marcheActiviteDTOs) {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.JtelayoutGenerated.render(jteOutput, jteHtmlInterceptor, "Détail du Marché", new gg.jte.html.HtmlContent() {
 			public void writeTo(gg.jte.html.HtmlTemplateOutput jteOutput) {
 				jteOutput.writeContent("\n    ");
-				jteOutput.writeContent("\n    <div class=\"d-flex justify-content-between align-items-center mb-4\">\n        <h4 class=\"text-success fw-bold\"><i ></i>   </h4>\n");
-				jteOutput.writeContent("\n        <a href=\"/marche/list\" class=\"btn btn-outline-secondary shadow-sm\">\n            <i class=\"bi bi-arrow-left me-1\"></i> Retour à la liste\n        </a>\n    </div>\n\n    ");
-				jteOutput.writeContent("\n    <div class=\"card border-0 shadow-sm mb-4\">\n        <div class=\"card-header bg-white py-3\">\n            <h5 class=\"mb-0 text-dark fw-bold\">Informations Générales</h5>\n        </div>\n        <div class=\"card-body\">\n            <div class=\"row g-3\">\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"fw-bold d-block\">ID Interne</small>\n                    <span class=\"small text-dark\">");
+				jteOutput.writeContent("\n    <div class=\"d-flex justify-content-between align-items-center mb-4\">\n        <h4 class=\"text-success fw-bold\"><i  class=\"bi bi-file-earmark-text me-2\"> ");
+				jteOutput.setContext("i", null);
+				jteOutput.writeUserContent(marcheDTO.getNumMarche());
+				jteOutput.writeContent("</i>   </h4>\n      <h4 class=\"text-success fw-bold\"> </h4>\n        <a href=\"/marche/list\" class=\"btn btn-outline-secondary shadow-sm\">\n            <i class=\"bi bi-arrow-left me-1\"></i> Retour à la liste\n        </a>\n    </div>\n\n    ");
+				jteOutput.writeContent("\n    <div class=\"card border-0 shadow-sm mb-4\">\n        <div class=\"card-header bg-white py-3\">\n            <h5 class=\"mb-0 text-dark fw-bold\">Informations Générales</h5>\n        </div>\n        <div class=\"card-body\">\n            <div class=\"row g-3\">\n                \n\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"fw-bold d-block\">Numéro provisoire du  marché </small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
-				jteOutput.writeUserContent(marcheDTO.getId());
+				jteOutput.writeUserContent(marcheDTO.getNumMarche());
 				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-5\">\n                    <small class=\"fw-bold d-block\">Objet du Marché</small>\n                    <p class=\"mb-0 fw-medium\">");
 				jteOutput.setContext("p", null);
 				jteOutput.writeUserContent(marcheDTO.getObjetMarche());
@@ -31,27 +33,22 @@ public final class JtedetailsGenerated {
 				jteOutput.writeContent("</span>\n                </div>\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\">Mode de Passation</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getModePassationIntitule());
-				jteOutput.writeContent("</span>\n                </div>\n");
-				jteOutput.writeContent("\n");
-				jteOutput.writeContent("\n");
-				jteOutput.writeContent("\n");
-				jteOutput.writeContent("\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\">Autorité Contractante</small>\n                    <span class=\"small\">");
+				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\">Autorité Contractante</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getAutoriteContractanteIntitule());
 				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\"> Structure Autorité Contractante</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getStructureAutoriteContractanteIntutule());
-				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"fw-bold d-block\">Date d'approbation</small>\n                    <span class=\"small\">");
-				jteOutput.setContext("span", null);
-				jteOutput.writeUserContent(marcheDTO.getDateApprobation().toString());
-				jteOutput.writeContent("</span>\n                </div>\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"fw-bold d-block\">Approuvé par</small>\n                    <span class=\"badge bg-light text-dark border\">");
+				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"fw-bold d-block\">Date d'approbation</small>\n                    <small>\n                        ");
+				jteOutput.setContext("small", null);
+				jteOutput.writeUserContent(marcheDTO.getDateApprobation().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+				jteOutput.writeContent("\n                    </small>\n                </div>\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"fw-bold d-block\">Approuvé par</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getApprouvePar());
-				jteOutput.writeContent("</span>\n                </div>\n\n\n\n");
-				jteOutput.writeContent("\n");
-				jteOutput.writeContent("\n");
-				jteOutput.writeContent("\n");
-				jteOutput.writeContent("\n\n\n\n            </div>\n        </div>\n    </div>\n\n    <div class=\"row g-4\">\n        ");
+				jteOutput.writeContent("</span>\n                </div>\n\n\n\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\">Titulaire du marché</small>\n                    <span class=\"small\">");
+				jteOutput.setContext("span", null);
+				jteOutput.writeUserContent(marcheDTO.getTitulaireMarche());
+				jteOutput.writeContent("</span>\n                </div>\n\n\n\n            </div>\n        </div>\n    </div>\n\n    <div class=\"row g-4\">\n        ");
 				jteOutput.writeContent("\n        <div class=\"col-lg-8\">\n            <div class=\"card border-0 shadow-sm h-100\">\n                <div class=\"card-header bg-white d-flex justify-content-between align-items-center py-3\">\n                    <h5 class=\"mb-0 fw-bold\">Activités</h5>\n                    <button class=\"btn btn-sm btn-success rounded-pill\" data-bs-toggle=\"modal\"\n                            data-bs-target=\"#activiteAddModal\">\n                        <i class=\"bi bi-plus-lg me-1\"></i> Ajouter\n                    </button>\n                </div>\n                <div class=\"table-responsive\">\n                    <table class=\"table table-hover align-middle mb-0\">\n                        <thead class=\"table-light\">\n                        <tr class=\"small text-uppercase\">\n                            <th class=\"ps-4\">Code / Intitulé</th>\n                            <th class=\"text-center\">Taux (%)</th>\n                            <th class=\"text-end\">Montant HT</th>\n                            <th class=\"text-end\">Montant TTC</th>\n                            <th class=\"text-center\">Actions</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                        ");
 				for (var el : marcheActiviteDTOs) {
 					jteOutput.writeContent("\n                            <tr>\n                                <td class=\"ps-4\">\n                                    <div class=\"fw-bold text-dark\">");

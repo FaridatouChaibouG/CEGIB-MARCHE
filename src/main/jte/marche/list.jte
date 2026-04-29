@@ -26,13 +26,13 @@ content = @`
             <table id="marches" class="table table-hover align-middle mb-0">
                 <thead class="table-light">
                 <tr>
-<%--                    <th class="ps-3">Numéro</th>--%>
-                    <th >Objet</th>
-                    <th>Type</th>
-                    <th>Passation</th>
+                    <th class="ps-3">Numéro provisoire</th>
+                    <th style="width: 20%;">Objet du marché</th>
+                    <th style="width: 20%;">Type de marché</th>
+                    <th style="width: 20%;">Mode de passation</th>
                     <!-- Colonne Structure avec largeur fixe et troncature -->
 <%--                    <th style="max-width: 150px;">Structure</th>--%>
-                    <th>Approbation</th>
+                    <th>Date d'approbation</th>
 <%--                    <th>Titulaire</th>--%>
                     <th class="text-center">Actions</th>
                 </tr>
@@ -40,9 +40,17 @@ content = @`
                 <tbody>
                 @for(var marche : marches)
                     <tr>
-<%--                        <td class="ps-3 fw-bold text-nowrap">${marche.getNumMarche()}</td>--%>
-                        <td><div class="text-truncate" style="max-width: 180px;" title="${marche.getObjetMarche()}">${marche.getObjetMarche()}</div></td>
-                        <td><span class="badge bg-secondary-soft text-dark border">${marche.getTypeMarcheIntitule()}</span></td>
+                     <td class=" text-nowrap">${marche.getNumMarche()}</td>
+                        <td>
+                            <div class="text-truncate" style="max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                 title="${marche.getObjetMarche()}">
+                                ${marche.getObjetMarche()}
+                            </div>
+                        </td>
+                        <td><div class="text-truncate" style="max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                 title="${marche.getTypeMarcheIntitule()}">
+                                ${marche.getTypeMarcheIntitule()}
+                            </div></td>
                         <td><small>${marche.getModePassationIntitule()}</small></td>
 
                         <!-- * les pointillés -->
@@ -52,7 +60,11 @@ content = @`
 <%--                            </div>--%>
 <%--                        </td>--%>
 
-                      <td><small>${marche.getDateApprobation().toString()}</small></td>
+                        <td>
+                            <small>
+                                ${marche.getDateApprobation().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))}
+                            </small>
+                        </td>
 <%--                        <td>${marche.getTitulaireMarche()}</td>--%>
                         <td class="text-center pe-3 text-nowrap">
                             <div class="btn-group">
@@ -75,11 +87,12 @@ content = @`
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             new DataTable('#marches', {
-                // Traduction intégrée directement pour éviter l'erreur i18n
+
+                lengthChange: false,
+
                 language: {
                     processing:     "Traitement en cours...",
                     search:         "Rechercher&nbsp;:",
-                    lengthMenu:    "Afficher _MENU_ éléments",
                     info:           "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments",
                     infoEmpty:      "Affichage de l'élément 0 à 0 sur 0 élément",
                     infoFiltered:   "(filtré de _MAX_ éléments au total)",
@@ -95,7 +108,7 @@ content = @`
                 },
                 pageLength: 10,
                 columnDefs: [
-                    { targets: [4], orderable: false } // Désactive le tri sur la colonne Actions
+                    { targets: [5], orderable: false }
                 ]
             });
         });

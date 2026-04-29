@@ -30,6 +30,9 @@ public class Marches implements Serializable {
     private String whoDone;
     private LocalDateTime whenDone;
     private LocalDateTime lastUpdate;
+    private String statut;
+    private String owner;
+    private String observation;
 
     public Marches() {}
 
@@ -48,6 +51,9 @@ public class Marches implements Serializable {
         this.whoDone = value.whoDone;
         this.whenDone = value.whenDone;
         this.lastUpdate = value.lastUpdate;
+        this.statut = value.statut;
+        this.owner = value.owner;
+        this.observation = value.observation;
     }
 
     public Marches(
@@ -64,7 +70,10 @@ public class Marches implements Serializable {
         String modeDePassationCode,
         String whoDone,
         LocalDateTime whenDone,
-        LocalDateTime lastUpdate
+        LocalDateTime lastUpdate,
+        String statut,
+        String owner,
+        String observation
     ) {
         this.id = id;
         this.numeroMarche = numeroMarche;
@@ -80,6 +89,9 @@ public class Marches implements Serializable {
         this.whoDone = whoDone;
         this.whenDone = whenDone;
         this.lastUpdate = lastUpdate;
+        this.statut = statut;
+        this.owner = owner;
+        this.observation = observation;
     }
 
     /**
@@ -280,6 +292,48 @@ public class Marches implements Serializable {
         this.lastUpdate = lastUpdate;
     }
 
+    /**
+     * Getter for <code>marche.marches.statut</code>.
+     */
+    public String getStatut() {
+        return this.statut;
+    }
+
+    /**
+     * Setter for <code>marche.marches.statut</code>.
+     */
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+
+    /**
+     * Getter for <code>marche.marches.owner</code>.
+     */
+    public String getOwner() {
+        return this.owner;
+    }
+
+    /**
+     * Setter for <code>marche.marches.owner</code>.
+     */
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    /**
+     * Getter for <code>marche.marches.observation</code>.
+     */
+    public String getObservation() {
+        return this.observation;
+    }
+
+    /**
+     * Setter for <code>marche.marches.observation</code>.
+     */
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -373,6 +427,24 @@ public class Marches implements Serializable {
         }
         else if (!this.lastUpdate.equals(other.lastUpdate))
             return false;
+        if (this.statut == null) {
+            if (other.statut != null)
+                return false;
+        }
+        else if (!this.statut.equals(other.statut))
+            return false;
+        if (this.owner == null) {
+            if (other.owner != null)
+                return false;
+        }
+        else if (!this.owner.equals(other.owner))
+            return false;
+        if (this.observation == null) {
+            if (other.observation != null)
+                return false;
+        }
+        else if (!this.observation.equals(other.observation))
+            return false;
         return true;
     }
 
@@ -394,6 +466,9 @@ public class Marches implements Serializable {
         result = prime * result + ((this.whoDone == null) ? 0 : this.whoDone.hashCode());
         result = prime * result + ((this.whenDone == null) ? 0 : this.whenDone.hashCode());
         result = prime * result + ((this.lastUpdate == null) ? 0 : this.lastUpdate.hashCode());
+        result = prime * result + ((this.statut == null) ? 0 : this.statut.hashCode());
+        result = prime * result + ((this.owner == null) ? 0 : this.owner.hashCode());
+        result = prime * result + ((this.observation == null) ? 0 : this.observation.hashCode());
         return result;
     }
 
@@ -415,6 +490,9 @@ public class Marches implements Serializable {
         sb.append(", ").append(whoDone);
         sb.append(", ").append(whenDone);
         sb.append(", ").append(lastUpdate);
+        sb.append(", ").append(statut);
+        sb.append(", ").append(owner);
+        sb.append(", ").append(observation);
 
         sb.append(")");
         return sb.toString();

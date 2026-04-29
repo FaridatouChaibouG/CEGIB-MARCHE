@@ -59,7 +59,7 @@ content = @`
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="h3 mb-0 text-gray-800"></h1>
             <a href="/marche/list" class="btn btn-outline-secondary shadow-sm">
-                <i class="bi bi-arrow-left me-1"></i> Annuler et retourner
+                <i class="bi bi-arrow-left me-1"></i> Retour à la liste
             </a>
         </div>
 
@@ -70,18 +70,18 @@ content = @`
                     <!-- Identification -->
                     <div class="form-section-title">01. Informations Générales</div>
                     <div class="row g-4 mb-5">
-<%--                        <div class="col-md-4">--%>
-<%--                            <label class="form-label small fw-bold">Numéro de Marché</label>--%>
-<%--                            <input type="text" class="form-control" name="numMarche" placeholder="Ex: MAR-2024-001" value="${marcheDTO.getNumMarche()}">--%>
-<%--                            @template.formMessage(bindingResult = bindingResult, field = "numMarche")--%>
-<%--                        </div>--%>
-
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">Objet du Marché</label>
-                            <textarea class="form-control" name="objetMarche" rows="2" placeholder="Description du marché...">${marcheDTO.getObjetMarche()}</textarea>
+                            <label class="form-label small fw-bold">Numéro provisoire du marché</label>
+                            <input type="text" class="form-control" name="numMarche" placeholder="Ex: M-001" value="${marcheDTO.getNumMarche()}">
+                            @template.formMessage(bindingResult = bindingResult, field = "numMarche")
                         </div>
 
                         <div class="col-md-6">
+                            <label class="form-label small fw-bold">Objet du Marché</label>
+                            <textarea class="form-control" name="objetMarche" rows="2" >${marcheDTO.getObjetMarche()}</textarea>
+                        </div>
+
+                        <div >
                             <label class="form-label small fw-bold">Imputation Budgétaire</label>
                             <select class="form-select select-slim" name="imputation">
                                 <option value="" disabled selected="${marcheDTO.getImputation() == null}">Choisir...</option>
@@ -100,10 +100,10 @@ content = @`
                     <!-- Finition -->
                     <div class="form-section-title">02. Caractéristiques du marché </div>
                     <div class="row g-4 mb-5">
-                        <%--                        <div class="col-md-12">--%>
-                        <%--                            <label class="form-label small fw-bold">Titulaire (Prestataire)</label>--%>
-                        <%--                            <input type="text" class="form-control" name="titulaireMarche" placeholder="Nom de l'entreprise" value="${marcheDTO.getTitulaireMarche()}">--%>
-                        <%--                        </div>--%>
+                                                <div class="col-md-12">
+                                                    <label class="form-label small fw-bold">Titulaire du marché</label>
+                                                    <input type="text" class="form-control" name="titulaireMarche" placeholder="Nom de l'entreprise" value="${marcheDTO.getTitulaireMarche()}">
+                                                </div>
                         <div class="col-md-6">
                             <label class="form-label small fw-bold">Type de Marché</label>
                             <select class="form-select select-slim" name="typeMarcheCode">

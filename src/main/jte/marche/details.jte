@@ -33,47 +33,62 @@ content = @`
         <div class="card-body">
             <div class="row g-3">
                 <div class="col-md-3 col-6">
-                    <small class="text-muted d-block">ID Interne</small>
-                    <span class="fw-bold text-dark">${marcheDTO.getId()}</span>
+                    <small class="fw-bold d-block">ID Interne</small>
+                    <span class="small text-dark">${marcheDTO.getId()}</span>
+                </div>
+
+                <div class="col-md-5">
+                    <small class="fw-bold d-block">Objet du Marché</small>
+                    <p class="mb-0 fw-medium">${marcheDTO.getObjetMarche()}</p>
+                </div>
+
+
+                <div class="col-md-3 col-6">
+                    <small class="fw-bold d-block">Imputation Budgétaire</small>
+                    <span class="small">${marcheDTO.getImputationIntitule()}</span>
+                </div>
+
+
+                <div class="col-md-4">
+                    <small class="fw-bold d-block">Type de Marché</small>
+                    <span class="small">${marcheDTO.getTypeMarcheIntitule()}</span>
+                </div>
+                <div class="col-md-4">
+                    <small class="fw-bold d-block">Mode de Passation</small>
+                    <span class="small">${marcheDTO.getModePassationIntitule()}</span>
                 </div>
 <%--                <div class="col-md-3 col-6">--%>
 <%--                    <small class="text-muted d-block">Numéro Marché</small>--%>
 <%--                    <span class="badge bg-success-subtle text-success border border-success-subtle">${marcheDTO.getNumMarche()}</span>--%>
 <%--                </div>--%>
-                <div class="col-md-3 col-6">
-                    <small class="text-muted d-block">Date Approbation</small>
-                    <span class="fw-bold">${marcheDTO.getDateApprobation().toString()}</span>
-                </div>
-                <div class="col-md-3 col-6">
-                    <small class="text-muted d-block">Approuvé par</small>
-                    <span class="badge bg-light text-dark border">${marcheDTO.getApprouvePar()}</span>
-                </div>
-                <div class="col-md-3 col-6">
-                    <small class="text-muted d-block">Imputation</small>
-                    <span class="fw-bold">${marcheDTO.getImputation()}</span>
-                </div>
-
-                <div class="col-md-5">
-                    <small class="text-muted d-block">Objet du Marché</small>
-                    <p class="mb-0 fw-medium">${marcheDTO.getObjetMarche()}</p>
-                </div>
                 <div class="col-md-4">
-                    <small class="text-muted d-block">Titulaire</small>
-                    <span class="fw-bold text-primary">${marcheDTO.getTitulaireMarche()}</span>
-                </div>
-
-                <div class="col-md-4">
-                    <small class="text-muted d-block">Autorité Contractante</small>
+                    <small class="fw-bold d-block">Autorité Contractante</small>
                     <span class="small">${marcheDTO.getAutoriteContractanteIntitule()}</span>
                 </div>
+
                 <div class="col-md-4">
-                    <small class="text-muted d-block">Type</small>
-                    <span class="small">${marcheDTO.getTypeMarcheIntitule()}</span>
+                    <small class="fw-bold d-block"> Structure Autorité Contractante</small>
+                    <span class="small">${marcheDTO.getStructureAutoriteContractanteIntutule()}</span>
                 </div>
-                <div class="col-md-4">
-                    <small class="text-muted d-block">Mode</small>
-                    <span class="small">${marcheDTO.getModePassationIntitule()}</span>
+
+                <div class="col-md-3 col-6">
+                    <small class="fw-bold d-block">Date d'approbation</small>
+                    <span class="small">${marcheDTO.getDateApprobation().toString()}</span>
                 </div>
+                <div class="col-md-3 col-6">
+                    <small class="fw-bold d-block">Approuvé par</small>
+                    <span class="badge bg-light text-dark border">${marcheDTO.getApprouvePar()}</span>
+                </div>
+
+
+
+<%--                <div class="col-md-4">--%>
+<%--                    <small class="text-muted d-block">Titulaire</small>--%>
+<%--                    <span class="fw-bold text-primary">${marcheDTO.getTitulaireMarche()}</span>--%>
+<%--                </div>--%>
+
+
+
             </div>
         </div>
     </div>
@@ -107,10 +122,16 @@ content = @`
                                     <div class="fw-bold text-dark">${el.getCodeActivite()}</div>
                                     <div class="small text-muted">${el.getIntituleActivite()}</div>
                                 </td>
-                                <td class="text-center"><span class="badge bg-light text-dark">${el.getTaux()}%</span>
+                                <td class="text-center"><span class="badge bg-light text-dark">${el.getTaux()}</span>
                                 </td>
-                                <td class="text-end fw-medium">${el.getMontant()}</td>
-                                <td class="text-end fw-bold text-success">${el.getMontant() * (100 + el.getTaux()) / 100}</td>
+                                <td class="text-end fw-medium">
+                                    ${String.format(java.util.Locale.FRANCE, "%,d", el.getMontant())}
+                                </td>
+
+                                <td class="text-end fw-bold text-success">
+                                    ${String.format(java.util.Locale.FRANCE, "%,d", el.getMontant() * (100 + el.getTaux()) / 100)}
+                                </td>
+
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-outline-primary border-0"
                                             onclick="edit_activite('${el.getId()}', '${el.getMarcheId()}', '${el.getCodeActivite()}', '${el.getMontant()}', '${el.getTaux()}')"
@@ -154,13 +175,13 @@ content = @`
                                         data-bs-toggle="modal" data-bs-target="#nifDeleteModal">
                                     <i class="bi bi-trash text-danger"></i>
                                 </button>
-                                <div>
-                                    <button class="btn btn-sm btn-outline-primary border-0"
-                                            onclick="edit_nif('${el.getId()}', '${el.getIdentifiant()}')"
-                                            data-bs-toggle="modal" data-bs-target="#nifEditModal">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                            </div>
+<%--                                <div>--%>
+<%--                                    <button class="btn btn-sm btn-outline-primary border-0"--%>
+<%--                                            onclick="edit_nif('${el.getId()}', '${el.getIdentifiant()}')"--%>
+<%--                                            data-bs-toggle="modal" data-bs-target="#nifEditModal">--%>
+<%--                                        <i class="bi bi-pencil"></i>--%>
+<%--                                    </button>--%>
+<%--                            </div>--%>
                             </div>
                         @endfor
                     </div>

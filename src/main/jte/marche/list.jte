@@ -9,6 +9,8 @@
 title = "Liste des marchés",
 messages = messages,
 content = @`
+
+
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
 
@@ -25,14 +27,14 @@ content = @`
                 <thead class="table-light">
                 <tr>
 <%--                    <th class="ps-3">Numéro</th>--%>
-                    <th>Objet</th>
+                    <th >Objet</th>
                     <th>Type</th>
                     <th>Passation</th>
                     <!-- Colonne Structure avec largeur fixe et troncature -->
 <%--                    <th style="max-width: 150px;">Structure</th>--%>
                     <th>Approbation</th>
 <%--                    <th>Titulaire</th>--%>
-                    <th class="text-end pe-3">Actions</th>
+                    <th class="text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,33 +54,16 @@ content = @`
 
                       <td><small>${marche.getDateApprobation().toString()}</small></td>
 <%--                        <td>${marche.getTitulaireMarche()}</td>--%>
-                        <td class="text-end pe-3 text-nowrap">
+                        <td class="text-center pe-3 text-nowrap">
                             <div class="btn-group">
                                 <a href="/marche/details/${marche.getId()}" class="btn btn-sm btn-outline-info">Détails</a>
                                 <a href="/marche/edit/${marche.getId()}" class="btn btn-sm btn-outline-warning">Modifier</a>
-                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#del${marche.getId()}">
+                                <a href="/marche/delete/${marche.getId()}" class="btn btn-sm btn-danger">
                                     Supprimer
-                                </button>
+                                </a>
                             </div>
 
-                            <!-- Modal de suppression -->
-                            <div class="modal fade" id="del${marche.getId()}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered text-start">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Confirmer la suppression</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-<%--                                        <div class="modal-body">--%>
-<%--                                            Voulez-vous supprimer le marché : <b>${marche.getNumMarche()}</b> ?--%>
-<%--                                        </div>--%>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                            <a href="/marche/delete/${marche.getId()}" class="btn btn-danger">Supprimer définitivement</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </td>
                     </tr>
                 @endfor
@@ -110,7 +95,7 @@ content = @`
                 },
                 pageLength: 10,
                 columnDefs: [
-                    { targets: [7], orderable: false } // Désactive le tri sur la colonne Actions
+                    { targets: [4], orderable: false } // Désactive le tri sur la colonne Actions
                 ]
             });
         });

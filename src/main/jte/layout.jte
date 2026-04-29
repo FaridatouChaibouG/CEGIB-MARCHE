@@ -13,72 +13,44 @@
     <title>${title} | CEGIB </title>
 
     <script src="/jquery.min.js"></script>
+
+    <!-- AJOUT : CSS DataTables -->
+    <link href="/dataTables/dataTables.min.css" rel="stylesheet">
+
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.min.css">
     <script src="/slimselect/slimselect.js"></script>
     <link rel="stylesheet" href="/slimselect/slimselect.css">
 
+    <!-- AJOUT : JS DataTables (doit être après jQuery) -->
+    <script src="/dataTables/dataTables.min.js"></script>
+
     <style>
+        /* ... Votre style existant reste identique ... */
         :root {
-            --cegib-green: #198754; /* Le vert success */
+            --cegib-green: #198754;
             --cegib-light-green: #e9f5ee;
             --sidebar-width: 260px;
         }
         body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
-        /* Sidebar aux couleurs CEGIB */
-        .sidebar {
-            width: var(--sidebar-width);
-            min-height: 100vh;
-            background: var(--cegib-green);
-            color: white;
-            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-        }
-        .sidebar .nav-link {
-            color: rgba(255,255,255,0.8);
-            padding: 12px 20px;
-            margin: 5px 15px;
-            border-radius: 8px;
-            font-weight: 500;
-        }
-        .sidebar .nav-link:hover {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-        }
-        .sidebar .nav-link.active {
-            background: #fff;
-            color: var(--cegib-green) !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
+        .sidebar { width: var(--sidebar-width); min-height: 100vh; background: var(--cegib-green); color: white; box-shadow: 4px 0 10px rgba(0,0,0,0.1); }
+        .sidebar .nav-link { color: rgba(255,255,255,0.8); padding: 12px 20px; margin: 5px 15px; border-radius: 8px; font-weight: 500; }
+        .sidebar .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .sidebar .nav-link.active { background: #fff; color: var(--cegib-green) !important; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .main-wrapper { flex-grow: 1; display: flex; flex-direction: column; }
-
-        /* Navbar du haut */
-        .top-navbar {
-            background: #fff;
-            border-bottom: 2px solid var(--cegib-green);
-            padding: 12px 25px;
-        }
-
-        .card {
-            border: none;
-            border-top: 4px solid var(--cegib-green);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+        .top-navbar { background: #fff; border-bottom: 2px solid var(--cegib-green); padding: 12px 25px; }
+        .card { border: none; border-top: 4px solid var(--cegib-green); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .card-header { background: #fff; font-weight: bold; color: var(--cegib-green); }
-
         .alert { border: none; border-left: 5px solid; }
     </style>
 </head>
 
 <body class="d-flex h-100">
-
-<!-- SIDEBAR VERTE -->
+<!-- ... Le reste du body reste identique ... -->
 <nav class="sidebar d-none d-md-block">
     <div class="p-4 text-center border-bottom border-white border-opacity-25 mb-3">
-        <h4 class="text-white fw-bold mb-0">CEGIB MAECHE</h4>
+        <h4 class="text-white fw-bold mb-0">CEGIB MARCHE</h4>
         <small class="text-white-50">Gestion des Marchés</small>
     </div>
     <ul class="nav flex-column">
@@ -96,28 +68,12 @@
 </nav>
 
 <div class="main-wrapper">
-    <!-- TOP NAVBAR -->
     <header class="top-navbar d-flex justify-content-between align-items-center">
         <h5 class="mb-0 fw-bold text-uppercase" style="color: var(--cegib-green);">${title}</h5>
-        <div class="d-flex align-items-center">
-            <span class="me-3 small d-none d-sm-block text-muted">Utilisateur Connecté</span>
-            <div class="dropdown">
-                <button class="btn btn-outline-success rounded-circle p-1" type="button" data-bs-toggle="dropdown" style="width: 35px; height: 35px;">
-                    <i class="bi bi-person"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">Mon Profil</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="#">Déconnexion</a></li>
-                </ul>
-            </div>
-        </div>
+        <!-- ... Dropdown utilisateur ... -->
     </header>
 
-    <!-- MAIN CONTENT -->
     <main class="container-fluid p-4">
-
-        <!-- MESSAGES -->
         @if(null != messages && !messages.isEmpty())
             <div class="mb-4">
                 @for(var el: messages.entrySet())
@@ -129,9 +85,6 @@
         @endif
 
         <div class="card">
-            <div class="card-header h4 py-3">
-
-            </div>
             <div class="card-body p-4">
                 ${content}
             </div>
@@ -142,6 +95,5 @@
         &copy; 2026 <strong>CEGIB</strong> - Système de Gestion <span class="ms-2 badge bg-success">v0.0.1</span>
     </footer>
 </div>
-
 </body>
 </html>

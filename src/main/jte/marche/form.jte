@@ -46,19 +46,20 @@ content = @`
             box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.1);
         }
         .btn-save {
-            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+            background: linear-gradient(135deg, #198754 0%, #157347 100%);
             border: none;
             padding: 10px 30px;
             border-radius: 8px;
             font-weight: 600;
+            color: white;
         }
     </style>
 
     <div class="container-fluid py-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="h3 mb-0 text-gray-800"></h1>
-            <a href="/marche/list" class="btn btn-light text-primary btn-sm border shadow-sm">
-                <i class="bi bi-arrow-left"></i> Annuler et retourner
+            <a href="/marche/list" class="btn btn-outline-secondary shadow-sm">
+                <i class="bi bi-arrow-left me-1"></i> Annuler et retourner
             </a>
         </div>
 
@@ -74,7 +75,13 @@ content = @`
 <%--                            <input type="text" class="form-control" name="numMarche" placeholder="Ex: MAR-2024-001" value="${marcheDTO.getNumMarche()}">--%>
 <%--                            @template.formMessage(bindingResult = bindingResult, field = "numMarche")--%>
 <%--                        </div>--%>
-                        <div class="col-md-8">
+
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Objet du Marché</label>
+                            <textarea class="form-control" name="objetMarche" rows="2" placeholder="Description du marché...">${marcheDTO.getObjetMarche()}</textarea>
+                        </div>
+
+                        <div class="col-md-6">
                             <label class="form-label small fw-bold">Imputation Budgétaire</label>
                             <select class="form-select select-slim" name="imputation">
                                 <option value="" disabled selected="${marcheDTO.getImputation() == null}">Choisir...</option>
@@ -85,14 +92,45 @@ content = @`
                                 @endfor
                             </select>
                         </div>
-                        <div class="col-12">
-                            <label class="form-label small fw-bold">Objet du Marché</label>
-                            <textarea class="form-control" name="objetMarche" rows="2" placeholder="Description détaillée du marché...">${marcheDTO.getObjetMarche()}</textarea>
+
+                    </div>
+
+
+
+                    <!-- Finition -->
+                    <div class="form-section-title">02. Caractéristiques du marché </div>
+                    <div class="row g-4 mb-5">
+                        <%--                        <div class="col-md-12">--%>
+                        <%--                            <label class="form-label small fw-bold">Titulaire (Prestataire)</label>--%>
+                        <%--                            <input type="text" class="form-control" name="titulaireMarche" placeholder="Nom de l'entreprise" value="${marcheDTO.getTitulaireMarche()}">--%>
+                        <%--                        </div>--%>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Type de Marché</label>
+                            <select class="form-select select-slim" name="typeMarcheCode">
+                                <option value="" disabled selected="${marcheDTO.getTypeMarcheCode() == null}">Choisir...</option>
+                                @for(var el: typeMarcheList)
+                                    <option selected="${marcheDTO.getTypeMarcheCode() != null && marcheDTO.getTypeMarcheCode().equals(el.getCode())}" value="${el.getCode()}">
+                                        ${el.getIntitule()}
+                                    </option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Mode de Passation</label>
+                            <select class="form-select select-slim" name="modePassationCode">
+                                <option value="" disabled selected="${marcheDTO.getModePassationCode() == null}">Choisir...</option>
+                                @for(var el: modePassationList)
+                                    <option selected="${marcheDTO.getModePassationCode() != null && marcheDTO.getModePassationCode().equals(el.getCode())}" value="${el.getCode()}">
+                                        ${el.getIntitule()}
+                                    </option>
+                                @endfor
+                            </select>
                         </div>
                     </div>
 
+
                     <!-- Acteurs -->
-                    <div class="form-section-title">02. Acteurs & Autorités</div>
+                    <div class="form-section-title">03.  Autorités</div>
                     <div class="row g-4 mb-5">
                         <div class="col-md-6">
                             <label class="form-label small fw-bold">Autorité Contractante</label>
@@ -117,7 +155,7 @@ content = @`
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">Approuvé par</label>
+                            <label class="form-label small fw-bold" >Approuvé par</label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
                                 <input type="text" class="form-control" name="approuvePar" value="${marcheDTO.getApprouvePar()}">
@@ -129,40 +167,10 @@ content = @`
                         </div>
                     </div>
 
-                    <!-- Finition -->
-                    <div class="form-section-title">03. Détails Techniques</div>
-                    <div class="row g-4 mb-5">
-<%--                        <div class="col-md-12">--%>
-<%--                            <label class="form-label small fw-bold">Titulaire (Prestataire)</label>--%>
-<%--                            <input type="text" class="form-control" name="titulaireMarche" placeholder="Nom de l'entreprise" value="${marcheDTO.getTitulaireMarche()}">--%>
-<%--                        </div>--%>
-                        <div class="col-md-6">
-                            <label class="form-label small fw-bold">Type de Prestation</label>
-                            <select class="form-select select-slim" name="typeMarcheCode">
-                                <option value="" disabled selected="${marcheDTO.getTypeMarcheCode() == null}">Choisir...</option>
-                                @for(var el: typeMarcheList)
-                                    <option selected="${marcheDTO.getTypeMarcheCode() != null && marcheDTO.getTypeMarcheCode().equals(el.getCode())}" value="${el.getCode()}">
-                                        ${el.getIntitule()}
-                                    </option>
-                                @endfor
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label small fw-bold">Mode de Passation</label>
-                            <select class="form-select select-slim" name="modePassationCode">
-                                <option value="" disabled selected="${marcheDTO.getModePassationCode() == null}">Choisir...</option>
-                                @for(var el: modePassationList)
-                                    <option selected="${marcheDTO.getModePassationCode() != null && marcheDTO.getModePassationCode().equals(el.getCode())}" value="${el.getCode()}">
-                                        ${el.getIntitule()}
-                                    </option>
-                                @endfor
-                            </select>
-                        </div>
-                    </div>
 
                     <div class="d-flex justify-content-between align-items-center mt-5">
                         <button type="reset" class="btn btn-link text-muted text-decoration-none"></button>
-                        <button type="submit" class="btn btn-primary btn-save shadow">
+                        <button type="submit" class="btn btn-success btn-save shadow">
                             <i class="bi bi-check2-all me-2"></i> Enregistrer
                         </button>
                     </div>

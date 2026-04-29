@@ -17,10 +17,11 @@ import java.time.LocalDate;
 public class MarcheDTO {
 
     private Long id;
-    @NotEmpty(message = "Le numéro de marché est obligatoire.")
+//    @NotEmpty(message = "Le numéro de marché est obligatoire.")
 //    private String numMarche;
-//    @NotEmpty(message = "L'imputation est obligatoire.")
+    @NotEmpty(message = "L'imputation est obligatoire.")
     private String imputation;
+    private String imputationIntitule;
     @NotEmpty(message = "L'objet du marché est obligatoire.")
     private String objetMarche;
     @NotNull(message = "La date d'approbation est obligatoire.")
@@ -33,8 +34,8 @@ public class MarcheDTO {
     private String structureAutoriteContractanteIntutule;
     @NotEmpty(message = "L'approbation est obligatoire.")
     private String approuvePar;
-    @NotEmpty(message = "Le titulaire de marché est obligatoire.")
-    private String titulaireMarche;
+//    @NotEmpty(message = "Le titulaire de marché est obligatoire.")
+//  private String titulaireMarche;
     @NotEmpty(message = "Le type de marché est obligatoire.")
     private String typeMarcheCode;
     private String typeMarcheIntitule;

@@ -4,8 +4,6 @@ package com.advinteck.cegib.controller;
 import com.advinteck.cegib.dto.ActiviteDTO;
 import com.advinteck.cegib.dto.MarcheDTO;
 import com.advinteck.cegib.dto.NifDTO;
-import com.advinteck.cegib.generated.marche.tables.pojos.MarcheNifs;
-import com.advinteck.cegib.generated.marche.tables.pojos.MarcheActivite;
 import com.advinteck.cegib.service.MarcheService;
 import com.advinteck.cegib.service.ReferentielService;
 import jakarta.validation.Valid;
@@ -15,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -67,6 +64,12 @@ public class MarcheController {
 
             return "marche/form";
         }
+
+
+
+
+
+
 
 //        String NumeroMarche = marcheDTO.getNumMarche();
 //        if (marcheService.NumeroMarcheAlreadyExists(NumeroMarche)) {
@@ -239,8 +242,123 @@ public class MarcheController {
 
 
 
+    @GetMapping("edit/{id}")
+    public String editMarcheForm(Model model, RedirectAttributes redirectAttributes, @PathVariable Long id) {
 
 
+        Optional<MarcheDTO> marcheOpt = marcheService.findOneMarcheById(id);
+
+        if (marcheOpt.isEmpty()) {
+            Map<String, String> messages = new HashMap<>();
+            messages.put("danger", "Echec de modification : marché non trouvé pour l'id " + id);
+            redirectAttributes.addFlashAttribute("messages", messages);
+            return "redirect:/marche/list";
+        }
+        MarcheDTO marcheDTO = marcheOpt.get();
+
+        model.addAttribute("marcheDTO", marcheDTO);
+        model.addAttribute("imputationList", referentielService.imputationsList());
+        model.addAttribute("autoriteContractanteList", referentielService.autoriteContractantesList());
+        model.addAttribute("autoriteContractanteStructuresList", referentielService.structureAutoriteContractantesList());
+        model.addAttribute("typesMarcheList", referentielService.typeMarchesList());
+        model.addAttribute("modesPassationList", referentielService.modePassationsList());
+
+        return "marche/editForm";
+    }
+
+
+    @PostMapping("/update")
+    public String update(
+            @ModelAttribute @Valid MarcheDTO marcheDTO,
+            BindingResult bindingResult,
+            Model model,
+            RedirectAttributes redirectAttributes
+    ) {
+
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("bindingResult", bindingResult);
+
+            model.addAttribute("imputationList", referentielService.imputationsList());
+
+            model.addAttribute("autoriteContractanteList", referentielService.autoriteContractantesList());
+
+            model.addAttribute("autoriteContractanteStructuresList", referentielService.structureAutoriteContractantesList());
+
+            model.addAttribute("typesMarcheList", referentielService.typeMarchesList());
+
+            model.addAttribute("modesPassationList", referentielService.modePassationsList());
+
+            return "marche/editForm";
+        }
+
+        marcheService.update(marcheDTO);
+
+        Map<String, String> messages = new HashMap<>();
+        messages.put("success", "Marché modifié avec succes.");
+
+        redirectAttributes.addFlashAttribute("messages", messages);
+
+
+        return "redirect:/marche/list";
+    }
+
+
+
+    @GetMapping("/delete/{id}")
+    public String deleteMarche(
+            @PathVariable Long id,
+            RedirectAttributes redirectAttributes,
+            Model model) {
+
+        Map<String, String> messages = new HashMap<>();
+
+        Optional<MarcheDTO> marcheOpt = marcheService.findOneMarcheById(id);
+
+        if (marcheOpt.isEmpty()) {
+            messages.put("danger", "Marché introuvable pour l'id " + id);
+            redirectAttributes.addFlashAttribute("messages", messages);
+            return "redirect:/marche/list";
+        }
+
+        MarcheDTO marcheDTO = marcheOpt.get();
+
+        List<ActiviteDTO> activites = marcheService.marcheActiviteList(id);
+        List<NifDTO> nifs = marcheService.marcheNifList(id);
+
+        model.addAttribute("marcheDTO", marcheDTO);
+        model.addAttribute("marcheActiviteDTOs", activites);
+        model.addAttribute("marcheNifDTOs", nifs);
+        model.addAttribute("messages", messages);
+
+        return "marche/delete";
+    }
+
+
+
+    @GetMapping("/delete/Delete/{id}")
+    public String DeleteMarche(@PathVariable Long id,  RedirectAttributes redirectAttributes) {
+
+        Map<String, String> messages = new HashMap<>();
+        List<ActiviteDTO> activites = marcheService.marcheActiviteList(id);
+
+        for (ActiviteDTO activite : activites) {
+            marcheService.deleteActivite(activite.getId());
+        }
+
+        List<NifDTO> nifs = marcheService.marcheNifList(id);
+
+        for (NifDTO nif : nifs) {
+            marcheService.deleteNif(nif.getId());
+        }
+
+        marcheService.deleteMarche(id);
+
+        messages.put("success", "Marché supprimé avec succès");
+        redirectAttributes.addFlashAttribute("messages", messages);
+
+        return "redirect:/marche/list";
+    }
 
 
 

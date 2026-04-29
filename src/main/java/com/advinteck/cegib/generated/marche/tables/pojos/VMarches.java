@@ -19,6 +19,7 @@ public class VMarches implements Serializable {
     private Long id;
     private String numeroMarche;
     private String imputation;
+    private String imputationIntitule;
     private String objetMarche;
     private LocalDateTime dateApprobation;
     private String autoriteContractanteCode;
@@ -41,6 +42,7 @@ public class VMarches implements Serializable {
         this.id = value.id;
         this.numeroMarche = value.numeroMarche;
         this.imputation = value.imputation;
+        this.imputationIntitule = value.imputationIntitule;
         this.objetMarche = value.objetMarche;
         this.dateApprobation = value.dateApprobation;
         this.autoriteContractanteCode = value.autoriteContractanteCode;
@@ -62,6 +64,7 @@ public class VMarches implements Serializable {
         Long id,
         String numeroMarche,
         String imputation,
+        String imputationIntitule,
         String objetMarche,
         LocalDateTime dateApprobation,
         String autoriteContractanteCode,
@@ -81,6 +84,7 @@ public class VMarches implements Serializable {
         this.id = id;
         this.numeroMarche = numeroMarche;
         this.imputation = imputation;
+        this.imputationIntitule = imputationIntitule;
         this.objetMarche = objetMarche;
         this.dateApprobation = dateApprobation;
         this.autoriteContractanteCode = autoriteContractanteCode;
@@ -138,6 +142,20 @@ public class VMarches implements Serializable {
      */
     public void setImputation(String imputation) {
         this.imputation = imputation;
+    }
+
+    /**
+     * Getter for <code>marche.v_marches.imputation_intitule</code>.
+     */
+    public String getImputationIntitule() {
+        return this.imputationIntitule;
+    }
+
+    /**
+     * Setter for <code>marche.v_marches.imputation_intitule</code>.
+     */
+    public void setImputationIntitule(String imputationIntitule) {
+        this.imputationIntitule = imputationIntitule;
     }
 
     /**
@@ -381,6 +399,12 @@ public class VMarches implements Serializable {
         }
         else if (!this.imputation.equals(other.imputation))
             return false;
+        if (this.imputationIntitule == null) {
+            if (other.imputationIntitule != null)
+                return false;
+        }
+        else if (!this.imputationIntitule.equals(other.imputationIntitule))
+            return false;
         if (this.objetMarche == null) {
             if (other.objetMarche != null)
                 return false;
@@ -481,6 +505,7 @@ public class VMarches implements Serializable {
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.numeroMarche == null) ? 0 : this.numeroMarche.hashCode());
         result = prime * result + ((this.imputation == null) ? 0 : this.imputation.hashCode());
+        result = prime * result + ((this.imputationIntitule == null) ? 0 : this.imputationIntitule.hashCode());
         result = prime * result + ((this.objetMarche == null) ? 0 : this.objetMarche.hashCode());
         result = prime * result + ((this.dateApprobation == null) ? 0 : this.dateApprobation.hashCode());
         result = prime * result + ((this.autoriteContractanteCode == null) ? 0 : this.autoriteContractanteCode.hashCode());
@@ -506,6 +531,7 @@ public class VMarches implements Serializable {
         sb.append(id);
         sb.append(", ").append(numeroMarche);
         sb.append(", ").append(imputation);
+        sb.append(", ").append(imputationIntitule);
         sb.append(", ").append(objetMarche);
         sb.append(", ").append(dateApprobation);
         sb.append(", ").append(autoriteContractanteCode);

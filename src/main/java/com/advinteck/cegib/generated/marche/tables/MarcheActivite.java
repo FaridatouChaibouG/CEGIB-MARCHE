@@ -72,7 +72,7 @@ public class MarcheActivite extends TableImpl<MarcheActiviteRecord> {
     /**
      * The column <code>marche.marche_activite.intitule_activite</code>.
      */
-    public final TableField<MarcheActiviteRecord, String> INTITULE_ACTIVITE = createField(DSL.name("intitule_activite"), SQLDataType.VARCHAR(50).nullable(false), this, "");
+    public final TableField<MarcheActiviteRecord, String> INTITULE_ACTIVITE = createField(DSL.name("intitule_activite"), SQLDataType.VARCHAR(255).nullable(false), this, "");
 
     /**
      * The column <code>marche.marche_activite.taux</code>.

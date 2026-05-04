@@ -1,11 +1,128 @@
+
 CREATE SCHEMA IF NOT EXISTS referentiel;
 CREATE SCHEMA IF NOT EXISTS marche;
+
+
+
+CREATE TABLE IF NOT EXISTS referentiel.autorite_contractante
+(
+    id bigserial NOT NULL,
+    code character varying(2) NOT NULL UNIQUE,
+    intitule character varying(255),
+    who_done character varying(100) DEFAULT CURRENT_USER,
+    when_done timestamp DEFAULT CURRENT_TIMESTAMP,
+    last_update timestamp DEFAULT CURRENT_TIMESTAMP,
+    deleted_on timestamp DEFAULT NULL,
+    CONSTRAINT autorite_contractante_pkey PRIMARY KEY (id)
+    );
+ALTER TABLE IF EXISTS referentiel.autorite_contractante
+    OWNER to admin;
+
+
+CREATE TABLE IF NOT EXISTS referentiel.autorite_contractante_structures
+(
+    id bigserial NOT NULL,
+    code_autorite_contractante character varying(2) NOT NULL,
+    code character varying(6) NOT NULL UNIQUE,
+    intitule character varying(255) NOT NULL,
+    who_done character varying(100) DEFAULT CURRENT_USER,
+    when_done timestamp DEFAULT CURRENT_TIMESTAMP,
+    last_update timestamp DEFAULT CURRENT_TIMESTAMP,
+    deleted_on timestamp DEFAULT NULL,
+    CONSTRAINT autorite_contractante_structures_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_ac_structure FOREIGN KEY (code_autorite_contractante)
+    REFERENCES referentiel.autorite_contractante (code)
+    );
+ALTER TABLE IF EXISTS referentiel.autorite_contractante_structures
+    OWNER to admin;
+
+
+CREATE TABLE IF NOT EXISTS referentiel.imputation
+(
+    id bigserial NOT NULL,
+    imputation character varying(6) UNIQUE,
+    intitule character varying(100),
+    who_done character varying(100) DEFAULT CURRENT_USER,
+    when_done timestamp DEFAULT CURRENT_TIMESTAMP,
+    last_update timestamp DEFAULT CURRENT_TIMESTAMP,
+    deleted_on timestamp DEFAULT NULL,
+    CONSTRAINT imputation_pkey PRIMARY KEY (id)
+    );
+ALTER TABLE IF EXISTS referentiel.imputation
+    OWNER to admin;
+
+
+CREATE TABLE IF NOT EXISTS referentiel.modes_passation
+(
+    id bigserial NOT NULL,
+    code character(2) NOT NULL UNIQUE,
+    intitule character varying(50) NOT NULL,
+    who_done character varying(100) DEFAULT CURRENT_USER,
+    when_done timestamp DEFAULT CURRENT_TIMESTAMP,
+    last_update timestamp DEFAULT CURRENT_TIMESTAMP,
+    deleted_on timestamp DEFAULT NULL,
+    CONSTRAINT modes_passation_pkey PRIMARY KEY (id)
+    );
+ALTER TABLE IF EXISTS referentiel.modes_passation
+    OWNER to admin;
+
+
+
+CREATE TABLE IF NOT EXISTS referentiel.types_marche
+(
+    id bigserial NOT NULL,
+    code character varying(2) NOT NULL UNIQUE,
+    intitule character varying(50) NOT NULL,
+    who_done character varying(100) DEFAULT CURRENT_USER,
+    when_done timestamp DEFAULT CURRENT_TIMESTAMP,
+    last_update timestamp DEFAULT CURRENT_TIMESTAMP,
+    deleted_on timestamp DEFAULT NULL,
+    CONSTRAINT types_marche_pkey PRIMARY KEY (id)
+    );
+ALTER TABLE IF EXISTS referentiel.types_marche
+    OWNER to admin;
+
+CREATE TABLE IF NOT EXISTS referentiel.nifs
+(
+    id bigserial NOT NULL,
+    identifiant character varying(20) NOT NULL UNIQUE,
+    raison_sociale character varying(100) NOT NULL,
+    who_done character varying(100) DEFAULT CURRENT_USER,
+    when_done timestamp DEFAULT CURRENT_TIMESTAMP,
+    last_update timestamp DEFAULT CURRENT_TIMESTAMP,
+    deleted_on timestamp DEFAULT NULL,
+    CONSTRAINT nifs_pkey PRIMARY KEY (id)
+    );
+ALTER TABLE IF EXISTS referentiel.nifs
+    OWNER to admin;
+
+CREATE TABLE IF NOT EXISTS referentiel.dppd_activite
+(
+    id bigserial NOT NULL,
+    code_activite character varying(8) UNIQUE,
+    intitule_activite character varying(255),
+    imputation character varying(50),
+    section_code character varying(2),
+    programme_code character varying(3),
+    gestion character varying(4),
+    who_done character varying(100) DEFAULT CURRENT_USER,
+    when_done timestamp DEFAULT CURRENT_TIMESTAMP,
+    last_update timestamp DEFAULT CURRENT_TIMESTAMP,
+    deleted_on timestamp DEFAULT NULL,
+    CONSTRAINT dppd_activite_pkey PRIMARY KEY (id)
+    );
+ALTER TABLE IF EXISTS referentiel.dppd_activite
+    OWNER to admin;
+
+
+
 
 
 
 CREATE TABLE IF NOT EXISTS marche.marches
 (
     id bigserial NOT NULL,
+
     numero_marche character varying(20) NOT NULL DEFAULT ('M'::text || lpad(nextval(pg_get_serial_sequence('marche.marches', 'id'))::text, 4, '0'::text)),
     imputation character varying(6) NOT NULL,
     objet_marche character varying(100) NOT NULL,
@@ -83,138 +200,6 @@ ALTER TABLE IF EXISTS marche.marche_activite OWNER to admin;
 
 
 
-
-
-CREATE TABLE IF NOT EXISTS referentiel.autorite_contractante
-(
-    id bigserial NOT NULL,
-    code character varying(2),
-    intitule character varying(255),
-    who_done character varying(100) DEFAULT CURRENT_USER,
-    when_done timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    deleted_on timestamp without time zone DEFAULT NULL,
-    CONSTRAINT autorite_contractante_pkey PRIMARY KEY (id),
-    CONSTRAINT u_autorite_contractante UNIQUE (code)
-    );
-
-ALTER TABLE IF EXISTS referentiel.autorite_contractante
-    OWNER to admin;
-
-
-
-CREATE TABLE IF NOT EXISTS referentiel.autorite_contractante_structures
-(
-    id bigserial NOT NULL,
-    code_autorite_contractante character varying(2) NOT NULL,
-    code character varying(6) NOT NULL UNI,
-    intitule character varying(255) NOT NULL,
-    who_done character varying(100) DEFAULT CURRENT_USER,
-    when_done timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    deleted_on timestamp without time zone DEFAULT NULL,
-    CONSTRAINT autorite_contractante_structures_pkey PRIMARY KEY (id),
-    CONSTRAINT u_autorite_contractante_structures UNIQUE (code),
-    CONSTRAINT autorite_contractante_structure_code_autorite_contractante_fkey FOREIGN KEY (code_autorite_contractante)
-    REFERENCES referentiel.autorite_contractante (code) MATCH SIMPLE
-                        ON UPDATE NO ACTION
-                        ON DELETE NO ACTION
-    );
-
-ALTER TABLE IF EXISTS referentiel.autorite_contractante_structures
-    OWNER to admin;
-
-
-CREATE TABLE IF NOT EXISTS referentiel.modes_passation
-(
-    id bigserial NOT NULL,
-    code character(2) NOT NULL,
-    intitule character varying(50) NOT NULL,
-    who_done character varying(100) DEFAULT CURRENT_USER,
-    when_done timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    deleted_on timestamp without time zone DEFAULT NULL,
-    CONSTRAINT u_modes_passation UNIQUE (code),
-    CONSTRAINT modes_passation_pkey PRIMARY KEY (id)
-    );
-
-ALTER TABLE IF EXISTS referentiel.modes_passation
-    OWNER to admin;
-
-CREATE TABLE IF NOT EXISTS referentiel.types_marche
-(
-    id bigserial NOT NULL,
-    code character varying(2) NOT NULL,
-    intitule character varying(50) NOT NULL,
-    who_done character varying(100) DEFAULT CURRENT_USER,
-    when_done timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    deleted_on timestamp without time zone DEFAULT NULL,
-    CONSTRAINT u_types_marche UNIQUE (code),
-    CONSTRAINT types_marche_pkey PRIMARY KEY (id)
-    );
-
-ALTER TABLE IF EXISTS referentiel.types_marche
-    OWNER to admin;
-
-
-
-CREATE TABLE IF NOT EXISTS referentiel.nifs
-(
-    id bigserial NOT NULL,
-    identifiant character varying(20) NOT NULL,
-    raison_sociale character varying(100) NOT NULL,
-    who_done character varying(100) DEFAULT CURRENT_USER,
-    when_done timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    deleted_on timestamp without time zone DEFAULT NULL,
-    CONSTRAINT u_nif UNIQUE (identifiant)
-    );
-
-ALTER TABLE IF EXISTS referentiel.nifs
-    OWNER to admin;
-
-
-CREATE TABLE IF NOT EXISTS referentiel.imputation
-(
-    id bigserial NOT NULL,
-    imputation character varying(6),
-    intitule character varying(100),
-    who_done character varying(100) DEFAULT CURRENT_USER,
-    when_done timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    deleted_on timestamp without time zone DEFAULT NULL,
-    CONSTRAINT imputation_pkey PRIMARY KEY (id),
-    CONSTRAINT imputation_imputation_key UNIQUE (imputation)
-    );
-
-ALTER TABLE IF EXISTS referentiel.imputation
-    OWNER to admin;
-
-
-CREATE TABLE IF NOT EXISTS referentiel.dppd_activite
-(
-    id bigserial NOT NULL,
-    imputation character varying(50),
-    intitule_activite character varying(255),
-    section_code character varying(2),
-    programme_code character varying(3),
-    code_activite character varying(8),
-    gestion character varying(4),
-    who_done character varying(100) DEFAULT CURRENT_USER,
-    when_done timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    deleted_on timestamp without time zone DEFAULT NULL,
-    CONSTRAINT dppd_activite_pkey PRIMARY KEY (id),
-    CONSTRAINT u_dppd_activite UNIQUE (code_activite)
-    );
-
-ALTER TABLE IF EXISTS referentiel.dppd_activite
-    OWNER to admin;
-
-
-
-
 CREATE OR REPLACE VIEW marche.v_marches AS
 SELECT
     m.id,
@@ -244,8 +229,3 @@ FROM marche.marches m
          LEFT JOIN referentiel.autorite_contractante_structures sac ON m.structure_autorite_contractante_code = sac.code
          LEFT JOIN referentiel.types_marche tm ON m.type_marche_code = tm.code
          LEFT JOIN referentiel.modes_passation mp ON m.mode_de_passation_code = mp.code;
-
-
-
-
-

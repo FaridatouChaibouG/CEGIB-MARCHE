@@ -23,6 +23,7 @@ public class MarcheNifs implements Serializable {
     private String whoDone;
     private LocalDateTime whenDone;
     private LocalDateTime lastUpdate;
+    private LocalDateTime deletedOn;
 
     public MarcheNifs() {}
 
@@ -34,6 +35,7 @@ public class MarcheNifs implements Serializable {
         this.whoDone = value.whoDone;
         this.whenDone = value.whenDone;
         this.lastUpdate = value.lastUpdate;
+        this.deletedOn = value.deletedOn;
     }
 
     public MarcheNifs(
@@ -43,7 +45,8 @@ public class MarcheNifs implements Serializable {
         String raisonSocial,
         String whoDone,
         LocalDateTime whenDone,
-        LocalDateTime lastUpdate
+        LocalDateTime lastUpdate,
+        LocalDateTime deletedOn
     ) {
         this.id = id;
         this.marcheId = marcheId;
@@ -52,6 +55,7 @@ public class MarcheNifs implements Serializable {
         this.whoDone = whoDone;
         this.whenDone = whenDone;
         this.lastUpdate = lastUpdate;
+        this.deletedOn = deletedOn;
     }
 
     /**
@@ -152,6 +156,20 @@ public class MarcheNifs implements Serializable {
         this.lastUpdate = lastUpdate;
     }
 
+    /**
+     * Getter for <code>marche.marche_nifs.deleted_on</code>.
+     */
+    public LocalDateTime getDeletedOn() {
+        return this.deletedOn;
+    }
+
+    /**
+     * Setter for <code>marche.marche_nifs.deleted_on</code>.
+     */
+    public void setDeletedOn(LocalDateTime deletedOn) {
+        this.deletedOn = deletedOn;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -203,6 +221,12 @@ public class MarcheNifs implements Serializable {
         }
         else if (!this.lastUpdate.equals(other.lastUpdate))
             return false;
+        if (this.deletedOn == null) {
+            if (other.deletedOn != null)
+                return false;
+        }
+        else if (!this.deletedOn.equals(other.deletedOn))
+            return false;
         return true;
     }
 
@@ -217,6 +241,7 @@ public class MarcheNifs implements Serializable {
         result = prime * result + ((this.whoDone == null) ? 0 : this.whoDone.hashCode());
         result = prime * result + ((this.whenDone == null) ? 0 : this.whenDone.hashCode());
         result = prime * result + ((this.lastUpdate == null) ? 0 : this.lastUpdate.hashCode());
+        result = prime * result + ((this.deletedOn == null) ? 0 : this.deletedOn.hashCode());
         return result;
     }
 
@@ -231,6 +256,7 @@ public class MarcheNifs implements Serializable {
         sb.append(", ").append(whoDone);
         sb.append(", ").append(whenDone);
         sb.append(", ").append(lastUpdate);
+        sb.append(", ").append(deletedOn);
 
         sb.append(")");
         return sb.toString();

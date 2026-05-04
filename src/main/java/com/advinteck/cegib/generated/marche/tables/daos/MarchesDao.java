@@ -240,6 +240,51 @@ public class MarchesDao extends DAOImpl<MarchesRecord, com.advinteck.cegib.gener
     }
 
     /**
+     * Fetch records that have <code>statut BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchRangeOfStatut(String lowerInclusive, String upperInclusive) {
+        return fetchRange(Marches.MARCHES.STATUT, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>statut IN (values)</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByStatut(String... values) {
+        return fetch(Marches.MARCHES.STATUT, values);
+    }
+
+    /**
+     * Fetch records that have <code>owner BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchRangeOfOwner(String lowerInclusive, String upperInclusive) {
+        return fetchRange(Marches.MARCHES.OWNER, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>owner IN (values)</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByOwner(String... values) {
+        return fetch(Marches.MARCHES.OWNER, values);
+    }
+
+    /**
+     * Fetch records that have <code>observation BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchRangeOfObservation(String lowerInclusive, String upperInclusive) {
+        return fetchRange(Marches.MARCHES.OBSERVATION, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>observation IN (values)</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByObservation(String... values) {
+        return fetch(Marches.MARCHES.OBSERVATION, values);
+    }
+
+    /**
      * Fetch records that have <code>who_done BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
@@ -285,47 +330,17 @@ public class MarchesDao extends DAOImpl<MarchesRecord, com.advinteck.cegib.gener
     }
 
     /**
-     * Fetch records that have <code>statut BETWEEN lowerInclusive AND
+     * Fetch records that have <code>deleted_on BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchRangeOfStatut(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Marches.MARCHES.STATUT, lowerInclusive, upperInclusive);
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchRangeOfDeletedOn(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
+        return fetchRange(Marches.MARCHES.DELETED_ON, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>statut IN (values)</code>
+     * Fetch records that have <code>deleted_on IN (values)</code>
      */
-    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByStatut(String... values) {
-        return fetch(Marches.MARCHES.STATUT, values);
-    }
-
-    /**
-     * Fetch records that have <code>owner BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchRangeOfOwner(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Marches.MARCHES.OWNER, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>owner IN (values)</code>
-     */
-    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByOwner(String... values) {
-        return fetch(Marches.MARCHES.OWNER, values);
-    }
-
-    /**
-     * Fetch records that have <code>observation BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchRangeOfObservation(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Marches.MARCHES.OBSERVATION, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>observation IN (values)</code>
-     */
-    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByObservation(String... values) {
-        return fetch(Marches.MARCHES.OBSERVATION, values);
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.Marches> fetchByDeletedOn(LocalDateTime... values) {
+        return fetch(Marches.MARCHES.DELETED_ON, values);
     }
 }

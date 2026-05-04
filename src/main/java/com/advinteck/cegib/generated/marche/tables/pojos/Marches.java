@@ -27,12 +27,13 @@ public class Marches implements Serializable {
     private String titulaireMarche;
     private String typeMarcheCode;
     private String modeDePassationCode;
-    private String whoDone;
-    private LocalDateTime whenDone;
-    private LocalDateTime lastUpdate;
     private String statut;
     private String owner;
     private String observation;
+    private String whoDone;
+    private LocalDateTime whenDone;
+    private LocalDateTime lastUpdate;
+    private LocalDateTime deletedOn;
 
     public Marches() {}
 
@@ -48,12 +49,13 @@ public class Marches implements Serializable {
         this.titulaireMarche = value.titulaireMarche;
         this.typeMarcheCode = value.typeMarcheCode;
         this.modeDePassationCode = value.modeDePassationCode;
-        this.whoDone = value.whoDone;
-        this.whenDone = value.whenDone;
-        this.lastUpdate = value.lastUpdate;
         this.statut = value.statut;
         this.owner = value.owner;
         this.observation = value.observation;
+        this.whoDone = value.whoDone;
+        this.whenDone = value.whenDone;
+        this.lastUpdate = value.lastUpdate;
+        this.deletedOn = value.deletedOn;
     }
 
     public Marches(
@@ -68,12 +70,13 @@ public class Marches implements Serializable {
         String titulaireMarche,
         String typeMarcheCode,
         String modeDePassationCode,
+        String statut,
+        String owner,
+        String observation,
         String whoDone,
         LocalDateTime whenDone,
         LocalDateTime lastUpdate,
-        String statut,
-        String owner,
-        String observation
+        LocalDateTime deletedOn
     ) {
         this.id = id;
         this.numeroMarche = numeroMarche;
@@ -86,12 +89,13 @@ public class Marches implements Serializable {
         this.titulaireMarche = titulaireMarche;
         this.typeMarcheCode = typeMarcheCode;
         this.modeDePassationCode = modeDePassationCode;
-        this.whoDone = whoDone;
-        this.whenDone = whenDone;
-        this.lastUpdate = lastUpdate;
         this.statut = statut;
         this.owner = owner;
         this.observation = observation;
+        this.whoDone = whoDone;
+        this.whenDone = whenDone;
+        this.lastUpdate = lastUpdate;
+        this.deletedOn = deletedOn;
     }
 
     /**
@@ -251,6 +255,48 @@ public class Marches implements Serializable {
     }
 
     /**
+     * Getter for <code>marche.marches.statut</code>.
+     */
+    public String getStatut() {
+        return this.statut;
+    }
+
+    /**
+     * Setter for <code>marche.marches.statut</code>.
+     */
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+
+    /**
+     * Getter for <code>marche.marches.owner</code>.
+     */
+    public String getOwner() {
+        return this.owner;
+    }
+
+    /**
+     * Setter for <code>marche.marches.owner</code>.
+     */
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    /**
+     * Getter for <code>marche.marches.observation</code>.
+     */
+    public String getObservation() {
+        return this.observation;
+    }
+
+    /**
+     * Setter for <code>marche.marches.observation</code>.
+     */
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
+
+    /**
      * Getter for <code>marche.marches.who_done</code>.
      */
     public String getWhoDone() {
@@ -293,45 +339,17 @@ public class Marches implements Serializable {
     }
 
     /**
-     * Getter for <code>marche.marches.statut</code>.
+     * Getter for <code>marche.marches.deleted_on</code>.
      */
-    public String getStatut() {
-        return this.statut;
+    public LocalDateTime getDeletedOn() {
+        return this.deletedOn;
     }
 
     /**
-     * Setter for <code>marche.marches.statut</code>.
+     * Setter for <code>marche.marches.deleted_on</code>.
      */
-    public void setStatut(String statut) {
-        this.statut = statut;
-    }
-
-    /**
-     * Getter for <code>marche.marches.owner</code>.
-     */
-    public String getOwner() {
-        return this.owner;
-    }
-
-    /**
-     * Setter for <code>marche.marches.owner</code>.
-     */
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    /**
-     * Getter for <code>marche.marches.observation</code>.
-     */
-    public String getObservation() {
-        return this.observation;
-    }
-
-    /**
-     * Setter for <code>marche.marches.observation</code>.
-     */
-    public void setObservation(String observation) {
-        this.observation = observation;
+    public void setDeletedOn(LocalDateTime deletedOn) {
+        this.deletedOn = deletedOn;
     }
 
     @Override
@@ -409,6 +427,24 @@ public class Marches implements Serializable {
         }
         else if (!this.modeDePassationCode.equals(other.modeDePassationCode))
             return false;
+        if (this.statut == null) {
+            if (other.statut != null)
+                return false;
+        }
+        else if (!this.statut.equals(other.statut))
+            return false;
+        if (this.owner == null) {
+            if (other.owner != null)
+                return false;
+        }
+        else if (!this.owner.equals(other.owner))
+            return false;
+        if (this.observation == null) {
+            if (other.observation != null)
+                return false;
+        }
+        else if (!this.observation.equals(other.observation))
+            return false;
         if (this.whoDone == null) {
             if (other.whoDone != null)
                 return false;
@@ -427,23 +463,11 @@ public class Marches implements Serializable {
         }
         else if (!this.lastUpdate.equals(other.lastUpdate))
             return false;
-        if (this.statut == null) {
-            if (other.statut != null)
+        if (this.deletedOn == null) {
+            if (other.deletedOn != null)
                 return false;
         }
-        else if (!this.statut.equals(other.statut))
-            return false;
-        if (this.owner == null) {
-            if (other.owner != null)
-                return false;
-        }
-        else if (!this.owner.equals(other.owner))
-            return false;
-        if (this.observation == null) {
-            if (other.observation != null)
-                return false;
-        }
-        else if (!this.observation.equals(other.observation))
+        else if (!this.deletedOn.equals(other.deletedOn))
             return false;
         return true;
     }
@@ -463,12 +487,13 @@ public class Marches implements Serializable {
         result = prime * result + ((this.titulaireMarche == null) ? 0 : this.titulaireMarche.hashCode());
         result = prime * result + ((this.typeMarcheCode == null) ? 0 : this.typeMarcheCode.hashCode());
         result = prime * result + ((this.modeDePassationCode == null) ? 0 : this.modeDePassationCode.hashCode());
-        result = prime * result + ((this.whoDone == null) ? 0 : this.whoDone.hashCode());
-        result = prime * result + ((this.whenDone == null) ? 0 : this.whenDone.hashCode());
-        result = prime * result + ((this.lastUpdate == null) ? 0 : this.lastUpdate.hashCode());
         result = prime * result + ((this.statut == null) ? 0 : this.statut.hashCode());
         result = prime * result + ((this.owner == null) ? 0 : this.owner.hashCode());
         result = prime * result + ((this.observation == null) ? 0 : this.observation.hashCode());
+        result = prime * result + ((this.whoDone == null) ? 0 : this.whoDone.hashCode());
+        result = prime * result + ((this.whenDone == null) ? 0 : this.whenDone.hashCode());
+        result = prime * result + ((this.lastUpdate == null) ? 0 : this.lastUpdate.hashCode());
+        result = prime * result + ((this.deletedOn == null) ? 0 : this.deletedOn.hashCode());
         return result;
     }
 
@@ -487,12 +512,13 @@ public class Marches implements Serializable {
         sb.append(", ").append(titulaireMarche);
         sb.append(", ").append(typeMarcheCode);
         sb.append(", ").append(modeDePassationCode);
-        sb.append(", ").append(whoDone);
-        sb.append(", ").append(whenDone);
-        sb.append(", ").append(lastUpdate);
         sb.append(", ").append(statut);
         sb.append(", ").append(owner);
         sb.append(", ").append(observation);
+        sb.append(", ").append(whoDone);
+        sb.append(", ").append(whenDone);
+        sb.append(", ").append(lastUpdate);
+        sb.append(", ").append(deletedOn);
 
         sb.append(")");
         return sb.toString();

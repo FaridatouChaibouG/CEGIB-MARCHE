@@ -79,7 +79,7 @@ content = @`
 
 
 
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">
                         Num de marché provisoire
                     </small>
@@ -89,7 +89,7 @@ content = @`
                     </p>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">
                         Objet du Marché
                     </small>
@@ -99,7 +99,7 @@ content = @`
                     </p>
                 </div>
 
-                <div class="col-md-3 col-6">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">
                         Imputation Budgétaire
                     </small>
@@ -109,7 +109,7 @@ content = @`
                     </span>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">Type de marché</small>
 
                     <span class="small">
@@ -117,7 +117,7 @@ content = @`
                     </span>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">Mode de passation</small>
 
                     <span class="small">
@@ -125,7 +125,7 @@ content = @`
                     </span>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">
                         Autorité Contractante
                     </small>
@@ -135,7 +135,7 @@ content = @`
                     </span>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">
                         Structure Autorité Contractante
                     </small>
@@ -145,7 +145,7 @@ content = @`
                     </span>
                 </div>
 
-                <div class="col-md-3 col-6">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">
                         Date d'approbation
                     </small>
@@ -157,7 +157,7 @@ content = @`
                     </td>
                 </div>
 
-                <div class="col-md-3 col-6">
+                <div class="col-md-6 ">
                     <small class="fw-bold d-block">
                         Approuvé par
                     </small>
@@ -167,7 +167,7 @@ content = @`
                     </span>
                 </div>
 
-                <div class="col-md-3 col-6">
+                <div class="col-md-6 ">
                     <small class="fw-bold d-block">
                         Titulaire du marché
                     </small>
@@ -286,7 +286,7 @@ content = @`
                                 </div>
 
                                 <div class="small text-muted">
-                                    ${el.getRaisonSociale()}
+                                    ${el.getRaisonSocial()}
                                 </div>
 
                             </div>

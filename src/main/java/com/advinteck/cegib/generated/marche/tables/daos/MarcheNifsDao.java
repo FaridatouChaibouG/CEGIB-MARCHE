@@ -162,4 +162,19 @@ public class MarcheNifsDao extends DAOImpl<MarcheNifsRecord, com.advinteck.cegib
     public List<com.advinteck.cegib.generated.marche.tables.pojos.MarcheNifs> fetchByLastUpdate(LocalDateTime... values) {
         return fetch(MarcheNifs.MARCHE_NIFS.LAST_UPDATE, values);
     }
+
+    /**
+     * Fetch records that have <code>deleted_on BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.MarcheNifs> fetchRangeOfDeletedOn(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
+        return fetchRange(MarcheNifs.MARCHE_NIFS.DELETED_ON, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>deleted_on IN (values)</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.MarcheNifs> fetchByDeletedOn(LocalDateTime... values) {
+        return fetch(MarcheNifs.MARCHE_NIFS.DELETED_ON, values);
+    }
 }

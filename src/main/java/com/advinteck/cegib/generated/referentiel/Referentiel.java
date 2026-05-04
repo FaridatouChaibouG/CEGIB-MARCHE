@@ -15,6 +15,7 @@ import com.advinteck.cegib.generated.referentiel.tables.TypesMarche;
 import com.advinteck.cegib.generated.referentiel.tables.Users;
 import com.advinteck.cegib.generated.referentiel.tables.UsersRole;
 import com.advinteck.cegib.generated.referentiel.tables.VNifs;
+import com.advinteck.cegib.generated.referentiel.tables.WorkflowTree;
 
 import java.util.Arrays;
 import java.util.List;
@@ -89,6 +90,11 @@ public class Referentiel extends SchemaImpl {
     public final VNifs V_NIFS = VNifs.V_NIFS;
 
     /**
+     * The table <code>referentiel.workflow_tree</code>.
+     */
+    public final WorkflowTree WORKFLOW_TREE = WorkflowTree.WORKFLOW_TREE;
+
+    /**
      * No further instances allowed
      */
     private Referentiel() {
@@ -112,7 +118,8 @@ public class Referentiel extends SchemaImpl {
             Sequences.NIFS_ID_SEQ,
             Sequences.TYPES_MARCHE_ID_SEQ,
             Sequences.USERS_ID_SEQ,
-            Sequences.USERS_ROLE_ID_SEQ
+            Sequences.USERS_ROLE_ID_SEQ,
+            Sequences.WORKFLOW_TREE_ID_SEQ
         );
     }
 
@@ -128,7 +135,8 @@ public class Referentiel extends SchemaImpl {
             TypesMarche.TYPES_MARCHE,
             Users.USERS,
             UsersRole.USERS_ROLE,
-            VNifs.V_NIFS
+            VNifs.V_NIFS,
+            WorkflowTree.WORKFLOW_TREE
         );
     }
 }

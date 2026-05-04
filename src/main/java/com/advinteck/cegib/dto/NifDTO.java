@@ -18,6 +18,6 @@ public class NifDTO {
 
     private Long marcheId;
 
-    private String raisonSociale;
+    private String raisonSocial;
 
 }

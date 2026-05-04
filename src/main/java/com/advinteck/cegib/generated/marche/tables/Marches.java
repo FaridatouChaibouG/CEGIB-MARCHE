@@ -20,12 +20,12 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function17;
+import org.jooq.Function18;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row17;
+import org.jooq.Row18;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -66,7 +66,7 @@ public class Marches extends TableImpl<MarchesRecord> {
     /**
      * The column <code>marche.marches.numero_marche</code>.
      */
-    public final TableField<MarchesRecord, String> NUMERO_MARCHE = createField(DSL.name("numero_marche"), SQLDataType.VARCHAR(20).nullable(false).defaultValue(DSL.field("('M'::text || lpad((nextval('marche.marche_numero_seq'::regclass))::text, 4, '0'::text))", SQLDataType.VARCHAR)), this, "");
+    public final TableField<MarchesRecord, String> NUMERO_MARCHE = createField(DSL.name("numero_marche"), SQLDataType.VARCHAR(20).nullable(false).defaultValue(DSL.field("('M'::text || lpad((nextval((pg_get_serial_sequence('marche.marches'::text, 'id'::text))::regclass))::text, 4, '0'::text))", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>marche.marches.imputation</code>.
@@ -115,21 +115,6 @@ public class Marches extends TableImpl<MarchesRecord> {
     public final TableField<MarchesRecord, String> MODE_DE_PASSATION_CODE = createField(DSL.name("mode_de_passation_code"), SQLDataType.VARCHAR(2).nullable(false), this, "");
 
     /**
-     * The column <code>marche.marches.who_done</code>.
-     */
-    public final TableField<MarchesRecord, String> WHO_DONE = createField(DSL.name("who_done"), SQLDataType.VARCHAR(100).defaultValue(DSL.field("CURRENT_USER", SQLDataType.VARCHAR)), this, "");
-
-    /**
-     * The column <code>marche.marches.when_done</code>.
-     */
-    public final TableField<MarchesRecord, LocalDateTime> WHEN_DONE = createField(DSL.name("when_done"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
-
-    /**
-     * The column <code>marche.marches.last_update</code>.
-     */
-    public final TableField<MarchesRecord, LocalDateTime> LAST_UPDATE = createField(DSL.name("last_update"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
-
-    /**
      * The column <code>marche.marches.statut</code>.
      */
     public final TableField<MarchesRecord, String> STATUT = createField(DSL.name("statut"), SQLDataType.VARCHAR(50).nullable(false).defaultValue(DSL.field("'EN_ATTENTE'::character varying", SQLDataType.VARCHAR)), this, "");
@@ -143,6 +128,26 @@ public class Marches extends TableImpl<MarchesRecord> {
      * The column <code>marche.marches.observation</code>.
      */
     public final TableField<MarchesRecord, String> OBSERVATION = createField(DSL.name("observation"), SQLDataType.VARCHAR(255), this, "");
+
+    /**
+     * The column <code>marche.marches.who_done</code>.
+     */
+    public final TableField<MarchesRecord, String> WHO_DONE = createField(DSL.name("who_done"), SQLDataType.VARCHAR(100).defaultValue(DSL.field("CURRENT_USER", SQLDataType.VARCHAR)), this, "");
+
+    /**
+     * The column <code>marche.marches.when_done</code>.
+     */
+    public final TableField<MarchesRecord, LocalDateTime> WHEN_DONE = createField(DSL.name("when_done"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATETIME)), this, "");
+
+    /**
+     * The column <code>marche.marches.last_update</code>.
+     */
+    public final TableField<MarchesRecord, LocalDateTime> LAST_UPDATE = createField(DSL.name("last_update"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATETIME)), this, "");
+
+    /**
+     * The column <code>marche.marches.deleted_on</code>.
+     */
+    public final TableField<MarchesRecord, LocalDateTime> DELETED_ON = createField(DSL.name("deleted_on"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private Marches(Name alias, Table<MarchesRecord> aliased) {
         this(alias, aliased, null);
@@ -303,18 +308,18 @@ public class Marches extends TableImpl<MarchesRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row17 type methods
+    // Row18 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row17<Long, String, String, String, LocalDateTime, String, String, String, String, String, String, String, LocalDateTime, LocalDateTime, String, String, String> fieldsRow() {
-        return (Row17) super.fieldsRow();
+    public Row18<Long, String, String, String, LocalDateTime, String, String, String, String, String, String, String, String, String, String, LocalDateTime, LocalDateTime, LocalDateTime> fieldsRow() {
+        return (Row18) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function17<? super Long, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? super String, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function18<? super Long, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -322,7 +327,7 @@ public class Marches extends TableImpl<MarchesRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function17<? super Long, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? super String, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function18<? super Long, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

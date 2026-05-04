@@ -12,11 +12,11 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function19;
+import org.jooq.Function21;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row19;
+import org.jooq.Row21;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -131,6 +131,16 @@ public class VMarches extends TableImpl<VMarchesRecord> {
     public final TableField<VMarchesRecord, String> MODE_PASSATION_INTITULE = createField(DSL.name("mode_passation_intitule"), SQLDataType.VARCHAR(50), this, "");
 
     /**
+     * The column <code>marche.v_marches.owner</code>.
+     */
+    public final TableField<VMarchesRecord, String> OWNER = createField(DSL.name("owner"), SQLDataType.VARCHAR(50), this, "");
+
+    /**
+     * The column <code>marche.v_marches.statut</code>.
+     */
+    public final TableField<VMarchesRecord, String> STATUT = createField(DSL.name("statut"), SQLDataType.VARCHAR(50), this, "");
+
+    /**
      * The column <code>marche.v_marches.who_done</code>.
      */
     public final TableField<VMarchesRecord, String> WHO_DONE = createField(DSL.name("who_done"), SQLDataType.VARCHAR(100), this, "");
@@ -167,6 +177,8 @@ public class VMarches extends TableImpl<VMarchesRecord> {
          tm.intitule AS type_marche_intitule,
          m.mode_de_passation_code,
          mp.intitule AS mode_passation_intitule,
+         m.owner,
+         m.statut,
          m.who_done,
          m.when_done,
          m.last_update
@@ -249,18 +261,18 @@ public class VMarches extends TableImpl<VMarchesRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row19 type methods
+    // Row21 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row19<Long, String, String, String, String, LocalDateTime, String, String, String, String, String, String, String, String, String, String, String, LocalDateTime, LocalDateTime> fieldsRow() {
-        return (Row19) super.fieldsRow();
+    public Row21<Long, String, String, String, String, LocalDateTime, String, String, String, String, String, String, String, String, String, String, String, String, String, LocalDateTime, LocalDateTime> fieldsRow() {
+        return (Row21) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function19<? super Long, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function21<? super Long, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -268,7 +280,7 @@ public class VMarches extends TableImpl<VMarchesRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function19<? super Long, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function21<? super Long, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

@@ -32,6 +32,8 @@ public class VMarches implements Serializable {
     private String typeMarcheIntitule;
     private String modeDePassationCode;
     private String modePassationIntitule;
+    private String owner;
+    private String statut;
     private String whoDone;
     private LocalDateTime whenDone;
     private LocalDateTime lastUpdate;
@@ -55,6 +57,8 @@ public class VMarches implements Serializable {
         this.typeMarcheIntitule = value.typeMarcheIntitule;
         this.modeDePassationCode = value.modeDePassationCode;
         this.modePassationIntitule = value.modePassationIntitule;
+        this.owner = value.owner;
+        this.statut = value.statut;
         this.whoDone = value.whoDone;
         this.whenDone = value.whenDone;
         this.lastUpdate = value.lastUpdate;
@@ -77,6 +81,8 @@ public class VMarches implements Serializable {
         String typeMarcheIntitule,
         String modeDePassationCode,
         String modePassationIntitule,
+        String owner,
+        String statut,
         String whoDone,
         LocalDateTime whenDone,
         LocalDateTime lastUpdate
@@ -97,6 +103,8 @@ public class VMarches implements Serializable {
         this.typeMarcheIntitule = typeMarcheIntitule;
         this.modeDePassationCode = modeDePassationCode;
         this.modePassationIntitule = modePassationIntitule;
+        this.owner = owner;
+        this.statut = statut;
         this.whoDone = whoDone;
         this.whenDone = whenDone;
         this.lastUpdate = lastUpdate;
@@ -331,6 +339,34 @@ public class VMarches implements Serializable {
     }
 
     /**
+     * Getter for <code>marche.v_marches.owner</code>.
+     */
+    public String getOwner() {
+        return this.owner;
+    }
+
+    /**
+     * Setter for <code>marche.v_marches.owner</code>.
+     */
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    /**
+     * Getter for <code>marche.v_marches.statut</code>.
+     */
+    public String getStatut() {
+        return this.statut;
+    }
+
+    /**
+     * Setter for <code>marche.v_marches.statut</code>.
+     */
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+
+    /**
      * Getter for <code>marche.v_marches.who_done</code>.
      */
     public String getWhoDone() {
@@ -477,6 +513,18 @@ public class VMarches implements Serializable {
         }
         else if (!this.modePassationIntitule.equals(other.modePassationIntitule))
             return false;
+        if (this.owner == null) {
+            if (other.owner != null)
+                return false;
+        }
+        else if (!this.owner.equals(other.owner))
+            return false;
+        if (this.statut == null) {
+            if (other.statut != null)
+                return false;
+        }
+        else if (!this.statut.equals(other.statut))
+            return false;
         if (this.whoDone == null) {
             if (other.whoDone != null)
                 return false;
@@ -518,6 +566,8 @@ public class VMarches implements Serializable {
         result = prime * result + ((this.typeMarcheIntitule == null) ? 0 : this.typeMarcheIntitule.hashCode());
         result = prime * result + ((this.modeDePassationCode == null) ? 0 : this.modeDePassationCode.hashCode());
         result = prime * result + ((this.modePassationIntitule == null) ? 0 : this.modePassationIntitule.hashCode());
+        result = prime * result + ((this.owner == null) ? 0 : this.owner.hashCode());
+        result = prime * result + ((this.statut == null) ? 0 : this.statut.hashCode());
         result = prime * result + ((this.whoDone == null) ? 0 : this.whoDone.hashCode());
         result = prime * result + ((this.whenDone == null) ? 0 : this.whenDone.hashCode());
         result = prime * result + ((this.lastUpdate == null) ? 0 : this.lastUpdate.hashCode());
@@ -544,6 +594,8 @@ public class VMarches implements Serializable {
         sb.append(", ").append(typeMarcheIntitule);
         sb.append(", ").append(modeDePassationCode);
         sb.append(", ").append(modePassationIntitule);
+        sb.append(", ").append(owner);
+        sb.append(", ").append(statut);
         sb.append(", ").append(whoDone);
         sb.append(", ").append(whenDone);
         sb.append(", ").append(lastUpdate);

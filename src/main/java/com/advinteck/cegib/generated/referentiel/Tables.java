@@ -14,6 +14,7 @@ import com.advinteck.cegib.generated.referentiel.tables.TypesMarche;
 import com.advinteck.cegib.generated.referentiel.tables.Users;
 import com.advinteck.cegib.generated.referentiel.tables.UsersRole;
 import com.advinteck.cegib.generated.referentiel.tables.VNifs;
+import com.advinteck.cegib.generated.referentiel.tables.WorkflowTree;
 
 
 /**
@@ -71,4 +72,9 @@ public class Tables {
      * The table <code>referentiel.v_nifs</code>.
      */
     public static final VNifs V_NIFS = VNifs.V_NIFS;
+
+    /**
+     * The table <code>referentiel.workflow_tree</code>.
+     */
+    public static final WorkflowTree WORKFLOW_TREE = WorkflowTree.WORKFLOW_TREE;
 }

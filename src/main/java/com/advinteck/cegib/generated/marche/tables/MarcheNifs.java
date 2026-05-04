@@ -16,12 +16,12 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function7;
+import org.jooq.Function8;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row7;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -82,12 +82,17 @@ public class MarcheNifs extends TableImpl<MarcheNifsRecord> {
     /**
      * The column <code>marche.marche_nifs.when_done</code>.
      */
-    public final TableField<MarcheNifsRecord, LocalDateTime> WHEN_DONE = createField(DSL.name("when_done"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<MarcheNifsRecord, LocalDateTime> WHEN_DONE = createField(DSL.name("when_done"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATETIME)), this, "");
 
     /**
      * The column <code>marche.marche_nifs.last_update</code>.
      */
-    public final TableField<MarcheNifsRecord, LocalDateTime> LAST_UPDATE = createField(DSL.name("last_update"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<MarcheNifsRecord, LocalDateTime> LAST_UPDATE = createField(DSL.name("last_update"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATETIME)), this, "");
+
+    /**
+     * The column <code>marche.marche_nifs.deleted_on</code>.
+     */
+    public final TableField<MarcheNifsRecord, LocalDateTime> DELETED_ON = createField(DSL.name("deleted_on"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private MarcheNifs(Name alias, Table<MarcheNifsRecord> aliased) {
         this(alias, aliased, null);
@@ -139,7 +144,7 @@ public class MarcheNifs extends TableImpl<MarcheNifsRecord> {
 
     @Override
     public List<ForeignKey<MarcheNifsRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.MARCHE_NIFS__FK_MARCHE_NIFS_MARCHES, Keys.MARCHE_NIFS__FK_MARCHE_NIFS_MARCHES_NIFS);
+        return Arrays.asList(Keys.MARCHE_NIFS__FK_MARCHE_NIFS_MARCHES, Keys.MARCHE_NIFS__FK_MARCHE_NIFS_REFERENTIEL_NIFS);
     }
 
     private transient Marches _marches;
@@ -160,7 +165,7 @@ public class MarcheNifs extends TableImpl<MarcheNifsRecord> {
      */
     public Nifs nifs() {
         if (_nifs == null)
-            _nifs = new Nifs(this, Keys.MARCHE_NIFS__FK_MARCHE_NIFS_MARCHES_NIFS);
+            _nifs = new Nifs(this, Keys.MARCHE_NIFS__FK_MARCHE_NIFS_REFERENTIEL_NIFS);
 
         return _nifs;
     }
@@ -205,18 +210,18 @@ public class MarcheNifs extends TableImpl<MarcheNifsRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Long, Long, String, String, String, LocalDateTime, LocalDateTime> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row8<Long, Long, String, String, String, LocalDateTime, LocalDateTime, LocalDateTime> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function7<? super Long, ? super Long, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function8<? super Long, ? super Long, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -224,7 +229,7 @@ public class MarcheNifs extends TableImpl<MarcheNifsRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Long, ? super Long, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function8<? super Long, ? super Long, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

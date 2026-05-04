@@ -60,4 +60,9 @@ public class Sequences {
      * The sequence <code>referentiel.users_role_id_seq</code>
      */
     public static final Sequence<Long> USERS_ROLE_ID_SEQ = Internal.createSequence("users_role_id_seq", Referentiel.REFERENTIEL, SQLDataType.BIGINT.nullable(false), null, null, null, null, false, null);
+
+    /**
+     * The sequence <code>referentiel.workflow_tree_id_seq</code>
+     */
+    public static final Sequence<Long> WORKFLOW_TREE_ID_SEQ = Internal.createSequence("workflow_tree_id_seq", Referentiel.REFERENTIEL, SQLDataType.BIGINT.nullable(false), null, null, null, null, false, null);
 }

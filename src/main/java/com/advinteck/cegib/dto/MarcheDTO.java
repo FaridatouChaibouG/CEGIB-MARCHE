@@ -3,6 +3,7 @@ package com.advinteck.cegib.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class MarcheDTO {
 
     private Long id;
     @NotEmpty(message = "Le numéro de marché est obligatoire.")
+    @Pattern(regexp = "^M\\d{4}$", message = "Le numéro de marché doit commencer par 'M' suivi de 4 chiffres (ex: M0001)")
     private String numMarche;
     @NotEmpty(message = "L'imputation est obligatoire.")
     private String imputation;

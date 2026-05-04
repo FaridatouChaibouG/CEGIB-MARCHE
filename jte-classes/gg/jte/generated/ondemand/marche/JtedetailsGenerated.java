@@ -8,7 +8,7 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public final class JtedetailsGenerated {
 	public static final String JTE_NAME = "marche/details.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,5,7,7,7,7,14,14,17,17,18,20,20,20,27,38,38,38,43,43,43,49,49,49,55,55,55,59,59,59,64,64,64,69,69,69,75,75,75,80,80,80,87,87,87,97,119,119,122,122,122,123,123,123,125,125,125,128,128,128,132,132,132,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,142,142,142,142,142,142,142,142,148,148,155,167,167,170,170,170,171,171,171,174,174,174,174,174,174,174,174,174,174,174,174,178,179,180,181,182,183,184,186,186,193,203,203,203,203,203,203,203,203,203,209,209,210,210,210,210,210,210,210,210,210,210,210,210,211,211,211,212,212,257,257,258,258,258,258,258,258,258,258,258,258,258,258,259,259,259,260,260,313,323,323,323,323,323,323,323,323,323,329,329,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,331,331,365,365,366,366,366,366,366,366,366,366,366,366,366,366,367,367,367,368,368,458,458,458,462,462,462,7,8,9,10,11,12,12,12,12};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,5,7,7,7,7,14,14,17,17,18,20,20,20,27,38,38,38,43,43,43,49,49,49,55,55,55,59,59,59,64,64,64,69,69,69,75,75,75,80,80,80,85,85,85,95,117,117,120,120,120,121,121,121,123,123,123,126,126,126,130,130,130,135,135,135,135,135,135,135,135,135,135,135,135,135,135,135,135,135,135,135,135,140,140,140,140,140,140,140,140,146,146,153,165,165,168,168,168,169,169,169,172,172,172,172,172,172,172,172,172,172,172,172,176,177,178,179,180,181,182,184,184,191,201,201,201,201,201,201,201,201,201,207,207,208,208,208,208,208,208,208,208,208,208,208,208,209,209,209,210,210,255,255,256,256,256,256,256,256,256,256,256,256,256,256,257,257,257,258,258,311,321,321,321,321,321,321,321,321,321,327,327,328,328,328,328,328,328,328,328,328,328,328,328,328,328,328,329,329,363,363,364,364,364,364,364,364,364,364,364,364,364,364,365,365,365,366,366,456,456,456,460,460,460,7,8,9,10,11,12,12,12,12};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, List<Nifs> nifList, List<DppdActivite> dppActiviteList, MarcheDTO marcheDTO, Map<String, String> messages, List<NifDTO> marcheNifDTOs, List<ActiviteDTO> marcheActiviteDTOs) {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.JtelayoutGenerated.render(jteOutput, jteHtmlInterceptor, "Détail du Marché", new gg.jte.html.HtmlContent() {
@@ -18,25 +18,25 @@ public final class JtedetailsGenerated {
 				jteOutput.setContext("i", null);
 				jteOutput.writeUserContent(marcheDTO.getNumMarche());
 				jteOutput.writeContent("</i>   </h4>\n      <h4 class=\"text-success fw-bold\"> </h4>\n        <a href=\"/marche/list\" class=\"btn btn-outline-secondary shadow-sm\">\n            <i class=\"bi bi-arrow-left me-1\"></i> Retour à la liste\n        </a>\n    </div>\n\n    ");
-				jteOutput.writeContent("\n    <div class=\"card border-0 shadow-sm mb-4\">\n        <div class=\"card-header bg-white py-3\">\n            <h5 class=\"mb-0 text-dark fw-bold\">Informations Générales</h5>\n        </div>\n        <div class=\"card-body\">\n            <div class=\"row g-3\">\n                \n\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"fw-bold d-block\">Numéro provisoire du  marché </small>\n                    <span class=\"small\">");
+				jteOutput.writeContent("\n    <div class=\"card border-0 shadow-sm mb-4\">\n        <div class=\"card-header bg-white py-3\">\n            <h5 class=\"mb-0 text-dark fw-bold\">Informations Générales</h5>\n        </div>\n        <div class=\"card-body\">\n            <div class=\"row g-3\">\n\n\n                <div class=\"col-md-4 \">\n                    <small class=\"fw-bold d-block\">Numéro provisoire du  marché </small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getNumMarche());
-				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-5\">\n                    <small class=\"fw-bold d-block\">Objet du Marché</small>\n                    <p class=\"mb-0 fw-medium\">");
+				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\">Objet du Marché</small>\n                    <p class=\"mb-0 fw-medium\">");
 				jteOutput.setContext("p", null);
 				jteOutput.writeUserContent(marcheDTO.getObjetMarche());
-				jteOutput.writeContent("</p>\n                </div>\n\n\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"fw-bold d-block\">Imputation Budgétaire</small>\n                    <span class=\"small\">");
+				jteOutput.writeContent("</p>\n                </div>\n\n\n                <div class=\"col-md-4 \">\n                    <small class=\"fw-bold d-block\">Imputation Budgétaire</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getImputationIntitule());
-				jteOutput.writeContent("</span>\n                </div>\n\n\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\">Type de Marché</small>\n                    <span class=\"small\">");
+				jteOutput.writeContent("</span>\n                </div>\n\n\n                <div class=\"col-md-6\">\n                    <small class=\"fw-bold d-block\">Type de Marché</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getTypeMarcheIntitule());
-				jteOutput.writeContent("</span>\n                </div>\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\">Mode de Passation</small>\n                    <span class=\"small\">");
+				jteOutput.writeContent("</span>\n                </div>\n                <div class=\"col-md-6\">\n                    <small class=\"fw-bold d-block\">Mode de Passation</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getModePassationIntitule());
-				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\">Autorité Contractante</small>\n                    <span class=\"small\">");
+				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-6\">\n                    <small class=\"fw-bold d-block\">Autorité Contractante</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getAutoriteContractanteIntitule());
-				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\"> Structure Autorité Contractante</small>\n                    <span class=\"small\">");
+				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-6\">\n                    <small class=\"fw-bold d-block\"> Structure Autorité Contractante</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getStructureAutoriteContractanteIntutule());
 				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"fw-bold d-block\">Date d'approbation</small>\n                    <small>\n                        ");
@@ -45,7 +45,7 @@ public final class JtedetailsGenerated {
 				jteOutput.writeContent("\n                    </small>\n                </div>\n                <div class=\"col-md-3 col-6\">\n                    <small class=\"fw-bold d-block\">Approuvé par</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getApprouvePar());
-				jteOutput.writeContent("</span>\n                </div>\n\n\n\n                <div class=\"col-md-4\">\n                    <small class=\"fw-bold d-block\">Titulaire du marché</small>\n                    <span class=\"small\">");
+				jteOutput.writeContent("</span>\n                </div>\n\n                <div class=\"col-md-4 col-6\">\n                    <small class=\"fw-bold d-block\">Titulaire du marché</small>\n                    <span class=\"small\">");
 				jteOutput.setContext("span", null);
 				jteOutput.writeUserContent(marcheDTO.getTitulaireMarche());
 				jteOutput.writeContent("</span>\n                </div>\n\n\n\n            </div>\n        </div>\n    </div>\n\n    <div class=\"row g-4\">\n        ");
@@ -104,7 +104,7 @@ public final class JtedetailsGenerated {
 					jteOutput.writeUserContent(el.getIdentifiant());
 					jteOutput.writeContent("</div>\n                                    <div class=\"small text-muted\">");
 					jteOutput.setContext("div", null);
-					jteOutput.writeUserContent(el.getRaisonSociale());
+					jteOutput.writeUserContent(el.getRaisonSocial());
 					jteOutput.writeContent("</div>\n                                </div>\n                                <button class=\"btn btn-link text-danger p-0\"\n                                        onclick=\"supprimer_nif('");
 					jteOutput.setContext("button", "onclick");
 					jteOutput.writeUserContent(el.getId());
@@ -115,7 +115,7 @@ public final class JtedetailsGenerated {
 					jteOutput.setContext("button", null);
 					jteOutput.writeContent("', '");
 					jteOutput.setContext("button", "onclick");
-					jteOutput.writeUserContent(el.getRaisonSociale());
+					jteOutput.writeUserContent(el.getRaisonSocial());
 					jteOutput.setContext("button", null);
 					jteOutput.writeContent("')\"\n                                        data-bs-toggle=\"modal\" data-bs-target=\"#nifDeleteModal\">\n                                    <i class=\"bi bi-trash text-danger\"></i>\n                                </button>\n");
 					jteOutput.writeContent("\n");

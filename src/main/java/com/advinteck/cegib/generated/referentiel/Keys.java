@@ -13,6 +13,7 @@ import com.advinteck.cegib.generated.referentiel.tables.Nifs;
 import com.advinteck.cegib.generated.referentiel.tables.TypesMarche;
 import com.advinteck.cegib.generated.referentiel.tables.Users;
 import com.advinteck.cegib.generated.referentiel.tables.UsersRole;
+import com.advinteck.cegib.generated.referentiel.tables.WorkflowTree;
 import com.advinteck.cegib.generated.referentiel.tables.records.AutoriteContractanteRecord;
 import com.advinteck.cegib.generated.referentiel.tables.records.AutoriteContractanteStructuresRecord;
 import com.advinteck.cegib.generated.referentiel.tables.records.DppdActiviteRecord;
@@ -22,6 +23,7 @@ import com.advinteck.cegib.generated.referentiel.tables.records.NifsRecord;
 import com.advinteck.cegib.generated.referentiel.tables.records.TypesMarcheRecord;
 import com.advinteck.cegib.generated.referentiel.tables.records.UsersRecord;
 import com.advinteck.cegib.generated.referentiel.tables.records.UsersRoleRecord;
+import com.advinteck.cegib.generated.referentiel.tables.records.WorkflowTreeRecord;
 
 import org.jooq.ForeignKey;
 import org.jooq.TableField;
@@ -58,6 +60,7 @@ public class Keys {
     public static final UniqueKey<UsersRecord> USERS_EMAIL_KEY = Internal.createUniqueKey(Users.USERS, DSL.name("users_email_key"), new TableField[] { Users.USERS.EMAIL }, true);
     public static final UniqueKey<UsersRecord> USERS_PKEY = Internal.createUniqueKey(Users.USERS, DSL.name("users_pkey"), new TableField[] { Users.USERS.ID }, true);
     public static final UniqueKey<UsersRoleRecord> USERS_ROLE_PKEY = Internal.createUniqueKey(UsersRole.USERS_ROLE, DSL.name("users_role_pkey"), new TableField[] { UsersRole.USERS_ROLE.ID }, true);
+    public static final UniqueKey<WorkflowTreeRecord> WORKFLOW_TREE_PKEY = Internal.createUniqueKey(WorkflowTree.WORKFLOW_TREE, DSL.name("workflow_tree_pkey"), new TableField[] { WorkflowTree.WORKFLOW_TREE.ID }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions

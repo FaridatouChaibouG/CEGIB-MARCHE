@@ -34,38 +34,38 @@ content = @`
             <div class="row g-3">
 
 
-                <div class="col-md-3 col-6">
+                <div class="col-md-4 ">
                     <small class="fw-bold d-block">Numéro provisoire du  marché </small>
                     <span class="small">${marcheDTO.getNumMarche()}</span>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <small class="fw-bold d-block">Objet du Marché</small>
                     <p class="mb-0 fw-medium">${marcheDTO.getObjetMarche()}</p>
                 </div>
 
 
-                <div class="col-md-3 col-6">
+                <div class="col-md-4 ">
                     <small class="fw-bold d-block">Imputation Budgétaire</small>
                     <span class="small">${marcheDTO.getImputationIntitule()}</span>
                 </div>
 
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">Type de Marché</small>
                     <span class="small">${marcheDTO.getTypeMarcheIntitule()}</span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">Mode de Passation</small>
                     <span class="small">${marcheDTO.getModePassationIntitule()}</span>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <small class="fw-bold d-block">Autorité Contractante</small>
                     <span class="small">${marcheDTO.getAutoriteContractanteIntitule()}</span>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <small class="fw-bold d-block"> Structure Autorité Contractante</small>
                     <span class="small">${marcheDTO.getStructureAutoriteContractanteIntutule()}</span>
                 </div>
@@ -81,9 +81,7 @@ content = @`
                     <span class="small">${marcheDTO.getApprouvePar()}</span>
                 </div>
 
-
-
-                <div class="col-md-4">
+                <div class="col-md-4 col-6">
                     <small class="fw-bold d-block">Titulaire du marché</small>
                     <span class="small">${marcheDTO.getTitulaireMarche()}</span>
                 </div>
@@ -169,10 +167,10 @@ content = @`
                             <div class="list-group-item py-3 d-flex justify-content-between align-items-center">
                                 <div>
                                     <div class="fw-bold text-dark">${el.getIdentifiant()}</div>
-                                    <div class="small text-muted">${el.getRaisonSociale()}</div>
+                                    <div class="small text-muted">${el.getRaisonSocial()}</div>
                                 </div>
                                 <button class="btn btn-link text-danger p-0"
-                                        onclick="supprimer_nif('${el.getId()}','${el.getIdentifiant()}', '${el.getRaisonSociale()}')"
+                                        onclick="supprimer_nif('${el.getId()}','${el.getIdentifiant()}', '${el.getRaisonSocial()}')"
                                         data-bs-toggle="modal" data-bs-target="#nifDeleteModal">
                                     <i class="bi bi-trash text-danger"></i>
                                 </button>

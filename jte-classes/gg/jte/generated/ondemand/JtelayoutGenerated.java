@@ -4,7 +4,7 @@ import java.util.Map;
 @SuppressWarnings("unchecked")
 public final class JtelayoutGenerated {
 	public static final String JTE_NAME = "layout.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,3,3,3,3,12,12,12,12,16,25,29,49,57,57,57,57,62,62,62,62,71,71,71,72,76,76,78,78,79,79,79,79,80,80,80,82,82,84,84,88,88,88,99,99,99,3,4,5,5,5,5};
+	public static final int[] JTE_LINE_INFO = {0,0,1,3,3,3,3,12,12,12,12,16,25,29,49,57,57,57,57,62,62,62,62,67,68,69,70,71,77,77,77,78,82,82,84,84,85,85,85,85,86,86,86,88,88,90,90,94,94,94,105,105,105,3,4,5,5,5,5};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, String title, Content content, Map<String, String> messages) {
 		jteOutput.writeContent("\n<!DOCTYPE html>\n<html lang=\"fr\" class=\"h-100\">\n<head>\n    <meta charset=\"utf-8\"/>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"/>\n    <title>");
 		jteOutput.setContext("title", null);
@@ -21,7 +21,12 @@ public final class JtelayoutGenerated {
 		if (title.contains("Marche")) {
 			jteOutput.writeContent(" active ");
 		}
-		jteOutput.writeContent("\" href=\"/marche/list\">\n                <i class=\"bi bi-file-earmark-text-fill me-2\"></i> Marchés\n            </a>\n        </li>\n    </ul>\n</nav>\n\n<div class=\"main-wrapper\">\n    <header class=\"top-navbar d-flex justify-content-between align-items-center\">\n        <h5 class=\"mb-0 fw-bold text-uppercase\" style=\"color: var(--cegib-green);\">");
+		jteOutput.writeContent("\" href=\"/marche/list\">\n                <i class=\"bi bi-file-earmark-text-fill me-2\"></i> Marchés\n            </a>\n        </li>\n\n");
+		jteOutput.writeContent("\n");
+		jteOutput.writeContent("\n");
+		jteOutput.writeContent("\n");
+		jteOutput.writeContent("\n");
+		jteOutput.writeContent("\n    </ul>\n</nav>\n\n<div class=\"main-wrapper\">\n    <header class=\"top-navbar d-flex justify-content-between align-items-center\">\n        <h5 class=\"mb-0 fw-bold text-uppercase\" style=\"color: var(--cegib-green);\">");
 		jteOutput.setContext("h5", null);
 		jteOutput.writeUserContent(title);
 		jteOutput.writeContent("</h5>\n        ");

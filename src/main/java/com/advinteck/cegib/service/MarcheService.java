@@ -44,64 +44,25 @@ private final ReferentielService referentielService;
     }
 
 
-
-
     public List<MarcheDTO> marcheList(){
-        List<VMarches> marchesList = marcheRepository.findAll();
-        List<MarcheDTO> marcheDTOList = new ArrayList<>();
-        for (var marches: marchesList){
-            MarcheDTO marcheDTO = new MarcheDTO(marches.getId(), marches.getNumeroMarche(), marches.getImputation(), marches.getImputationIntitule() ,marches.getObjetMarche(), marches.getDateApprobation().toLocalDate(),
-                    marches.getAutoriteContractanteCode(), marches.getAutoriteContractanteIntitule(), marches.getStructureAutoriteContractanteCode(), marches.getStructureAutoriteContractanteIntitule(),marches.getApprouvePar(),
-                   marches.getTitulaireMarche(), marches.getTypeMarcheCode(), marches.getTypeMarcheIntitule(), marches.getModeDePassationCode(), marches.getModePassationIntitule());
-            marcheDTOList.add(marcheDTO);
-        }
-        return marcheDTOList;
+        return marcheRepository.findAllMarche();
     }
 
+//
+//    public List<MarcheDTO> marcheValideList(){
+//        List<VMarches> marchesList = marcheRepository.findAllValidated();
+//        List<MarcheDTO> marcheDTOList = new ArrayList<>();
+//        for (var marches: marchesList){
+//            MarcheDTO marcheDTO = new MarcheDTO(marches.getId(), marches.getNumeroMarche(), marches.getImputation(), marches.getImputationIntitule() ,marches.getObjetMarche(), marches.getDateApprobation().toLocalDate(),
+//                    marches.getAutoriteContractanteCode(), marches.getAutoriteContractanteIntitule(), marches.getStructureAutoriteContractanteCode(), marches.getStructureAutoriteContractanteIntitule(),marches.getApprouvePar(),
+//                    marches.getTitulaireMarche(), marches.getTypeMarcheCode(), marches.getTypeMarcheIntitule(), marches.getModeDePassationCode(), marches.getModePassationIntitule());
+//            marcheDTOList.add(marcheDTO);
+//        }
+//        return marcheDTOList;
+//    }
 
 
-
-
-    public List<NifDTO> marcheNifList(Long marcheId){
-        List<MarcheNifs> marcheNifsList = marcheRepository.findAllNif(marcheId);
-        List<NifDTO> nifDTOList = new ArrayList<>();
-        for (var nifs: marcheNifsList){
-            NifDTO nifDTO = new NifDTO(nifs.getId(), nifs.getIdentifiant(), nifs.getMarcheId(), nifs.getRaisonSocial());
-            nifDTOList.add(nifDTO);
-        }
-        return nifDTOList;
-    }
-
-
-    public void savemarcheNif(NifDTO nifDTO) throws Exception{
-        MarcheNifs nifs = new  MarcheNifs();
-        var refNif = referentielService.findOneNifsByIdentifiant(nifDTO.getIdentifiant());
-        nifs.setMarcheId(nifDTO.getMarcheId());
-        nifs.setIdentifiant(refNif.getIdentifiant());
-        nifs.setRaisonSocial(refNif.getRaisonSociale());
-        marcheNifsDao.insert(nifs);
-
-    }
-
-
-
-
-    public void savemarcheActivite(ActiviteDTO activiteDTO) throws Exception{
-        MarcheActivite activite = new MarcheActivite();
-        var refActivite = referentielService.findOneActiviteByCodeActivite(activiteDTO.getCodeActivite());
-        activite.setMarcheId(activiteDTO.getMarcheId());
-        activite.setCodeActivite(refActivite.getCodeActivite());
-        activite.setIntituleActivite(refActivite.getIntituleActivite());
-        activite.setMontant(activiteDTO.getMontant());
-        activite.setTaux(activiteDTO.getTaux());
-        marcheActiviteDao.insert(activite);
-
-    }
-
-
-
-
-    public void save(MarcheDTO marcheDTO) throws Exception{
+    public MarcheDTO save(MarcheDTO marcheDTO) throws Exception{
         Marches marches = new Marches();
         marches.setNumeroMarche(marcheDTO.getNumMarche());
         marches.setImputation(marcheDTO.getImputation());
@@ -117,11 +78,11 @@ private final ReferentielService referentielService;
 
         marchesDao.insert(marches);
 
+        marcheDTO.setId(marches.getId());
+
+        return marcheDTO;
+
     }
-
-
-
-
 
     public void update(MarcheDTO marcheDTO){
         Marches marches = new Marches();
@@ -145,8 +106,7 @@ private final ReferentielService referentielService;
         marchesDao.deleteById(id);
     }
 
-
-
+    
     public Optional<MarcheDTO> findOneMarcheById(Long id) {
 
         Optional<VMarches> marchesOpt = marcheRepository.findOneMarcheById(id);
@@ -173,11 +133,29 @@ private final ReferentielService referentielService;
                 marches.getModeDePassationCode(),
                 marches.getModePassationIntitule()
 
-
-
         ));
     }
 
+    public boolean NumeroMarcheAlreadyExists(String numMarche){
+        return marchesDao.fetchOptionalByNumeroMarche(numMarche).isPresent();
+    }
+
+
+
+
+    public List<NifDTO> marcheNifList(Long marcheId) {
+        return marcheRepository.findAllNif(marcheId);
+    }
+
+    public void savemarcheNif(NifDTO nifDTO) throws Exception{
+        MarcheNifs nifs = new  MarcheNifs();
+        var refNif = referentielService.findOneNifsByIdentifiant(nifDTO.getIdentifiant());
+        nifs.setMarcheId(nifDTO.getMarcheId());
+        nifs.setIdentifiant(refNif.getIdentifiant());
+        nifs.setRaisonSocial(refNif.getRaisonSociale());
+        marcheNifsDao.insert(nifs);
+
+    }
 
     public NifDTO findOneMarcheNifById(Long id){
 
@@ -186,8 +164,33 @@ private final ReferentielService referentielService;
         nifDTO.setId(nif.getId());
         nifDTO.setIdentifiant(nif.getIdentifiant());
        nifDTO.setMarcheId(nif.getMarcheId());
-       nifDTO.setRaisonSociale(nif.getRaisonSocial());
+       nifDTO.setRaisonSocial(nif.getRaisonSocial());
         return nifDTO;
+
+    }
+
+    public void deleteNif(Long id) {
+        marcheNifsDao.deleteById(id);
+    }
+
+
+
+
+
+
+    public List<ActiviteDTO> marcheActiviteList(Long marcheId) {
+        return marcheRepository.findAllActivite(marcheId);
+    }
+
+    public void savemarcheActivite(ActiviteDTO activiteDTO) throws Exception{
+        MarcheActivite activite = new MarcheActivite();
+        var refActivite = referentielService.findOneActiviteByCodeActivite(activiteDTO.getCodeActivite());
+        activite.setMarcheId(activiteDTO.getMarcheId());
+        activite.setCodeActivite(refActivite.getCodeActivite());
+        activite.setIntituleActivite(refActivite.getIntituleActivite());
+        activite.setMontant(activiteDTO.getMontant());
+        activite.setTaux(activiteDTO.getTaux());
+        marcheActiviteDao.insert(activite);
 
     }
 
@@ -209,50 +212,9 @@ private final ReferentielService referentielService;
     }
 
 
-
-
-    public void deleteNif(Long id) {
-        marcheNifsDao.deleteById(id);
-    }
-
-
-    public void editNif(NifDTO nifDTO){
-        MarcheNifs marcheNifs = new MarcheNifs();
-        marcheNifs.setId(nifDTO.getId());
-        marcheNifs.setMarcheId(nifDTO.getMarcheId());
-        marcheNifs.setIdentifiant(nifDTO.getIdentifiant());
-
-        marcheNifsDao.update(marcheNifs);
-    }
-
-
-
-
-
-    public boolean NumeroMarcheAlreadyExists(String numMarche){
-        return marchesDao.fetchOptionalByNumeroMarche(numMarche).isPresent();
-    }
-
-
-
-
-    public List<ActiviteDTO> marcheActiviteList(Long marcheId){
-        List<MarcheActivite> marcheActiviteList = marcheRepository.findAllActivite(marcheId);
-        List<ActiviteDTO> activiteDTOList = new ArrayList<>();
-        for (var activites: marcheActiviteList){
-            ActiviteDTO activiteDTO = new  ActiviteDTO(activites.getId(), activites.getMarcheId(), activites.getCodeActivite(), activites.getIntituleActivite(), activites.getTaux(), activites.getMontant());
-            activiteDTOList.add(activiteDTO);
-        }
-        return activiteDTOList;
-    }
-
-
-
     public void deleteActivite(Long id) {
         marcheActiviteDao.deleteById(id);
     }
-
-
 
 
     public void editActivite(ActiviteDTO activiteDTO){
@@ -266,10 +228,6 @@ private final ReferentielService referentielService;
 
         marcheActiviteDao.update(marcheActivite);
     }
-
-
-
-
 
 
 

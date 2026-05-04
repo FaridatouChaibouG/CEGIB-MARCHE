@@ -34,6 +34,13 @@ public class MarcheController {
         return "marche/list";
     }
 
+//    @GetMapping("/listValider")
+//    public String listmarcheValider(Model model) {
+//        List<MarcheDTO> marchesList = marcheService.marcheValideList();
+//        model.addAttribute("marches", marchesList);
+//        return "marche/list";
+//    }
+
     @GetMapping("/addForm")
     public String addMarcheForm(Model model) {
 
@@ -48,33 +55,41 @@ public class MarcheController {
         return "marche/form";
     }
 
+
+
     @PostMapping("/save")
-    public String save(@ModelAttribute @Valid MarcheDTO marcheDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+    public String save(@ModelAttribute @Valid MarcheDTO marcheDTO,
+                       BindingResult bindingResult,
+                       Model model,
+                       RedirectAttributes redirectAttributes) {
 
         Map<String, String> messages = new HashMap<>();
+
         if (bindingResult.hasErrors()) {
 
             model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("marcheDTO", marcheDTO);
+
             model.addAttribute("imputationList", referentielService.imputationsList());
             model.addAttribute("autoriteContractanteList", referentielService.autoriteContractantesList());
             model.addAttribute("structureAutoriteContractanteList", referentielService.structureAutoriteContractantesList());
             model.addAttribute("typeMarcheList", referentielService.typeMarchesList());
             model.addAttribute("modePassationList", referentielService.modePassationsList());
 
-
             return "marche/form";
         }
 
 
+        String numeroMarche = marcheDTO.getNumMarche();
 
+        if (marcheService.NumeroMarcheAlreadyExists(numeroMarche)) {
 
+            messages.put("danger", "Le numéro du marché " + numeroMarche + " est déjà attribué.");
 
-
-
-        String NumeroMarche = marcheDTO.getNumMarche();
-        if (marcheService.NumeroMarcheAlreadyExists(NumeroMarche)) {
-            messages.put("danger", "Le numéro du marché " + NumeroMarche + " est déjà attribué.");
             model.addAttribute("messages", messages);
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("marcheDTO", marcheDTO);
+
             model.addAttribute("imputationList", referentielService.imputationsList());
             model.addAttribute("autoriteContractanteList", referentielService.autoriteContractantesList());
             model.addAttribute("structureAutoriteContractanteList", referentielService.structureAutoriteContractantesList());
@@ -83,18 +98,24 @@ public class MarcheController {
 
             return "marche/form";
         }
+
+
+        MarcheDTO saveMarche;
 
         try {
-            marcheService.save(marcheDTO);
+            saveMarche = marcheService.save(marcheDTO);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
 
-        messages.put("success", "Nouveau marché ajouté avec succes.");
+        messages.put("success", "Nouveau marché ajouté avec succès.");
+
         redirectAttributes.addFlashAttribute("messages", messages);
-        return "redirect:/marche/list";
+
+        return "redirect:/marche/details/" + saveMarche.getId();
     }
+
 
 
     @GetMapping("/details/{id}")
@@ -117,12 +138,10 @@ public class MarcheController {
 
         model.addAttribute("marcheDTO", marcheDTO.get());
 
-        //recuperation de la liste des marche_nif
         model.addAttribute("marcheNifDTOs", marcheService.marcheNifList(id));
 
         model.addAttribute("nifList", referentielService.nifsList());
 
-        //recuperation de la liste des marche_activite
         model.addAttribute("marcheActiviteDTOs", marcheService.marcheActiviteList(id));
 
         model.addAttribute("dppActiviteList", referentielService.dppdActiviteList());
@@ -140,29 +159,10 @@ public class MarcheController {
             throw new RuntimeException(e);
         }
 
-
         messages.put("success", "Nif ajouté avec succes.");
         redirectAttributes.addFlashAttribute("messages", messages);
         return "redirect:/marche/details/" + nifDTO.getMarcheId();
     }
-
-    @PostMapping("/updatemarcheNif")
-    public String editNif(@ModelAttribute  NifDTO nifDTO,Model model, RedirectAttributes redirectAttributes){
-
-
-        Map<String, String> messages = new HashMap<>();
-        try {
-            marcheService.editNif(nifDTO);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        messages.put("success", " Nif modifié avec succes.");
-        redirectAttributes.addFlashAttribute("messages", messages);
-        return "redirect:/marche/details/" + nifDTO.getMarcheId();
-    }
-
-
 
 
     @GetMapping("/nif/delete/{id}")

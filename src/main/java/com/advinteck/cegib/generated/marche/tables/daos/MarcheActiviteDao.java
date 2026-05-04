@@ -192,4 +192,19 @@ public class MarcheActiviteDao extends DAOImpl<MarcheActiviteRecord, com.advinte
     public List<com.advinteck.cegib.generated.marche.tables.pojos.MarcheActivite> fetchByLastUpdate(LocalDateTime... values) {
         return fetch(MarcheActivite.MARCHE_ACTIVITE.LAST_UPDATE, values);
     }
+
+    /**
+     * Fetch records that have <code>deleted_on BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.MarcheActivite> fetchRangeOfDeletedOn(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
+        return fetchRange(MarcheActivite.MARCHE_ACTIVITE.DELETED_ON, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>deleted_on IN (values)</code>
+     */
+    public List<com.advinteck.cegib.generated.marche.tables.pojos.MarcheActivite> fetchByDeletedOn(LocalDateTime... values) {
+        return fetch(MarcheActivite.MARCHE_ACTIVITE.DELETED_ON, values);
+    }
 }

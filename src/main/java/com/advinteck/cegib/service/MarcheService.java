@@ -15,15 +15,12 @@ import com.advinteck.cegib.generated.referentiel.tables.daos.*;
 import com.advinteck.cegib.generated.referentiel.tables.pojos.*;
 import com.advinteck.cegib.repository.MarcheRepository;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-
 public class MarcheService {
 
 
@@ -31,7 +28,7 @@ public class MarcheService {
     private final MarcheActiviteDao marcheActiviteDao;
     private final MarcheNifsDao marcheNifsDao;
     private final MarcheRepository marcheRepository;
-private final ReferentielService referentielService;
+    private final ReferentielService referentielService;
 
 
     public MarcheService(MarchesDao marchesDao, MarcheActiviteDao marcheActiviteDao, MarcheNifsDao marcheNifsDao, MarcheRepository marcheRepository, ReferentielService referentielService) {
@@ -47,19 +44,6 @@ private final ReferentielService referentielService;
     public List<MarcheDTO> marcheList(){
         return marcheRepository.findAllMarche();
     }
-
-//
-//    public List<MarcheDTO> marcheValideList(){
-//        List<VMarches> marchesList = marcheRepository.findAllValidated();
-//        List<MarcheDTO> marcheDTOList = new ArrayList<>();
-//        for (var marches: marchesList){
-//            MarcheDTO marcheDTO = new MarcheDTO(marches.getId(), marches.getNumeroMarche(), marches.getImputation(), marches.getImputationIntitule() ,marches.getObjetMarche(), marches.getDateApprobation().toLocalDate(),
-//                    marches.getAutoriteContractanteCode(), marches.getAutoriteContractanteIntitule(), marches.getStructureAutoriteContractanteCode(), marches.getStructureAutoriteContractanteIntitule(),marches.getApprouvePar(),
-//                    marches.getTitulaireMarche(), marches.getTypeMarcheCode(), marches.getTypeMarcheIntitule(), marches.getModeDePassationCode(), marches.getModePassationIntitule());
-//            marcheDTOList.add(marcheDTO);
-//        }
-//        return marcheDTOList;
-//    }
 
 
     public MarcheDTO save(MarcheDTO marcheDTO) throws Exception{
@@ -106,7 +90,7 @@ private final ReferentielService referentielService;
         marchesDao.deleteById(id);
     }
 
-    
+
     public Optional<MarcheDTO> findOneMarcheById(Long id) {
 
         Optional<VMarches> marchesOpt = marcheRepository.findOneMarcheById(id);

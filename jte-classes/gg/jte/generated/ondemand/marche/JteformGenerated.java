@@ -7,7 +7,7 @@ import com.advinteck.cegib.dto.MarcheDTO;
 @SuppressWarnings("unchecked")
 public final class JteformGenerated {
 	public static final String JTE_NAME = "marche/form.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,6,6,6,6,15,15,18,18,89,90,91,99,109,109,109,109,109,109,109,109,109,110,110,110,110,112,112,114,114,114,116,116,119,129,129,129,129,129,129,129,131,131,133,133,133,135,135,138,147,147,147,147,151,151,154,154,154,154,154,154,154,154,154,155,155,155,155,155,157,157,157,157,157,157,161,161,165,165,167,167,167,169,169,174,175,176,184,194,194,194,194,194,194,194,194,194,196,196,196,196,198,198,200,200,200,202,202,206,216,216,216,216,220,220,223,223,223,223,223,223,223,223,223,224,224,224,224,224,226,226,226,230,230,234,234,236,236,236,238,238,242,252,252,252,252,256,256,259,259,259,259,259,259,259,259,259,260,260,260,260,260,262,262,262,266,266,270,270,272,272,272,274,274,280,281,282,290,300,300,300,300,304,304,307,307,307,307,307,307,307,307,307,308,308,308,308,308,310,310,310,314,314,318,318,320,320,320,322,322,326,336,336,336,336,340,340,343,343,343,343,343,343,343,343,343,344,344,344,344,344,346,346,346,350,350,354,354,356,356,356,358,358,362,372,372,372,372,372,372,372,372,372,373,373,373,373,375,375,377,377,377,379,379,383,393,393,393,393,395,395,397,397,397,399,399,405,433,433,433,433,433,6,7,8,9,10,11,12,13,13,13,13};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,6,6,6,6,15,15,18,18,89,90,91,99,109,109,109,109,109,109,109,109,109,110,110,110,110,112,112,114,114,114,116,116,119,129,129,129,129,129,129,129,131,131,133,133,133,135,135,138,147,147,147,147,151,151,154,154,154,154,154,154,154,154,154,155,155,155,155,155,157,157,157,157,157,157,161,161,165,165,167,167,167,169,169,174,175,176,184,194,194,194,194,198,198,201,201,201,201,201,201,201,201,201,202,202,202,202,202,204,204,204,208,208,212,212,214,214,214,216,216,220,230,230,230,230,234,234,237,237,237,237,237,237,237,237,237,238,238,238,238,238,240,240,240,244,244,248,248,250,250,250,252,252,258,268,268,268,268,268,268,268,268,268,270,270,270,270,272,272,274,274,274,276,276,280,281,282,290,300,300,300,300,304,304,307,307,307,307,307,307,307,307,307,308,308,308,308,308,310,310,310,314,314,318,318,320,320,320,322,322,326,336,336,336,336,340,340,343,343,343,343,343,343,343,343,343,344,344,344,344,344,346,346,346,350,350,354,354,356,356,356,358,358,362,372,372,372,372,372,372,372,372,372,373,373,373,373,375,375,377,377,377,379,379,383,393,393,393,393,395,395,397,397,397,399,399,405,433,433,433,433,433,6,7,8,9,10,11,12,13,13,13,13};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, BindingResult bindingResult, MarcheDTO marcheDTO, Map<String, String> messages, List<TypesMarche> typeMarcheList, List<Imputation> imputationList, List<AutoriteContractante> autoriteContractanteList, List<AutoriteContractanteStructures> structureAutoriteContractanteList, List<ModesPassation> modePassationList) {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.JtelayoutGenerated.render(jteOutput, jteHtmlInterceptor, "Nouveau Marché", new gg.jte.html.HtmlContent() {
@@ -90,28 +90,7 @@ public final class JteformGenerated {
 				jteOutput.writeContent("\n                        </div>\n\n                    </div>\n\n                    ");
 				jteOutput.writeContent("\n                    ");
 				jteOutput.writeContent("\n                    ");
-				jteOutput.writeContent("\n\n                    <div class=\"form-section-title\">\n                        02. Caractéristiques du marché\n                    </div>\n\n                    <div class=\"row g-4 mb-5\">\n\n                        ");
-				jteOutput.writeContent("\n\n                        <div class=\"col-md-12\">\n\n                            <label class=\"form-label small fw-bold\">\n                                Titulaire du marché\n                            </label>\n\n                            <input type=\"text\"\n                                   name=\"titulaireMarche\"\n                                  ");
-				var __jte_html_attribute_3 = marcheDTO != null ? marcheDTO.getTitulaireMarche() : "";
-				if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_3)) {
-					jteOutput.writeContent(" value=\"");
-					jteOutput.setContext("input", "value");
-					jteOutput.writeUserContent(__jte_html_attribute_3);
-					jteOutput.setContext("input", null);
-					jteOutput.writeContent("\"");
-				}
-				jteOutput.writeContent("\n                                   placeholder=\"Nom de l'entreprise\"\n                                   class=\"form-control ");
-				jteOutput.setContext("input", "class");
-				jteOutput.writeUserContent(bindingResult != null && bindingResult.hasFieldErrors("titulaireMarche") ? "is-invalid" : "");
-				jteOutput.setContext("input", null);
-				jteOutput.writeContent("\">\n\n                            ");
-				if (bindingResult != null && bindingResult.hasFieldErrors("titulaireMarche")) {
-					jteOutput.writeContent("\n                                <div class=\"invalid-feedback\">\n                                    ");
-					jteOutput.setContext("div", null);
-					jteOutput.writeUserContent(bindingResult.getFieldError("titulaireMarche").getDefaultMessage());
-					jteOutput.writeContent("\n                                </div>\n                            ");
-				}
-				jteOutput.writeContent("\n\n                        </div>\n\n                        ");
+				jteOutput.writeContent("\n\n                    <div class=\"form-section-title\">\n                        02. Caractéristiques du marché\n                    </div>\n\n                    <div class=\"row g-4 mb-2\">\n\n                        ");
 				jteOutput.writeContent("\n\n                        <div class=\"col-md-6\">\n\n                            <label class=\"form-label small fw-bold\">\n                                Type de Marché\n                            </label>\n\n                            <select\n                                    name=\"typeMarcheCode\"\n                                    class=\"form-select select-slim ");
 				jteOutput.setContext("select", "class");
 				jteOutput.writeUserContent(bindingResult != null && bindingResult.hasFieldErrors("typeMarcheCode") ? "is-invalid" : "");
@@ -119,17 +98,17 @@ public final class JteformGenerated {
 				jteOutput.writeContent("\">\n\n                                <option value=\"\">Choisir...</option>\n\n                                ");
 				for (var el : typeMarcheList) {
 					jteOutput.writeContent("\n\n                                    <option\n                                           ");
-					var __jte_html_attribute_4 = el.getCode();
-					if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_4)) {
+					var __jte_html_attribute_3 = el.getCode();
+					if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_3)) {
 						jteOutput.writeContent(" value=\"");
 						jteOutput.setContext("option", "value");
-						jteOutput.writeUserContent(__jte_html_attribute_4);
+						jteOutput.writeUserContent(__jte_html_attribute_3);
 						jteOutput.setContext("option", null);
 						jteOutput.writeContent("\"");
 					}
 					jteOutput.writeContent("\n                                           ");
-					var __jte_html_attribute_5 = marcheDTO != null && marcheDTO.getTypeMarcheCode() != null && marcheDTO.getTypeMarcheCode().equals(el.getCode());
-					if (__jte_html_attribute_5) {
+					var __jte_html_attribute_4 = marcheDTO != null && marcheDTO.getTypeMarcheCode() != null && marcheDTO.getTypeMarcheCode().equals(el.getCode());
+					if (__jte_html_attribute_4) {
 					jteOutput.writeContent(" selected");
 					}
 					jteOutput.writeContent(">\n\n                                        ");
@@ -152,17 +131,17 @@ public final class JteformGenerated {
 				jteOutput.writeContent("\">\n\n                                <option value=\"\">Choisir...</option>\n\n                                ");
 				for (var el : modePassationList) {
 					jteOutput.writeContent("\n\n                                    <option\n                                           ");
-					var __jte_html_attribute_6 = el.getCode();
-					if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_6)) {
+					var __jte_html_attribute_5 = el.getCode();
+					if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_5)) {
 						jteOutput.writeContent(" value=\"");
 						jteOutput.setContext("option", "value");
-						jteOutput.writeUserContent(__jte_html_attribute_6);
+						jteOutput.writeUserContent(__jte_html_attribute_5);
 						jteOutput.setContext("option", null);
 						jteOutput.writeContent("\"");
 					}
 					jteOutput.writeContent("\n                                           ");
-					var __jte_html_attribute_7 = marcheDTO != null && marcheDTO.getModePassationCode() != null && marcheDTO.getModePassationCode().equals(el.getCode());
-					if (__jte_html_attribute_7) {
+					var __jte_html_attribute_6 = marcheDTO != null && marcheDTO.getModePassationCode() != null && marcheDTO.getModePassationCode().equals(el.getCode());
+					if (__jte_html_attribute_6) {
 					jteOutput.writeContent(" selected");
 					}
 					jteOutput.writeContent(">\n\n                                        ");
@@ -178,6 +157,27 @@ public final class JteformGenerated {
 					jteOutput.writeContent("\n                                </div>\n                            ");
 				}
 				jteOutput.writeContent("\n\n                        </div>\n\n                    </div>\n\n                    ");
+				jteOutput.writeContent("\n\n                    <div class=\"col-md-12 mb-5\">\n\n                        <label class=\"form-label small fw-bold\">\n                            Titulaire du marché\n                        </label>\n\n                        <input type=\"text\"\n                               name=\"titulaireMarche\"\n                              ");
+				var __jte_html_attribute_7 = marcheDTO != null ? marcheDTO.getTitulaireMarche() : "";
+				if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_7)) {
+					jteOutput.writeContent(" value=\"");
+					jteOutput.setContext("input", "value");
+					jteOutput.writeUserContent(__jte_html_attribute_7);
+					jteOutput.setContext("input", null);
+					jteOutput.writeContent("\"");
+				}
+				jteOutput.writeContent("\n                               placeholder=\"Numéro d'Identification Fiscal de l'entreprise\"\n                               class=\"form-control ");
+				jteOutput.setContext("input", "class");
+				jteOutput.writeUserContent(bindingResult != null && bindingResult.hasFieldErrors("titulaireMarche") ? "is-invalid" : "");
+				jteOutput.setContext("input", null);
+				jteOutput.writeContent("\">\n\n                        ");
+				if (bindingResult != null && bindingResult.hasFieldErrors("titulaireMarche")) {
+					jteOutput.writeContent("\n                            <div class=\"invalid-feedback\">\n                                ");
+					jteOutput.setContext("div", null);
+					jteOutput.writeUserContent(bindingResult.getFieldError("titulaireMarche").getDefaultMessage());
+					jteOutput.writeContent("\n                            </div>\n                        ");
+				}
+				jteOutput.writeContent("\n\n                    </div>\n\n                    ");
 				jteOutput.writeContent("\n                    ");
 				jteOutput.writeContent("\n                    ");
 				jteOutput.writeContent("\n\n                    <div class=\"form-section-title\">\n                        03. Autorités\n                    </div>\n\n                    <div class=\"row g-4 mb-5\">\n\n                        ");
@@ -214,7 +214,7 @@ public final class JteformGenerated {
 					jteOutput.writeContent("\n                                </div>\n                            ");
 				}
 				jteOutput.writeContent("\n\n                        </div>\n\n                        ");
-				jteOutput.writeContent("\n\n                        <div class=\"col-md-6\">\n\n                            <label class=\"form-label small fw-bold\">\n                                Structure Bénéficiaire\n                            </label>\n\n                            <select\n                                    name=\"structureAutoriteContractanteCode\"\n                                    class=\"form-select select-slim ");
+				jteOutput.writeContent("\n\n                        <div class=\"col-md-6\">\n\n                            <label class=\"form-label small fw-bold\">\n                                Structure\n                            </label>\n\n                            <select\n                                    name=\"structureAutoriteContractanteCode\"\n                                    class=\"form-select select-slim ");
 				jteOutput.setContext("select", "class");
 				jteOutput.writeUserContent(bindingResult != null && bindingResult.hasFieldErrors("structureAutoriteContractanteCode") ? "is-invalid" : "");
 				jteOutput.setContext("select", null);

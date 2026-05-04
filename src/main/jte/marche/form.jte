@@ -180,29 +180,7 @@ content = @`
                         02. Caractéristiques du marché
                     </div>
 
-                    <div class="row g-4 mb-5">
-
-                        <!-- TITULAIRE -->
-
-                        <div class="col-md-12">
-
-                            <label class="form-label small fw-bold">
-                                Titulaire du marché
-                            </label>
-
-                            <input type="text"
-                                   name="titulaireMarche"
-                                   value="${marcheDTO != null ? marcheDTO.getTitulaireMarche() : ""}"
-                                   placeholder="Nom de l'entreprise"
-                                   class="form-control ${bindingResult != null && bindingResult.hasFieldErrors("titulaireMarche") ? "is-invalid" : ""}">
-
-                            @if(bindingResult != null && bindingResult.hasFieldErrors("titulaireMarche"))
-                                <div class="invalid-feedback">
-                                    ${bindingResult.getFieldError("titulaireMarche").getDefaultMessage()}
-                                </div>
-                            @endif
-
-                        </div>
+                    <div class="row g-4 mb-2">
 
                         <!-- TYPE MARCHE -->
 
@@ -278,6 +256,28 @@ content = @`
 
                     </div>
 
+                    <!-- TITULAIRE -->
+
+                    <div class="col-md-12 mb-5">
+
+                        <label class="form-label small fw-bold">
+                            Titulaire du marché
+                        </label>
+
+                        <input type="text"
+                               name="titulaireMarche"
+                               value="${marcheDTO != null ? marcheDTO.getTitulaireMarche() : ""}"
+                               placeholder="Numéro d'Identification Fiscal de l'entreprise"
+                               class="form-control ${bindingResult != null && bindingResult.hasFieldErrors("titulaireMarche") ? "is-invalid" : ""}">
+
+                        @if(bindingResult != null && bindingResult.hasFieldErrors("titulaireMarche"))
+                            <div class="invalid-feedback">
+                                ${bindingResult.getFieldError("titulaireMarche").getDefaultMessage()}
+                            </div>
+                        @endif
+
+                    </div>
+
                     <!-- ========================= -->
                     <!-- AUTORITES -->
                     <!-- ========================= -->
@@ -329,7 +329,7 @@ content = @`
                         <div class="col-md-6">
 
                             <label class="form-label small fw-bold">
-                                Structure Bénéficiaire
+                                Structure
                             </label>
 
                             <select

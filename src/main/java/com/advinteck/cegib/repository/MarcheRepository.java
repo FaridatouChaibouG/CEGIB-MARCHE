@@ -42,16 +42,6 @@ public class MarcheRepository {
                 .fetchInto(MarcheDTO.class);
     }
 
-//    public List<VMarches> findAllValidated() {
-//        return dsl
-//                .selectFrom(Tables.V_MARCHES)
-//                .where(Tables.V_MARCHES.STATUT.eq("VALIDER"))
-//                .fetchInto(VMarches.class);
-//    }
-
-
-
-
 
     public List<NifDTO> findAllNif(Long marcheId) {
         return dsl
@@ -60,8 +50,6 @@ public class MarcheRepository {
                 .where(MARCHE_NIFS.MARCHE_ID.eq(marcheId))
                 .fetchInto(NifDTO.class);
     }
-
-
 
 
     public List<ActiviteDTO> findAllActivite(Long marcheId) {

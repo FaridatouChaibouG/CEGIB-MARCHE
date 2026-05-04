@@ -1,6 +1,6 @@
 
-CREATE SCHEMA IF NOT EXISTS referentiel;
-CREATE SCHEMA IF NOT EXISTS marche;
+CREATE SCHEMA IF NOT EXISTS referentiel AUTHORIZATION admin;;
+CREATE SCHEMA IF NOT EXISTS marche AUTHORIZATION admin;;
 
 
 
@@ -229,3 +229,4 @@ FROM marche.marches m
          LEFT JOIN referentiel.autorite_contractante_structures sac ON m.structure_autorite_contractante_code = sac.code
          LEFT JOIN referentiel.types_marche tm ON m.type_marche_code = tm.code
          LEFT JOIN referentiel.modes_passation mp ON m.mode_de_passation_code = mp.code;
+ALTER TABLE marche.v_marches OWNER TO admin;

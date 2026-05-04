@@ -7,7 +7,7 @@ title = "Page d'accueil",
 messages = messages,
 content = @`
     <span>
-        Bienvenue .
+        Bienvenue <strong> CEBIB-MARCHE</strong>
     </span>
 
 `)

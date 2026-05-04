@@ -50,7 +50,7 @@
 <!-- ... Le reste du body reste identique ... -->
 <nav class="sidebar d-none d-md-block">
     <div class="p-4 text-center border-bottom border-white border-opacity-25 mb-3">
-        <h4 class="text-white fw-bold mb-0">CEGIB MARCHE</h4>
+        <h4 class="text-white fw-bold mb-0">CEGIB-MARCHE</h4>
         <small class="text-white-50">Gestion des Marchés</small>
     </div>
     <ul class="nav flex-column">

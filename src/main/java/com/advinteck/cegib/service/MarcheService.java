@@ -13,6 +13,7 @@ import com.advinteck.cegib.generated.marche.tables.pojos.Marches;
 import com.advinteck.cegib.generated.marche.tables.pojos.VMarches;
 import com.advinteck.cegib.generated.referentiel.tables.daos.*;
 import com.advinteck.cegib.generated.referentiel.tables.pojos.*;
+import com.advinteck.cegib.mapper.MarcheMapper;
 import com.advinteck.cegib.repository.MarcheRepository;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -29,15 +30,17 @@ public class MarcheService {
     private final MarcheNifsDao marcheNifsDao;
     private final MarcheRepository marcheRepository;
     private final ReferentielService referentielService;
+    private final MarcheMapper marcheMapper;
 
 
-    public MarcheService(MarchesDao marchesDao, MarcheActiviteDao marcheActiviteDao, MarcheNifsDao marcheNifsDao, MarcheRepository marcheRepository, ReferentielService referentielService) {
+    public MarcheService(MarchesDao marchesDao, MarcheActiviteDao marcheActiviteDao, MarcheNifsDao marcheNifsDao, MarcheRepository marcheRepository, ReferentielService referentielService, MarcheMapper marcheMapper) {
         this.marchesDao = marchesDao;
         this.marcheActiviteDao = marcheActiviteDao;
         this.marcheNifsDao = marcheNifsDao;
         this.marcheRepository = marcheRepository;
 
         this.referentielService = referentielService;
+        this.marcheMapper = marcheMapper;
     }
 
 
@@ -47,17 +50,18 @@ public class MarcheService {
 
 
     public MarcheDTO save(MarcheDTO marcheDTO) throws Exception{
-        Marches marches = new Marches();
-        marches.setNumeroMarche(marcheDTO.getNumMarche());
-        marches.setImputation(marcheDTO.getImputation());
-        marches.setObjetMarche(marcheDTO.getObjetMarche());
-        marches.setDateApprobation(LocalDateTime.of(marcheDTO.getDateApprobation(), LocalTime.of(0,0,0)));
-        marches.setAutoriteContractanteCode(marcheDTO.getAutoriteContractanteCode());
-        marches.setStructureAutoriteContractanteCode(marcheDTO.getStructureAutoriteContractanteCode());
-        marches.setApprouvePar(marcheDTO.getApprouvePar());
-        marches.setTitulaireMarche(marcheDTO.getTitulaireMarche());
-        marches.setTypeMarcheCode(marcheDTO.getTypeMarcheCode());
-        marches.setModeDePassationCode(marcheDTO.getModePassationCode());
+//        Marches marches = new Marches();
+//        marches.setNumeroMarche(marcheDTO.getNumMarche());
+//        marches.setImputation(marcheDTO.getImputation());
+//        marches.setObjetMarche(marcheDTO.getObjetMarche());
+//        marches.setDateApprobation(LocalDateTime.of(marcheDTO.getDateApprobation(), LocalTime.of(0,0,0)));
+//        marches.setAutoriteContractanteCode(marcheDTO.getAutoriteContractanteCode());
+//        marches.setStructureAutoriteContractanteCode(marcheDTO.getStructureAutoriteContractanteCode());
+//        marches.setApprouvePar(marcheDTO.getApprouvePar());
+//        marches.setTitulaireMarche(marcheDTO.getTitulaireMarche());
+//        marches.setTypeMarcheCode(marcheDTO.getTypeMarcheCode());
+//        marches.setModeDePassationCode(marcheDTO.getModePassationCode());
+        Marches marches = marcheMapper.mapToMarche(marcheDTO);
 
 
         marchesDao.insert(marches);

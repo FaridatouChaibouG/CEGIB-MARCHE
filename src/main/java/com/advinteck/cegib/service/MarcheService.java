@@ -49,45 +49,104 @@ public class MarcheService {
     }
 
 
-    public MarcheDTO save(MarcheDTO marcheDTO) throws Exception{
-//        Marches marches = new Marches();
-//        marches.setNumeroMarche(marcheDTO.getNumMarche());
-//        marches.setImputation(marcheDTO.getImputation());
-//        marches.setObjetMarche(marcheDTO.getObjetMarche());
-//        marches.setDateApprobation(LocalDateTime.of(marcheDTO.getDateApprobation(), LocalTime.of(0,0,0)));
-//        marches.setAutoriteContractanteCode(marcheDTO.getAutoriteContractanteCode());
-//        marches.setStructureAutoriteContractanteCode(marcheDTO.getStructureAutoriteContractanteCode());
-//        marches.setApprouvePar(marcheDTO.getApprouvePar());
-//        marches.setTitulaireMarche(marcheDTO.getTitulaireMarche());
-//        marches.setTypeMarcheCode(marcheDTO.getTypeMarcheCode());
-//        marches.setModeDePassationCode(marcheDTO.getModePassationCode());
-        Marches marches = marcheMapper.mapToMarche(marcheDTO);
-
-
-        marchesDao.insert(marches);
-
-        marcheDTO.setId(marches.getId());
-
-        return marcheDTO;
-
+    public List<MarcheDTO> marcheListValide(){
+        return marcheRepository.findAllMarcheValide();
     }
 
-    public void update(MarcheDTO marcheDTO){
-        Marches marches = new Marches();
-        marches.setId(marcheDTO.getId());
-        marches.setNumeroMarche(marcheDTO.getNumMarche());
-        marches.setObjetMarche(marcheDTO.getObjetMarche());
-        marches.setTitulaireMarche(marcheDTO.getTitulaireMarche());
-        marches.setApprouvePar(marcheDTO.getApprouvePar());
-        marches.setDateApprobation(LocalDateTime.of(marcheDTO.getDateApprobation(), LocalTime.of(0,0,0)));
-        marches.setImputation(marcheDTO.getImputation());
-        marches.setAutoriteContractanteCode(marcheDTO.getAutoriteContractanteCode());
-        marches.setStructureAutoriteContractanteCode(marcheDTO.getStructureAutoriteContractanteCode());
-        marches.setTypeMarcheCode(marcheDTO.getTypeMarcheCode());
-        marches.setModeDePassationCode(marcheDTO.getModePassationCode());
-        marchesDao.update(marches);
+
+
+
+    public MarcheDTO save(MarcheDTO marcheDTO) {
+
+    Marches marches = marcheMapper.mapToMarche(marcheDTO);
+
+    marchesDao.insert(marches);
+
+    marcheDTO.setId(marches.getId());
+
+    // AJOUT DU TITULAIRE DANS MARCHE_NIFS
+    if (marcheDTO.getTitulaireMarche() != null && !marcheDTO.getTitulaireMarche().isBlank()) {
+
+        var refNif = referentielService
+                .findOneNifsByIdentifiant(marcheDTO.getTitulaireMarche());
+
+        if (refNif != null) {
+
+            MarcheNifs nif = new MarcheNifs();
+            nif.setMarcheId(marches.getId());
+            nif.setIdentifiant(refNif.getIdentifiant());
+            nif.setRaisonSocial(refNif.getRaisonSociale());
+
+            marcheNifsDao.insert(nif);
+        }
     }
 
+    return marcheDTO;
+}
+
+
+public void update(MarcheDTO marcheDTO){
+
+    // 1. update marche
+    Marches marches = marcheMapper.mapToMarche(marcheDTO);
+
+    // Si le statut passe à "valide", générer le numéro définitif
+    if ("VALIDE".equals(marcheDTO.getStatut())) {
+        String ancienNum = marches.getNumeroMarche();
+        // Remplacer seulement si c'est encore un numéro provisoire (format M0001)
+        if (ancienNum != null && ancienNum.matches("M\\d{4}")) {
+            marches.setNumeroMarche(generateNumMarcheValide());
+        }
+    }
+
+    marchesDao.update(marches);
+
+    Long marcheId = marcheDTO.getId();
+    String nouveauTitulaire = marcheDTO.getTitulaireMarche();
+
+    // 2. récupérer tous les NIF du marché
+    List<MarcheNifs> existingNifs = marcheNifsDao.fetchByMarcheId(marcheId);
+
+    String ancienTitulaire = null;
+
+    // 3. identifier l'ancien titulaire
+    for (MarcheNifs nif : existingNifs) {
+        if (nif.getIdentifiant() != null) {
+            ancienTitulaire = nif.getIdentifiant();
+            break;
+        }
+    }
+
+    // 4. supprimer seulement l'ancien titulaire
+    if (ancienTitulaire != null && !ancienTitulaire.equals(nouveauTitulaire)) {
+
+        for (MarcheNifs nif : existingNifs) {
+            if (ancienTitulaire.equals(nif.getIdentifiant())) {
+                marcheNifsDao.deleteById(nif.getId());
+            }
+        }
+    }
+
+    // 5. vérifier si nouveau titulaire existe déjà
+    boolean exists = existingNifs.stream()
+            .anyMatch(n -> n.getIdentifiant() != null
+                    && n.getIdentifiant().equals(nouveauTitulaire));
+
+    // 6. ajouter nouveau titulaire si absent
+    if (!exists) {
+
+        var refNif = referentielService.findOneNifsByIdentifiant(nouveauTitulaire);
+
+        if (refNif != null) {
+            MarcheNifs n = new MarcheNifs();
+            n.setMarcheId(marcheId);
+            n.setIdentifiant(refNif.getIdentifiant());
+            n.setRaisonSocial(refNif.getRaisonSociale());
+
+            marcheNifsDao.insert(n);
+        }
+    }
+}
 
 
     public void deleteMarche(Long id) {
@@ -95,34 +154,16 @@ public class MarcheService {
     }
 
 
+
     public Optional<MarcheDTO> findOneMarcheById(Long id) {
 
-        Optional<VMarches> marchesOpt = marcheRepository.findOneMarcheById(id);
 
-        if (marchesOpt.isEmpty()) return Optional.empty();
+        return marcheRepository.findOneMarcheById(id).map(marches -> marcheMapper.mapToMarcheDto(marches));
 
-        VMarches marches = marchesOpt.get();
 
-        return  Optional.of(new MarcheDTO(
-                marches.getId(),
-                marches.getNumeroMarche(),
-                marches.getImputation(),
-                marches.getImputationIntitule(),
-                marches.getObjetMarche(),
-                marches.getDateApprobation().toLocalDate(),
-                marches.getAutoriteContractanteCode(),
-                marches.getAutoriteContractanteIntitule(),
-                marches.getStructureAutoriteContractanteCode(),
-                marches.getStructureAutoriteContractanteIntitule(),
-                marches.getApprouvePar(),
-                marches.getTitulaireMarche(),
-                marches.getTypeMarcheCode(),
-                marches.getTypeMarcheIntitule(),
-                marches.getModeDePassationCode(),
-                marches.getModePassationIntitule()
-
-        ));
     }
+
+
 
     public boolean NumeroMarcheAlreadyExists(String numMarche){
         return marchesDao.fetchOptionalByNumeroMarche(numMarche).isPresent();
@@ -135,7 +176,7 @@ public class MarcheService {
         return marcheRepository.findAllNif(marcheId);
     }
 
-    public void savemarcheNif(NifDTO nifDTO) throws Exception{
+    public void savemarcheNif(NifDTO nifDTO) {
         MarcheNifs nifs = new  MarcheNifs();
         var refNif = referentielService.findOneNifsByIdentifiant(nifDTO.getIdentifiant());
         nifs.setMarcheId(nifDTO.getMarcheId());
@@ -145,32 +186,25 @@ public class MarcheService {
 
     }
 
+
     public NifDTO findOneMarcheNifById(Long id){
 
         MarcheNifs nif = marcheNifsDao.fetchOneById(id);
-        NifDTO nifDTO = new NifDTO();
-        nifDTO.setId(nif.getId());
-        nifDTO.setIdentifiant(nif.getIdentifiant());
-       nifDTO.setMarcheId(nif.getMarcheId());
-       nifDTO.setRaisonSocial(nif.getRaisonSocial());
-        return nifDTO;
 
+        return marcheMapper.mapToNifDto(nif);
     }
+
 
     public void deleteNif(Long id) {
         marcheNifsDao.deleteById(id);
     }
 
 
-
-
-
-
     public List<ActiviteDTO> marcheActiviteList(Long marcheId) {
         return marcheRepository.findAllActivite(marcheId);
     }
 
-    public void savemarcheActivite(ActiviteDTO activiteDTO) throws Exception{
+    public void savemarcheActivite(ActiviteDTO activiteDTO) {
         MarcheActivite activite = new MarcheActivite();
         var refActivite = referentielService.findOneActiviteByCodeActivite(activiteDTO.getCodeActivite());
         activite.setMarcheId(activiteDTO.getMarcheId());
@@ -215,6 +249,37 @@ public class MarcheService {
          marcheActivite.setTaux(activiteDTO.getTaux());
 
         marcheActiviteDao.update(marcheActivite);
+    }
+
+
+
+
+    public String generateNumMarche() {
+        List<Marches> all = marchesDao.findAll();
+
+        int max = all.stream()
+                .map(Marches::getNumeroMarche)
+                .filter(n -> n != null && n.matches("M\\d{4}"))
+                .mapToInt(n -> Integer.parseInt(n.substring(1)))
+                .max()
+                .orElse(0);
+
+        return String.format("M%04d", max + 1);
+    }
+
+
+    public String generateNumMarcheValide() {
+        int annee = java.time.LocalDate.now().getYear() % 100; // 2026 → 26
+        String pattern = String.format("\\d{4}/%02d/DGCMP/MEF", annee);
+
+        int max = marchesDao.findAll().stream()
+                .map(Marches::getNumeroMarche)
+                .filter(n -> n != null && n.matches(pattern))
+                .mapToInt(n -> Integer.parseInt(n.substring(0, 4)))
+                .max()
+                .orElse(0);
+
+        return String.format("%04d/%02d/DGCMP/MEF", max + 1, annee);
     }
 
 

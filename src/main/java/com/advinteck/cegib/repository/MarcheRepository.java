@@ -43,6 +43,17 @@ public class MarcheRepository {
     }
 
 
+
+    public List<MarcheDTO> findAllMarcheValide() {
+        return dsl
+                .select(V_MARCHES.ID, V_MARCHES.NUMERO_MARCHE.as("numMarche"), V_MARCHES.OBJET_MARCHE, V_MARCHES.TYPE_MARCHE_INTITULE, V_MARCHES.MODE_PASSATION_INTITULE, V_MARCHES.DATE_APPROBATION)
+                .from(V_MARCHES)
+                .where(Tables.V_MARCHES.STATUT.eq(Constants.VALIDE))
+                .orderBy(V_MARCHES.ID.desc())
+                .fetchInto(MarcheDTO.class);
+    }
+
+
     public List<NifDTO> findAllNif(Long marcheId) {
         return dsl
                 .select(MARCHE_NIFS.ID, MARCHE_NIFS.IDENTIFIANT, MARCHE_NIFS.MARCHE_ID, MARCHE_NIFS.RAISON_SOCIAL.as("raisonSocial"))

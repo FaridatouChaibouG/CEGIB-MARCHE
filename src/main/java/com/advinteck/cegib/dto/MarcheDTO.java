@@ -34,7 +34,7 @@ public class MarcheDTO {
     private String autoriteContractanteIntitule;
     @NotEmpty(message = "La structure de l'autorité contractante est obligatoire.")
     private String structureAutoriteContractanteCode;
-    private String structureAutoriteContractanteIntutule;
+    private String structureAutoriteContractanteIntitule;
     @NotEmpty(message = "L'approbation est obligatoire.")
     private String approuvePar;
     @NotEmpty(message = "Le titulaire de marché est obligatoire.")
@@ -45,6 +45,8 @@ public class MarcheDTO {
     @NotEmpty(message = "Le mode de passation est obligatoire.")
     private String modePassationCode;
     private String modePassationIntitule;
+
+    private  String statut;
 
 
 }

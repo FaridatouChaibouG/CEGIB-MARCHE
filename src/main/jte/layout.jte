@@ -65,11 +65,11 @@
             </a>
         </li>
 
-<%--        <li class="nav-item">--%>
-<%--            <a class="nav-link @if(title.contains("Marche")) active @endif" href="/marche/listValider">--%>
-<%--                <i class="bi bi-file-earmark-text-fill me-2"></i> Marché validé--%>
-<%--            </a>--%>
-<%--        </li>--%>
+        <li class="nav-item">
+            <a class="nav-link @if(title.contains("Marche")) active @endif" href="/marcheValide/listValider">
+                <i class="bi bi-file-earmark-text-fill me-2"></i> MarchésValidé
+            </a>
+        </li>
     </ul>
 </nav>
 

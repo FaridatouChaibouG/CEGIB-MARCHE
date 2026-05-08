@@ -4,4 +4,6 @@ public class Constants {
 
     public static final String EN_ATTENTE = "EN_ATTENTE";
 
+    public static final String VALIDE = "VALIDE";
+
 }

@@ -5,12 +5,15 @@ import com.advinteck.cegib.dto.NifDTO;
 import com.advinteck.cegib.generated.marche.tables.pojos.MarcheNifs;
 import com.advinteck.cegib.generated.marche.tables.pojos.Marches;
 import com.advinteck.cegib.generated.marche.tables.pojos.VMarches;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Component
 public class MarcheMapper {
 
 
@@ -26,28 +29,29 @@ public class MarcheMapper {
                 .imputationIntitule(vMarches.getImputationIntitule())
                 .objetMarche(vMarches.getObjetMarche())
                 .structureAutoriteContractanteCode(vMarches.getStructureAutoriteContractanteCode())
-                .structureAutoriteContractanteIntutule(vMarches.getStructureAutoriteContractanteIntitule())
+                .structureAutoriteContractanteIntitule(vMarches.getStructureAutoriteContractanteIntitule())
                 .dateApprobation(vMarches.getDateApprobation().toLocalDate())
                 .autoriteContractanteCode(vMarches.getAutoriteContractanteCode())
-                .autoriteContractanteIntitule(vMarches.getStructureAutoriteContractanteIntitule())
+                .autoriteContractanteIntitule(vMarches.getAutoriteContractanteIntitule())
                 .approuvePar(vMarches.getApprouvePar())
                 .titulaireMarche(vMarches.getTitulaireMarche())
                 .typeMarcheCode(vMarches.getTypeMarcheCode())
                 .typeMarcheIntitule(vMarches.getTypeMarcheIntitule())
                 .modePassationCode(vMarches.getModeDePassationCode())
                 .modePassationIntitule(vMarches.getModePassationIntitule())
+                .statut((vMarches.getStatut()))
                 .build();
     }
 
-    public List<MarcheDTO> maptoMarcheDtoList(List<VMarches> vMarchesList) {
-        if (vMarchesList == null) {
-            return null;
-        }
-
-        return vMarchesList.stream()
-                .map(this::mapToMarcheDto)
-                .collect(Collectors.toList());
-    }
+//    public List<MarcheDTO> maptoMarcheDtoList(List<VMarches> vMarchesList) {
+//        if (vMarchesList == null) {
+//            return null;
+//        }
+//
+//        return vMarchesList.stream()
+//                .map(this::mapToMarcheDto)
+//                .collect(Collectors.toList());
+//    }
 
     public Marches mapToMarche(MarcheDTO marcheDTO) {
         if (marcheDTO == null) {
@@ -66,6 +70,7 @@ public class MarcheMapper {
         marches.setStructureAutoriteContractanteCode(marcheDTO.getStructureAutoriteContractanteCode());
         marches.setTypeMarcheCode(marcheDTO.getTypeMarcheCode());
         marches.setModeDePassationCode(marcheDTO.getModePassationCode());
+        marches.setStatut(marcheDTO.getStatut());
 
         return marches;
     }

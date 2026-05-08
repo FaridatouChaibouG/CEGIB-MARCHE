@@ -10,57 +10,20 @@
 @param List<ActiviteDTO> marcheActiviteDTOs
 
 @template.layout(
-title = "Suppression Marché",
+title = "Détails Marché",
 messages = messages,
 content = @`
 
 
 
     <!-- Actions Bar -->
+
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4 class="text-danger fw-bold">
-<%--            <!-- Actions Bar -->--%>
-<%--            <div class="d-flex justify-content-between align-items-center mb-4">--%>
-<%--                <h4 class="text-danger fw-bold">--%>
-<%--                    <i class=""></i>--%>
-<%--                </h4>--%>
-
-<%--            </div>--%>
-
-            <!-- Modal de suppression -->
-            <div class="modal fade" id="del${marcheDTO.getId()}" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered text-start">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-dark fs-6"  >Souhaitez-vous supprimer ce marché ?</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <%--                                        <div class="modal-body">--%>
-                        <%--                                            Voulez-vous supprimer le marché : <b>${marche.getNumMarche()}</b> ?--%>
-                        <%--                                        </div>--%>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
-                            <a href="/marche/delete/Delete/${marcheDTO.getId()}" class="btn btn-outline-danger shadow-sm">
-                                <i class="bi bi-arrow me-1"></i> Oui
-
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </h4>
-
-        <div class="d-flex gap-2">
-
-            <a type="button" class="btn btn-outline-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#del${marcheDTO.getId()}">
-                <i class="bi  me-1"></i>Supprimer
-            </a>
-
-            <a href="/marche/list" class="btn btn-outline-secondary shadow-sm">
-                <i class="bi bi-arrow-left me-1"></i>Retour à la liste
-            </a>
-
-        </div>
+        <h4 class="text-success fw-bold"><i class="bi bi-file-earmark-text me-2"> ${marcheDTO.getNumMarche()}</i></h4>
+        <h4 class="text-success fw-bold"> </h4>
+        <a href="/marcheValide/listValider" class="btn btn-outline-secondary shadow-sm">
+            <i class="bi bi-arrow-left me-1"></i> Retour à la liste
+        </a>
     </div>
 
 
@@ -177,7 +140,6 @@ content = @`
                     </span>
                 </div>
 
-
                 <div class="col-md-6 ">
                     <small class="fw-bold d-block">
                         Statut
@@ -187,7 +149,6 @@ content = @`
                         ${marcheDTO.getStatut()}
                     </span>
                 </div>
-
 
             </div>
         </div>

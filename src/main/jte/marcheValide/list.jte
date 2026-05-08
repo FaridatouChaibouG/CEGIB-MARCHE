@@ -6,7 +6,7 @@
 @param Map<String, String> messages
 
 @template.layout(
-title = "Liste des marchés",
+title = "Liste des marchés validés",
 messages = messages,
 content = @`
 
@@ -16,9 +16,7 @@ content = @`
 
             <small class="text-muted">${marches.size()} éléments trouvés dans la liste</small>
         </div>
-        <a href="/marche/addForm" class="btn btn-success px-4">
-            <i class="bi bi-plus-lg me-1"></i> Nouveau marché
-        </a>
+
     </div>
 
     <div class="card shadow-sm border-0">
@@ -26,7 +24,7 @@ content = @`
             <table id="marches" class="table table-hover align-middle mb-0">
                 <thead class="table-light">
                 <tr>
-                    <th class="ps-3">Numéro provisoire</th>
+                    <th class="ps-3">Numéro marché</th>
                     <th style="width: 20%;">Objet du marché</th>
                     <th style="width: 20%;">Type de marché</th>
                     <th style="width: 20%;">Mode de passation</th>
@@ -53,21 +51,23 @@ content = @`
                             </div></td>
                         <td><small>${marche.getModePassationIntitule()}</small></td>
 
-
-
+                        <!-- * les pointillés -->
+<%--                        <td>--%>
+<%--                            <div class="text-truncate" style="max-width: 150px;" title="${marche.getStructureAutoriteContractanteIntutule()}">--%>
+<%--                                ${marche.getStructureAutoriteContractanteIntutule()}--%>
+<%--                            </div>--%>
+<%--                        </td>--%>
 
                         <td>
                             <small>
                                 ${marche.getDateApprobation().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))}
                             </small>
                         </td>
-
+<%--                        <td>${marche.getTitulaireMarche()}</td>--%>
                         <td class="text-center pe-3 text-nowrap">
                             <div class="btn-group">
-                                <a href="/marche/details/${marche.getId()}" class="btn btn-sm btn-outline-info">Détails</a>
-                                <a href="/marche/delete/${marche.getId()}" class="btn btn-sm btn-danger">
-                                    Supprimer
-                                </a>
+                                <a href="/marcheValide/details/${marche.getId()}" class="btn btn-sm btn-outline-info">Détails</a>
+
                             </div>
 
 

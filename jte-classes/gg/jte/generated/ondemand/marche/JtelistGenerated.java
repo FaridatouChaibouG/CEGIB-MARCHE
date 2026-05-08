@@ -5,7 +5,7 @@ import java.util.Map;
 @SuppressWarnings("unchecked")
 public final class JtelistGenerated {
 	public static final String JTE_NAME = "marche/list.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,4,4,4,4,7,7,10,10,16,16,16,32,33,35,40,40,42,42,42,45,45,45,45,45,45,45,45,45,46,46,46,50,50,50,50,50,50,50,50,50,51,51,51,53,53,53,55,56,57,58,59,60,64,64,64,67,70,70,70,70,71,71,71,71,72,72,72,72,80,80,116,116,116,117,117,117,4,5,5,5,5};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,4,4,4,4,7,7,10,10,16,16,16,32,33,35,40,40,42,42,42,45,45,45,45,45,45,45,45,45,46,46,46,50,50,50,50,50,50,50,50,50,51,51,51,53,53,53,55,56,57,58,59,60,64,64,64,67,70,70,70,70,71,72,72,72,72,80,80,116,116,116,117,117,117,4,5,5,5,5};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, List<MarcheDTO> marches, Map<String, String> messages) {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.JtelayoutGenerated.render(jteOutput, jteHtmlInterceptor, "Liste des marchés", new gg.jte.html.HtmlContent() {
@@ -62,11 +62,8 @@ public final class JtelistGenerated {
 					jteOutput.setContext("a", "href");
 					jteOutput.writeUserContent(marche.getId());
 					jteOutput.setContext("a", null);
-					jteOutput.writeContent("\" class=\"btn btn-sm btn-outline-info\">Détails</a>\n                                <a href=\"/marche/edit/");
-					jteOutput.setContext("a", "href");
-					jteOutput.writeUserContent(marche.getId());
-					jteOutput.setContext("a", null);
-					jteOutput.writeContent("\" class=\"btn btn-sm btn-outline-warning\">Modifier</a>\n                                <a href=\"/marche/delete/");
+					jteOutput.writeContent("\" class=\"btn btn-sm btn-outline-info\">Détails</a>\n");
+					jteOutput.writeContent("\n                                <a href=\"/marche/delete/");
 					jteOutput.setContext("a", "href");
 					jteOutput.writeUserContent(marche.getId());
 					jteOutput.setContext("a", null);

@@ -4,6 +4,10 @@ package com.advinteck.cegib.controller;
 import com.advinteck.cegib.dto.ActiviteDTO;
 import com.advinteck.cegib.dto.MarcheDTO;
 import com.advinteck.cegib.dto.NifDTO;
+import com.advinteck.cegib.generated.referentiel.tables.pojos.AutoriteContractanteStructures;
+import com.advinteck.cegib.generated.referentiel.tables.pojos.DppdActivite;
+import com.advinteck.cegib.generated.referentiel.tables.pojos.Imputation;
+import com.advinteck.cegib.generated.referentiel.tables.pojos.Nifs;
 import com.advinteck.cegib.service.MarcheService;
 import com.advinteck.cegib.service.ReferentielService;
 import jakarta.validation.Valid;
@@ -34,17 +38,18 @@ public class MarcheController {
         return "marche/list";
     }
 
-//    @GetMapping("/listValider")
-//    public String listmarcheValider(Model model) {
-//        List<MarcheDTO> marchesList = marcheService.marcheValideList();
-//        model.addAttribute("marches", marchesList);
-//        return "marche/list";
-//    }
+
 
     @GetMapping("/addForm")
     public String addMarcheForm(Model model) {
 
-        model.addAttribute("marcheDTO", new MarcheDTO());
+
+
+        MarcheDTO marcheDTO = new MarcheDTO();
+        marcheDTO.setNumMarche(marcheService.generateNumMarche());
+        model.addAttribute("marcheDTO", marcheDTO);
+
+
         model.addAttribute("imputationList", referentielService.imputationsList());
         model.addAttribute("autoriteContractanteList", referentielService.autoriteContractantesList());
         model.addAttribute("structureAutoriteContractanteList", referentielService.structureAutoriteContractantesList());
@@ -78,27 +83,6 @@ public class MarcheController {
 
             return "marche/form";
         }
-
-
-        String numeroMarche = marcheDTO.getNumMarche();
-
-        if (marcheService.NumeroMarcheAlreadyExists(numeroMarche)) {
-
-            messages.put("danger", "Le numéro du marché " + numeroMarche + " est déjà attribué.");
-
-            model.addAttribute("messages", messages);
-            model.addAttribute("bindingResult", bindingResult);
-            model.addAttribute("marcheDTO", marcheDTO);
-
-            model.addAttribute("imputationList", referentielService.imputationsList());
-            model.addAttribute("autoriteContractanteList", referentielService.autoriteContractantesList());
-            model.addAttribute("structureAutoriteContractanteList", referentielService.structureAutoriteContractantesList());
-            model.addAttribute("typeMarcheList", referentielService.typeMarchesList());
-            model.addAttribute("modePassationList", referentielService.modePassationsList());
-
-            return "marche/form";
-        }
-
 
         MarcheDTO saveMarche;
 
@@ -135,16 +119,50 @@ public class MarcheController {
             return "redirect:/marche/list";
         }
 
+        MarcheDTO marche = marcheDTO.get();
 
-        model.addAttribute("marcheDTO", marcheDTO.get());
 
-        model.addAttribute("marcheNifDTOs", marcheService.marcheNifList(id));
+        model.addAttribute("marcheDTO", marche);
+
+
+        List<NifDTO> marcheNifDTOs = marcheService.marcheNifList(id);
+
+        //  AJOUT DU TITULAIRE DANS LA LISTE SI ABSENT
+        if (marche.getTitulaireMarche() != null) {
+
+            boolean exists = marcheNifDTOs.stream()
+                    .anyMatch(n -> n.getIdentifiant()
+                            .equals(marche.getTitulaireMarche()));
+
+            if (!exists) {
+
+                Nifs nifPojo = referentielService.nifsList()
+                        .stream()
+                        .filter(n -> n.getIdentifiant() != null
+                                && n.getIdentifiant().equals(marche.getTitulaireMarche()))
+                        .findFirst()
+                        .orElse(null);
+
+                if (nifPojo != null) {
+
+                    NifDTO nifDTO = new NifDTO();
+                    nifDTO.setId(nifPojo.getId());
+                    nifDTO.setIdentifiant(nifPojo.getIdentifiant());
+                    nifDTO.setRaisonSocial(nifPojo.getRaisonSociale());
+
+                    marcheNifDTOs.add(nifDTO);
+                }
+            }
+        }
+
+        model.addAttribute("marcheNifDTOs", marcheNifDTOs);
 
         model.addAttribute("nifList", referentielService.nifsList());
-
         model.addAttribute("marcheActiviteDTOs", marcheService.marcheActiviteList(id));
-
         model.addAttribute("dppActiviteList", referentielService.dppdActiviteList());
+
+
+
 
         return "marche/details";
     }
@@ -296,7 +314,7 @@ public class MarcheController {
         redirectAttributes.addFlashAttribute("messages", messages);
 
 
-        return "redirect:/marche/list";
+        return "redirect:/marche/details/" + marcheDTO.getId();
     }
 
 
@@ -352,6 +370,49 @@ public class MarcheController {
 
         return "redirect:/marche/list";
     }
+
+
+    @GetMapping("/structures/{code}")
+    @ResponseBody
+    public List<AutoriteContractanteStructures> getStructures(@PathVariable String code) {
+        List<AutoriteContractanteStructures> ttesLesStructures = referentielService.structureAutoriteContractantesList();
+
+        return ttesLesStructures.stream()
+                .filter(s -> {
+                    if (s.getCodeAutoriteContractante() == null) return false;
+
+                    // Nettoyage complet
+                    String codeS = String.valueOf(s.getCodeAutoriteContractante()).trim();
+                    String codeRecherche = code.trim();
+                    return codeS.equals(codeRecherche);
+                })
+                .toList();
+    }
+
+
+    @GetMapping("/search-nif/{value}")
+    @ResponseBody
+    public List<Nifs> searchNif(@PathVariable String value) {
+
+        return referentielService.nifsList()
+                .stream()
+                .filter(el ->
+                        el.getIdentifiant() != null
+                                && el.getIdentifiant().startsWith(value)
+                )
+                .limit(10)
+                .toList();
+    }
+
+
+
+    @GetMapping("/activites-by-imputation/{imputation}")
+    @ResponseBody
+    public List<DppdActivite> getActivitesByImputation(@PathVariable String imputation) {
+        return referentielService.dppdActiviteListByImputation(imputation);
+    }
+
+
 
 
 

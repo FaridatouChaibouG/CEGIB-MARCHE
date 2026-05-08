@@ -28,13 +28,17 @@ public class ReferentielService {
         return imputationDao.findAll();
     }
 
-    public List<AutoriteContractante>  autoriteContractantesList(){
-        return autoriteContractanteDao.findAll();
+    public List<AutoriteContractante> autoriteContractantesList(){
+        List<AutoriteContractante> list = autoriteContractanteDao.findAll();
+        return list;
     }
+
 
     public List<AutoriteContractanteStructures>  structureAutoriteContractantesList(){
         return autoriteContractanteStructuresDao.findAll();
     }
+
+
 
     public List<TypesMarche> typeMarchesList(){
         return typesMarcheDao.findAll();
@@ -58,7 +62,23 @@ public class ReferentielService {
 
     public DppdActivite findOneActiviteByCodeActivite(String codeActivite){
         return  dppdActiviteDao.fetchOneByCodeActivite(codeActivite);
+
     }
+
+    public List<DppdActivite> dppdActiviteListByImputation(String imputation) {
+        if (imputation == null || imputation.length() < 5) return List.of();
+
+        String sectionCode   = imputation.substring(0, 2);
+        String programmeCode = imputation.substring(2, 5);
+
+        return dppdActiviteDao.findAll()
+                .stream()
+                .filter(a -> sectionCode.equals(a.getSectionCode())
+                        && programmeCode.equals(a.getProgrammeCode()))
+                .toList();
+    }
+
+
 
 
 }

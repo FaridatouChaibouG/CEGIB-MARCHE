@@ -16,7 +16,7 @@
 
     <!-- AJOUT : CSS DataTables -->
     <link href="/dataTables/dataTables.min.css" rel="stylesheet">
-
+    <link href="/bootstrap/style.css" rel="stylesheet">
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.min.css">

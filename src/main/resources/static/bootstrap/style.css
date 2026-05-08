@@ -1,0 +1,50 @@
+.form-section-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #4e73df;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e3e6f0;
+            margin-left: 1rem;
+        }
+
+        .card-custom {
+            border-radius: 12px;
+            border: none;
+        }
+
+        .form-control,
+        .form-select {
+            border-color: #d1d3e2;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.1);
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #198754 0%, #157347 100%);
+            border: none;
+            padding: 10px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .invalid-feedback {
+            display: block;
+            font-size: 0.85rem;
+        }

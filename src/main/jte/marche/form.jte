@@ -18,58 +18,6 @@ title = "Nouveau Marché",
 messages = messages,
 content = @`
 
-    <style>
-        .form-section-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #4e73df;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .form-section-title::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #e3e6f0;
-            margin-left: 1rem;
-        }
-
-        .card-custom {
-            border-radius: 12px;
-            border: none;
-        }
-
-        .form-control,
-        .form-select {
-            border-color: #d1d3e2;
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-        }
-
-        .form-control:focus,
-        .form-select:focus {
-            border-color: #4e73df;
-            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.1);
-        }
-
-        .btn-save {
-            background: linear-gradient(135deg, #198754 0%, #157347 100%);
-            border: none;
-            padding: 10px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            color: white;
-        }
-
-        .invalid-feedback {
-            display: block;
-            font-size: 0.85rem;
-        }
-    </style>
 
     <div class="container-fluid py-4">
 
@@ -91,7 +39,7 @@ content = @`
                     <!-- INFORMATIONS GENERALES -->
                     <!-- ========================= -->
 
-                    <div class="form-section-title">
+                    <div class="form-section-title text-success">
                         01. Informations Générales
                     </div>
 
@@ -99,8 +47,8 @@ content = @`
 
                         <!-- NUMERO MARCHE -->
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">
-                                Numéro provisoire du marché
+                            <label class="form-label small fw-bold text-uppercase">
+                                Numéro provisoire
                             </label>
                             <input type="text"
                                    name="numMarche"
@@ -116,8 +64,8 @@ content = @`
 
                         <!-- OBJET MARCHE -->
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">
-                                Objet du Marché
+                            <label class="form-label small fw-bold text-uppercase">
+                                Objet du Marché <i class="text-danger">*</i>
                             </label>
                             <textarea
                                     name="objetMarche"
@@ -133,8 +81,8 @@ content = @`
 
                         <!-- IMPUTATION -->
                         <div class="col-md-12">
-                            <label class="form-label small fw-bold">
-                                Imputation Budgétaire
+                            <label class="form-label small fw-bold text-uppercase">
+                                Imputation Budgétaire <i class="text-danger">*</i>
                             </label>
                             <select
                                     name="imputation"
@@ -161,7 +109,7 @@ content = @`
                     <!-- CARACTERISTIQUES -->
                     <!-- ========================= -->
 
-                    <div class="form-section-title">
+                    <div class="form-section-title text-success">
                         02. Caractéristiques du marché
                     </div>
 
@@ -169,8 +117,8 @@ content = @`
 
                         <!-- TYPE MARCHE -->
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">
-                                Type de Marché
+                            <label class="form-label small fw-bold text-uppercase">
+                                Type de Marché <i class="text-danger">*</i>
                             </label>
                             <select
                                     name="typeMarcheCode"
@@ -193,8 +141,8 @@ content = @`
 
                         <!-- MODE PASSATION -->
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">
-                                Mode de Passation
+                            <label class="form-label small fw-bold text-uppercase">
+                                Mode de Passation <i class="text-danger">*</i>
                             </label>
                             <select
                                     name="modePassationCode"
@@ -219,8 +167,8 @@ content = @`
 
                     <!-- TITULAIRE -->
                     <div class="col-md-12 mb-5">
-                        <label class="form-label small fw-bold">
-                            Titulaire du marché
+                        <label class="form-label small fw-bold text-uppercase">
+                            Titulaire du marché (NIF) <i class="text-danger">*</i>
                         </label>
                         <div class="position-relative">
                             <input type="text"
@@ -228,7 +176,7 @@ content = @`
                                    name="titulaireMarche"
                                    autocomplete="off"
                                    value="${marcheDTO != null ? marcheDTO.getTitulaireMarche() : ""}"
-                                   placeholder="Numéro d'Identification Fiscal de l'entreprise"
+                                   placeholder="Entrer le NIF ou la raison sociale"
                                    class="form-control ${bindingResult != null && bindingResult.hasFieldErrors("titulaireMarche") ? "is-invalid" : ""}">
                             <!-- suggestions -->
                             <div id="suggestionsNif"
@@ -247,7 +195,7 @@ content = @`
                     <!-- AUTORITES -->
                     <!-- ========================= -->
 
-                    <div class="form-section-title">
+                    <div class="form-section-title text-success">
                         03. Autorités
                     </div>
 
@@ -255,8 +203,8 @@ content = @`
 
                         <!-- AUTORITE CONTRACTANTE -->
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">
-                                Autorité Contractante
+                            <label class="form-label small fw-bold text-uppercase">
+                                Autorité Contractante <i class="text-danger">*</i>
                             </label>
                             <select
                                     id="autorite"
@@ -281,8 +229,8 @@ content = @`
 
                         <!-- STRUCTURE -->
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">
-                                Structure
+                            <label class="form-label small fw-bold text-uppercase">
+                                Structure <i class="text-danger">*</i>
                             </label>
                             <select
                                     id="structure"
@@ -299,8 +247,8 @@ content = @`
 
                         <!-- APPROUVE PAR -->
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">
-                                Approuvé par
+                            <label class="form-label small fw-bold text-uppercase">
+                                Approuvé par <i class="text-danger">*</i>
                             </label>
                             <input type="text"
                                    name="approuvePar"
@@ -316,8 +264,8 @@ content = @`
 
                         <!-- DATE APPROBATION -->
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">
-                                Date d'approbation
+                            <label class="form-label small fw-bold text-uppercase">
+                                Date d'approbation <i class="text-danger">*</i>
                             </label>
                             <input type="date"
                                    name="dateApprobation"
@@ -329,27 +277,6 @@ content = @`
                                 </div>
                             @endif
                         </div>
-
-
-
-                        <div class="col-md-6">
-                            <label class="form-label small fw-bold">
-                               Statut
-                            </label>
-                            <input type="text"
-                                   name="statutr"
-                                   autocomplete="off"
-                                   value="${marcheDTO != null ? marcheDTO.getStatut() : ""}"
-                                   class="form-control ${bindingResult != null && bindingResult.hasFieldErrors("statut") ? "is-invalid" : ""}">
-                            @if(bindingResult != null && bindingResult.hasFieldErrors("statut"))
-                                <div class="invalid-feedback">
-                                    ${bindingResult.getFieldError("statut").getDefaultMessage()}
-                                </div>
-                            @endif
-                        </div>
-
-
-
                     </div>
 
                     <!-- BOUTONS -->

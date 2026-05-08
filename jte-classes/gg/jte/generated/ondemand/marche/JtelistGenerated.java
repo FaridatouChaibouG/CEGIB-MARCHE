@@ -5,15 +5,13 @@ import java.util.Map;
 @SuppressWarnings("unchecked")
 public final class JtelistGenerated {
 	public static final String JTE_NAME = "marche/list.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,4,4,4,4,7,7,10,10,16,16,16,32,33,35,40,40,42,42,42,45,45,45,45,45,45,45,45,45,46,46,46,50,50,50,50,50,50,50,50,50,51,51,51,53,53,53,55,56,57,58,59,60,64,64,64,67,70,70,70,70,71,72,72,72,72,80,80,116,116,116,117,117,117,4,5,5,5,5};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,4,4,4,4,7,7,10,10,16,32,33,35,40,40,42,42,42,45,45,45,45,45,45,45,45,45,46,46,46,50,50,50,50,50,50,50,50,50,51,51,51,53,53,53,60,60,60,66,66,66,66,67,67,67,67,75,75,111,111,111,112,112,112,4,5,5,5,5};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, List<MarcheDTO> marches, Map<String, String> messages) {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.JtelayoutGenerated.render(jteOutput, jteHtmlInterceptor, "Liste des marchés", new gg.jte.html.HtmlContent() {
 			public void writeTo(gg.jte.html.HtmlTemplateOutput jteOutput) {
-				jteOutput.writeContent("\n\n\n    <div class=\"d-flex justify-content-between align-items-center mb-3\">\n        <div>\n\n            <small class=\"text-muted\">");
-				jteOutput.setContext("small", null);
-				jteOutput.writeUserContent(marches.size());
-				jteOutput.writeContent(" éléments trouvés dans la liste</small>\n        </div>\n        <a href=\"/marche/addForm\" class=\"btn btn-success px-4\">\n            <i class=\"bi bi-plus-lg me-1\"></i> Nouveau marché\n        </a>\n    </div>\n\n    <div class=\"card shadow-sm border-0\">\n        <div class=\"card-body p-0\">\n            <table id=\"marches\" class=\"table table-hover align-middle mb-0\">\n                <thead class=\"table-light\">\n                <tr>\n                    <th class=\"ps-3\">Numéro provisoire</th>\n                    <th style=\"width: 20%;\">Objet du marché</th>\n                    <th style=\"width: 20%;\">Type de marché</th>\n                    <th style=\"width: 20%;\">Mode de passation</th>\n                    ");
+				jteOutput.writeContent("\n\n\n    <div class=\"d-flex justify-content-between align-items-center mb-3\">\n        <div>\n\n");
+				jteOutput.writeContent("\n        </div>\n        <a href=\"/marche/addForm\" class=\"btn btn-success px-4\">\n            <i class=\"bi bi-plus-lg me-1\"></i> Nouveau marché\n        </a>\n    </div>\n\n    <div class=\"card shadow-sm border-0\">\n        <div class=\"card-body p-0\">\n            <table id=\"marches\" class=\"table table-hover align-middle mb-0\">\n                <thead class=\"table-light\">\n                <tr>\n                    <th class=\"ps-3\">Numéro provisoire</th>\n                    <th style=\"width: 20%;\">Objet du marché</th>\n                    <th style=\"width: 20%;\">Type de marché</th>\n                    <th style=\"width: 20%;\">Mode de passation</th>\n                    ");
 				jteOutput.writeContent("\n");
 				jteOutput.writeContent("\n                    <th>Date d'approbation</th>\n");
 				jteOutput.writeContent("\n                    <th class=\"text-center\">Actions</th>\n                </tr>\n                </thead>\n                <tbody>\n                ");
@@ -48,22 +46,14 @@ public final class JtelistGenerated {
 					jteOutput.writeContent("\n                            </div></td>\n                        <td><small>");
 					jteOutput.setContext("small", null);
 					jteOutput.writeUserContent(marche.getModePassationIntitule());
-					jteOutput.writeContent("</small></td>\n\n                        ");
-					jteOutput.writeContent("\n");
-					jteOutput.writeContent("\n");
-					jteOutput.writeContent("\n");
-					jteOutput.writeContent("\n");
-					jteOutput.writeContent("\n");
-					jteOutput.writeContent("\n\n                        <td>\n                            <small>\n                                ");
+					jteOutput.writeContent("</small></td>\n\n\n\n\n                        <td>\n                            <small>\n                                ");
 					jteOutput.setContext("small", null);
 					jteOutput.writeUserContent(marche.getDateApprobation().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-					jteOutput.writeContent("\n                            </small>\n                        </td>\n");
-					jteOutput.writeContent("\n                        <td class=\"text-center pe-3 text-nowrap\">\n                            <div class=\"btn-group\">\n                                <a href=\"/marche/details/");
+					jteOutput.writeContent("\n                            </small>\n                        </td>\n\n                        <td class=\"text-center pe-3 text-nowrap\">\n                            <div class=\"btn-group\">\n                                <a href=\"/marche/details/");
 					jteOutput.setContext("a", "href");
 					jteOutput.writeUserContent(marche.getId());
 					jteOutput.setContext("a", null);
-					jteOutput.writeContent("\" class=\"btn btn-sm btn-outline-info\">Détails</a>\n");
-					jteOutput.writeContent("\n                                <a href=\"/marche/delete/");
+					jteOutput.writeContent("\" class=\"btn btn-sm btn-outline-success\">Détails</a>\n                                <a href=\"/marche/delete/");
 					jteOutput.setContext("a", "href");
 					jteOutput.writeUserContent(marche.getId());
 					jteOutput.setContext("a", null);

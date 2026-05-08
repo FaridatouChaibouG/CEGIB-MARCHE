@@ -14,7 +14,7 @@ content = @`
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
 
-            <small class="text-muted">${marches.size()} éléments trouvés dans la liste</small>
+<%--            <small class="text-muted">${marches.size()} éléments trouvés dans la liste</small>--%>
         </div>
         <a href="/marche/addForm" class="btn btn-success px-4">
             <i class="bi bi-plus-lg me-1"></i> Nouveau marché
@@ -64,7 +64,7 @@ content = @`
 
                         <td class="text-center pe-3 text-nowrap">
                             <div class="btn-group">
-                                <a href="/marche/details/${marche.getId()}" class="btn btn-sm btn-outline-info">Détails</a>
+                                <a href="/marche/details/${marche.getId()}" class="btn btn-sm btn-outline-success">Détails</a>
                                 <a href="/marche/delete/${marche.getId()}" class="btn btn-sm btn-danger">
                                     Supprimer
                                 </a>
